@@ -29,8 +29,11 @@ class AppServiceProvider extends ServiceProvider
         try {
             // Check if table exists to avoid errors during migration
             if (\Illuminate\Support\Facades\Schema::hasTable('page_contents')) {
-                $globalContent = \App\Models\PageContent::where('key', 'like', 'contact_%')
-                    ->pluck('value', 'key');
+                $globalContent = \App\Models\PageContent::where(function($query) {
+                    $query->where('key', 'like', 'contact_%')
+                          ->orWhere('key', 'like', 'social_%')
+                          ->orWhere('key', 'like', 'legacy_social_%');
+                })->pluck('value', 'key');
                 
                 \Illuminate\Support\Facades\View::share('global_contact', $globalContent);
             }

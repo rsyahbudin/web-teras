@@ -27,8 +27,8 @@ class HomeController extends Controller
             'feature_1_text' => $content['home_feature_1_text'] ?? 'Authentic recipes passed down...',
             'feature_2_title' => $content['home_feature_2_title'] ?? 'Botanical Ambience',
             'feature_2_text' => $content['home_feature_2_text'] ?? 'Dine surrounded by lush greenery...',
-            'feature_3_title' => $content['home_3_title'] ?? 'Warm Hospitality',
-            'feature_3_text' => $content['home_3_text'] ?? 'Service that feels like family...',
+            'feature_3_title' => $content['home_feature_3_title'] ?? 'Warm Hospitality',
+            'feature_3_text' => $content['home_feature_3_text'] ?? 'Service that feels like family...',
 
             // Story / About
             'story_title' => $content['home_about_title'] ?? 'More than a restaurant...',

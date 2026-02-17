@@ -31,33 +31,33 @@
         <div class="container mx-auto">
             <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
                 <!-- Feature 1 -->
-                <div class="group flex flex-col gap-4 rounded-xl bg-white dark:bg-background-dark p-6 shadow-xl transition-all hover:-translate-y-1 hover:shadow-2xl border border-sand/50 dark:border-wood-light/20">
+                <div class="group flex flex-col gap-4 rounded-xl bg-white dark:bg-background-dark p-6 shadow-xl transition-all hover:-translate-y-1 hover:shadow-2xl border border-sand/50 dark:border-wood-light/20 h-full">
                     <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-wood-light/20 text-wood-dark dark:text-cream group-hover:bg-primary group-hover:text-white transition-colors">
                         <span class="material-symbols-outlined">soup_kitchen</span>
                     </div>
                     <div>
                         <h3 class="mb-2 text-xl font-bold text-wood-dark dark:text-cream">{{ $feature_1_title }}</h3>
-                        <p class="text-wood-light dark:text-gray-400">{{ $feature_1_text }}</p>
+                        <p class="text-wood-light dark:text-gray-400 whitespace-pre-line">{{ $feature_1_text }}</p>
                     </div>
                 </div>
                 <!-- Feature 2 -->
-                <div class="group flex flex-col gap-4 rounded-xl bg-white dark:bg-background-dark p-6 shadow-xl transition-all hover:-translate-y-1 hover:shadow-2xl border border-sand/50 dark:border-wood-light/20">
+                <div class="group flex flex-col gap-4 rounded-xl bg-white dark:bg-background-dark p-6 shadow-xl transition-all hover:-translate-y-1 hover:shadow-2xl border border-sand/50 dark:border-wood-light/20 h-full">
                     <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-wood-light/20 text-wood-dark dark:text-cream group-hover:bg-accent-green group-hover:text-white transition-colors">
                         <span class="material-symbols-outlined">forest</span>
                     </div>
                     <div>
                         <h3 class="mb-2 text-xl font-bold text-wood-dark dark:text-cream">{{ $feature_2_title }}</h3>
-                        <p class="text-wood-light dark:text-gray-400">{{ $feature_2_text }}</p>
+                        <p class="text-wood-light dark:text-gray-400 whitespace-pre-line">{{ $feature_2_text }}</p>
                     </div>
                 </div>
                 <!-- Feature 3 -->
-                <div class="group flex flex-col gap-4 rounded-xl bg-white dark:bg-background-dark p-6 shadow-xl transition-all hover:-translate-y-1 hover:shadow-2xl border border-sand/50 dark:border-wood-light/20">
+                <div class="group flex flex-col gap-4 rounded-xl bg-white dark:bg-background-dark p-6 shadow-xl transition-all hover:-translate-y-1 hover:shadow-2xl border border-sand/50 dark:border-wood-light/20 h-full">
                     <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-wood-light/20 text-wood-dark dark:text-cream group-hover:bg-primary group-hover:text-white transition-colors">
                         <span class="material-symbols-outlined">volunteer_activism</span>
                     </div>
                     <div>
                         <h3 class="mb-2 text-xl font-bold text-wood-dark dark:text-cream">{{ $feature_3_title }}</h3>
-                        <p class="text-wood-light dark:text-gray-400">{{ $feature_3_text }}</p>
+                        <p class="text-wood-light dark:text-gray-400 whitespace-pre-line">{{ $feature_3_text }}</p>
                     </div>
                 </div>
             </div>
@@ -198,12 +198,12 @@
             <h2 class="mt-2 text-3xl md:text-4xl font-black text-wood-dark dark:text-cream">Captured Moments</h2>
         </div>
         
-        <div class="flex flex-wrap md:flex-nowrap gap-4 px-4 overflow-hidden justify-center">
+        <div class="flex flex-col md:flex-row gap-4 px-4 overflow-hidden h-[800px] md:h-80">
             @forelse($gallery_preview as $photo)
-                <div class="relative group rounded-xl overflow-hidden h-64 md:h-80 w-full md:w-1/3 flex-none first:md:w-1/4 last:md:w-1/4 hover:w-1/2 transition-all duration-500 ease-in-out cursor-pointer">
+                <div class="relative group rounded-xl overflow-hidden flex-1 hover:grow-[2] transition-all duration-500 ease-in-out cursor-pointer min-h-[200px] md:min-h-auto {{ $loop->iteration > 3 ? 'hidden md:block' : '' }}">
                     <img src="{{ $photo->image_path }}" alt="{{ $photo->title }}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                     <div class="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors"></div>
-                    <div class="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div class="absolute bottom-4 left-4 opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <span class="text-white font-bold text-lg drop-shadow-md">{{ $photo->title }}</span>
                         <span class="block text-cream/80 text-xs uppercase tracking-wider">{{ $photo->category }}</span>
                     </div>

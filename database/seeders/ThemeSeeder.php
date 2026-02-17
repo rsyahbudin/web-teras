@@ -128,6 +128,21 @@ class ThemeSeeder extends Seeder
                 'value' => 'events@terasrumahnenek.com', 
                 'type' => 'text'
             ],
+            [
+                'key' => 'legacy_social_instagram', 
+                'value' => 'https://instagram.com/legacygarden', 
+                'type' => 'text'
+            ],
+            [
+                'key' => 'legacy_social_tiktok', 
+                'value' => 'https://tiktok.com/@legacygarden', 
+                'type' => 'text'
+            ],
+            [
+                'key' => 'legacy_social_facebook', 
+                'value' => 'https://facebook.com/legacygarden', 
+                'type' => 'text'
+            ],
             // Global Contact & Socials
             ['key' => 'contact_address', 'value' => 'Jl. Pangeran Antasari No. 88, Cipete Selatan, Jakarta Selatan 12410', 'type' => 'textarea'],
             ['key' => 'contact_maps_link', 'value' => 'https://goo.gl/maps/example', 'type' => 'text'],

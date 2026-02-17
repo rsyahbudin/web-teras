@@ -20,7 +20,7 @@ Route::post('/legacy-inquire', [App\Http\Controllers\BookingController::class, '
 
 Route::get('/login', function () {
     return redirect('/admin/login');
-})->name('login');
+});
 
 use App\Livewire\Admin\Menu\Index as MenuIndex;
 use App\Livewire\Admin\Events\Index as EventsIndex;

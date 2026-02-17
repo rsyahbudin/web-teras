@@ -2,6 +2,7 @@
     <div class="flex justify-between items-center">
         <h1 class="text-2xl font-bold dark:text-white">Menu Management</h1>
         <div class="flex gap-2">
+            <flux:button variant="ghost" icon="arrow-down-tray" wire:click="openImportModal">Import</flux:button>
             <flux:button icon="tag" wire:click="manageCategories">Categories</flux:button>
             <flux:button variant="primary" icon="plus" wire:click="createItem">Add Item</flux:button>
         </div>
@@ -183,6 +184,34 @@
             <div class="pt-4 mt-4 border-t border-zinc-200 dark:border-zinc-700 flex justify-end">
                 <flux:button wire:click="$set('showCategoryModal', false)">Close</flux:button>
             </div>
+        </div>
+    </flux:modal>
+
+    <!-- Import Modal -->
+    <flux:modal wire:model="showImportModal" class="min-w-[400px]">
+        <div class="p-6">
+            <h2 class="text-xl font-bold mb-4">Import Menu Items</h2>
+            <p class="text-sm text-zinc-500 mb-6">Upload a CSV file to bulk import menu items. Ensure the format matches the template.</p>
+            
+            <form wire:submit="importMenu" class="space-y-6">
+                <div class="bg-zinc-50 dark:bg-zinc-900/50 p-4 rounded-lg border border-zinc-200 dark:border-zinc-700 mb-4">
+                    <div class="flex items-center justify-between">
+                         <span class="text-sm font-medium">1. Download Template</span>
+                         <flux:button size="sm" icon="arrow-down" wire:click="downloadTemplate">Download CSV</flux:button>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium mb-2">2. Upload CSV File</label>
+                    <input type="file" wire:model="importFile" class="block w-full text-sm text-zinc-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20 transition-colors">
+                    @error('importFile') <span class="text-red-500 text-sm block mt-1">{{ $message }}</span> @enderror
+                </div>
+                
+                <div class="flex justify-end gap-2 pt-4 border-t border-zinc-200 dark:border-zinc-700">
+                    <flux:button wire:click="$set('showImportModal', false)">Cancel</flux:button>
+                    <flux:button variant="primary" type="submit">Import</flux:button>
+                </div>
+            </form>
         </div>
     </flux:modal>
 </div>

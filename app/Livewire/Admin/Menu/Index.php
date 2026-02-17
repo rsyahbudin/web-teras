@@ -167,4 +167,98 @@ class Index extends Component
     {
         $this->reset(['categoryId', 'categoryName', 'categoryDescription']);
     }
+    // --- IMPORT ACTIONS ---
+
+    public $showImportModal = false;
+    public $importFile;
+
+    public function openImportModal()
+    {
+        $this->showImportModal = true;
+        $this->importFile = null;
+    }
+
+    public function downloadTemplate()
+    {
+        $headers = ['Category', 'Name', 'Description', 'Price', 'Is Featured (1/0)', 'Is Available (1/0)'];
+        $rows = [
+            ['Main Course', 'Sample Item', 'Delicious sample description.', '50000', '1', '1'],
+            ['Beverages', 'Sample Drink', 'Refreshing drink description.', '15000', '0', '1'],
+        ];
+
+        $callback = function() use ($headers, $rows) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $headers);
+            foreach ($rows as $row) {
+                fputcsv($file, $row);
+            }
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, [
+            "Content-type" => "text/csv",
+            "Content-Disposition" => "attachment; filename=menu_import_template.csv",
+            "Pragma" => "no-cache",
+            "Cache-Control" => "must-revalidate, post-check=0, pre-check=0",
+            "Expires" => "0"
+        ]);
+    }
+
+    public function importMenu()
+    {
+        $this->validate([
+            'importFile' => 'required|file|mimes:csv,txt|max:2048',
+        ]);
+
+        $path = $this->importFile->getRealPath();
+        $file = fopen($path, 'r');
+        
+        // Skip header row
+        fgetcsv($file);
+
+        $count = 0;
+        
+        while (($row = fgetcsv($file)) !== false) {
+            // Expected columns: Category, Name, Description, Price, Is Featured, Is Available
+            if (count($row) < 4) continue; // Skip invalid rows
+
+            $categoryName = trim($row[0] ?? 'Uncategorized');
+            $name = trim($row[1]);
+            $description = trim($row[2] ?? '');
+            $price = (float) ($row[3] ?? 0);
+            $isFeatured = isset($row[4]) ? (bool)$row[4] : false;
+            $isAvailable = isset($row[5]) ? (bool)$row[5] : true;
+
+            if (empty($name)) continue;
+
+            // Find or Create Category
+            $category = MenuCategory::firstOrCreate(
+                ['name' => $categoryName],
+                ['slug' => Str::slug($categoryName), 'description' => 'Imported Category']
+            );
+
+            // Create or Update Menu Item
+            MenuItem::updateOrCreate(
+                ['name' => $name],
+                [
+                    'menu_category_id' => $category->id,
+                    'description' => $description,
+                    'price' => $price,
+                    'is_featured' => $isFeatured,
+                    'is_available' => $isAvailable,
+                    // Note: Image import via CSV is complex/unsupported in this simple version
+                ]
+            );
+            
+            $count++;
+        }
+
+        fclose($file);
+
+        $this->showImportModal = false;
+        $this->importFile = null;
+        
+        // Optional: Flash message
+        // session()->flash('message', "$count items imported successfully.");
+    }
 }

@@ -260,42 +260,55 @@
                 </div>
             </div>
             <div class="bg-legacy-surface-light dark:bg-[#1c1e16] rounded-2xl p-8 text-[#2d332d] dark:text-[#e0e2db] shadow-2xl border border-white/10">
-                <form class="flex flex-col gap-5">
+                <form action="{{ route('legacy.inquire') }}" method="POST" class="flex flex-col gap-5">
+                    @csrf
                     <div class="grid grid-cols-2 gap-5">
                         <div class="flex flex-col gap-2">
                             <label class="text-sm font-bold">First Name</label>
-                            <input type="text" placeholder="Jane" class="h-12 rounded-lg border border-[#d7ccc8] dark:border-[#3a3c35] bg-transparent px-4 focus:border-legacy-primary focus:ring-1 focus:ring-legacy-primary outline-none" />
+                            <input name="first_name" required type="text" placeholder="Jane" class="h-12 rounded-lg border border-[#d7ccc8] dark:border-[#3a3c35] bg-transparent px-4 focus:border-legacy-primary focus:ring-1 focus:ring-legacy-primary outline-none" />
                         </div>
                         <div class="flex flex-col gap-2">
                             <label class="text-sm font-bold">Last Name</label>
-                            <input type="text" placeholder="Doe" class="h-12 rounded-lg border border-[#d7ccc8] dark:border-[#3a3c35] bg-transparent px-4 focus:border-legacy-primary focus:ring-1 focus:ring-legacy-primary outline-none" />
+                            <input name="last_name" required type="text" placeholder="Doe" class="h-12 rounded-lg border border-[#d7ccc8] dark:border-[#3a3c35] bg-transparent px-4 focus:border-legacy-primary focus:ring-1 focus:ring-legacy-primary outline-none" />
                         </div>
                     </div>
                     <div class="flex flex-col gap-2">
                         <label class="text-sm font-bold">Email Address</label>
-                        <input type="email" placeholder="jane@example.com" class="h-12 rounded-lg border border-[#d7ccc8] dark:border-[#3a3c35] bg-transparent px-4 focus:border-legacy-primary focus:ring-1 focus:ring-legacy-primary outline-none" />
+                        <input name="email" required type="email" placeholder="jane@example.com" class="h-12 rounded-lg border border-[#d7ccc8] dark:border-[#3a3c35] bg-transparent px-4 focus:border-legacy-primary focus:ring-1 focus:ring-legacy-primary outline-none" />
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <label class="text-sm font-bold">Event Type</label>
+                        <select name="event_type" class="h-12 rounded-lg border border-[#d7ccc8] dark:border-[#3a3c35] bg-transparent px-4 focus:border-legacy-primary focus:ring-1 focus:ring-legacy-primary outline-none text-[#5d635d] dark:text-[#a0a39d]">
+                            <option value="Wedding">Wedding</option>
+                            <option value="Prewedding Shooting">Prewedding Shooting</option>
+                            <option value="Engagement">Engagement</option>
+                            <option value="Commercial Shooting">Commercial Shooting</option>
+                            <option value="Corporate Event">Corporate Event</option>
+                            <option value="Birthday">Birthday</option>
+                            <option value="Other">Other</option>
+                        </select>
                     </div>
                     <div class="grid grid-cols-2 gap-5">
                         <div class="flex flex-col gap-2">
                              <label class="text-sm font-bold">Event Date</label>
-                            <input type="date" class="h-12 rounded-lg border border-[#d7ccc8] dark:border-[#3a3c35] bg-transparent px-4 focus:border-legacy-primary focus:ring-1 focus:ring-legacy-primary outline-none text-[#5d635d]" />
+                            <input name="event_date" required type="date" class="h-12 rounded-lg border border-[#d7ccc8] dark:border-[#3a3c35] bg-transparent px-4 focus:border-legacy-primary focus:ring-1 focus:ring-legacy-primary outline-none text-[#5d635d]" />
                         </div>
                         <div class="flex flex-col gap-2">
                              <label class="text-sm font-bold">Guest Count</label>
-                            <select class="h-12 rounded-lg border border-[#d7ccc8] dark:border-[#3a3c35] bg-transparent px-4 focus:border-legacy-primary focus:ring-1 focus:ring-legacy-primary outline-none">
-                                <option>Select...</option>
-                                <option>50-100</option>
-                                <option>100-200</option>
-                                <option>200-300</option>
-                                <option>300+</option>
+                            <select name="guest_count" class="h-12 rounded-lg border border-[#d7ccc8] dark:border-[#3a3c35] bg-transparent px-4 focus:border-legacy-primary focus:ring-1 focus:ring-legacy-primary outline-none">
+                                <option value="Under 50">Under 50</option>
+                                <option value="50-100">50-100</option>
+                                <option value="100-200">100-200</option>
+                                <option value="200-300">200-300</option>
+                                <option value="300+">300+</option>
                             </select>
                         </div>
                     </div>
                     <div class="flex flex-col gap-2">
                         <label class="text-sm font-bold">Message</label>
-                        <textarea placeholder="Tell us about your event details..." class="h-32 rounded-lg border border-[#d7ccc8] dark:border-[#3a3c35] bg-transparent px-4 py-3 focus:border-legacy-primary focus:ring-1 focus:ring-legacy-primary outline-none resize-none"></textarea>
+                        <textarea name="message" required placeholder="Tell us about your event details..." class="h-32 rounded-lg border border-[#d7ccc8] dark:border-[#3a3c35] bg-transparent px-4 py-3 focus:border-legacy-primary focus:ring-1 focus:ring-legacy-primary outline-none resize-none"></textarea>
                     </div>
-                    <button type="button" class="mt-2 h-12 rounded-lg bg-legacy-primary hover:bg-legacy-primary-dark text-white font-bold text-lg transition-colors shadow-lg shadow-legacy-primary/20">Send Inquiry</button>
+                    <button type="submit" class="mt-2 h-12 rounded-lg bg-legacy-primary hover:bg-legacy-primary-dark text-white font-bold text-lg transition-colors shadow-lg shadow-legacy-primary/20">Send Inquiry</button>
                 </form>
             </div>
         </div>

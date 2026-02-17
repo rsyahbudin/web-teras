@@ -25,7 +25,7 @@
     </div>
 
     <!-- Edit Section Modal/Drawer -->
-    <flux:modal wire:model="activeSection" class="min-w-[700px]">
+    <flux:modal wire:model="modalOpen" class="min-w-[700px]">
         @if($activeSection)
             <div class="p-6">
                 <div class="mb-6">

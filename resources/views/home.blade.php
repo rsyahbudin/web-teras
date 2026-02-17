@@ -230,33 +230,32 @@
                     <div class="flex flex-1 flex-col justify-center p-10 md:p-16">
                         <h2 class="mb-6 text-3xl font-bold text-cream">Book a Table</h2>
                         <p class="mb-8 text-sand">
-                            Reserve your spot on the terrace. For groups larger than 10, please contact us directly.
+                            Walk-ins are always welcome. However, if you prefer to secure a table in advance, please fill out the form below.
                         </p>
-                        <form class="flex flex-col gap-4">
+                        <form action="{{ route('book.table') }}" method="POST" class="flex flex-col gap-4">
+                            @csrf
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="flex flex-col gap-1">
+                                    <label class="text-xs font-semibold text-wood-light uppercase">Name</label>
+                                    <input name="name" required class="w-full rounded-lg border-0 bg-white/10 p-3 text-cream placeholder-wood-light focus:ring-2 focus:ring-primary" type="text" placeholder="Your Name"/>
+                                </div>
+                                <div class="flex flex-col gap-1">
+                                    <label class="text-xs font-semibold text-wood-light uppercase">Phone</label>
+                                    <input name="phone" required class="w-full rounded-lg border-0 bg-white/10 p-3 text-cream placeholder-wood-light focus:ring-2 focus:ring-primary" type="tel" placeholder="0812..."/>
+                                </div>
+                            </div>
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div class="flex flex-col gap-1">
                                     <label class="text-xs font-semibold text-wood-light uppercase">Date</label>
-                                    <input class="w-full rounded-lg border-0 bg-white/10 p-3 text-cream placeholder-wood-light focus:ring-2 focus:ring-primary" type="date"/>
+                                    <input name="date" required class="w-full rounded-lg border-0 bg-white/10 p-3 text-cream placeholder-wood-light focus:ring-2 focus:ring-primary" type="date"/>
                                 </div>
                                 <div class="flex flex-col gap-1">
                                     <label class="text-xs font-semibold text-wood-light uppercase">Guests</label>
-                                    <select class="w-full rounded-lg border-0 bg-white/10 p-3 text-cream focus:ring-2 focus:ring-primary [&>option]:text-wood-dark">
-                                        <option class="text-wood-dark">2 People</option>
-                                        <option class="text-wood-dark">3 People</option>
-                                        <option class="text-wood-dark">4 People</option>
-                                        <option class="text-wood-dark">5+ People</option>
-                                    </select>
+                                    <input name="guests" required class="w-full rounded-lg border-0 bg-white/10 p-3 text-cream placeholder-wood-light focus:ring-2 focus:ring-primary" type="number" min="1" placeholder="Number of people"/>
                                 </div>
                             </div>
-                            <div class="flex flex-col gap-1">
-                                <label class="text-xs font-semibold text-wood-light uppercase">Time</label>
-                                <select class="w-full rounded-lg border-0 bg-white/10 p-3 text-cream focus:ring-2 focus:ring-primary [&>option]:text-wood-dark">
-                                    <option class="text-wood-dark">Dinner - 6:00 PM</option>
-                                    <option class="text-wood-dark">Dinner - 7:00 PM</option>
-                                    <option class="text-wood-dark">Dinner - 8:00 PM</option>
-                                </select>
-                            </div>
-                            <button class="mt-4 rounded-lg bg-primary py-4 font-bold text-white hover:bg-white hover:text-wood-dark transition-colors" type="button">
+                            <!-- Time field removed as per request -->
+                            <button class="mt-4 rounded-lg bg-primary py-4 font-bold text-white hover:bg-white hover:text-wood-dark transition-colors" type="submit">
                                 Find a Table
                             </button>
                         </form>

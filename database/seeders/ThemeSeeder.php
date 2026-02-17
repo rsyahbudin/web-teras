@@ -119,10 +119,26 @@ class ThemeSeeder extends Seeder
                 'type' => 'text'
             ],
             [
+                'key' => 'legacy_inquiry_whatsapp', 
+                'value' => '6281298765432', 
+                'type' => 'text'
+            ],
+            [
                 'key' => 'legacy_inquiry_email', 
                 'value' => 'events@terasrumahnenek.com', 
                 'type' => 'text'
             ],
+            // Global Contact & Socials
+            ['key' => 'contact_address', 'value' => 'Jl. Pangeran Antasari No. 88, Cipete Selatan, Jakarta Selatan 12410', 'type' => 'textarea'],
+            ['key' => 'contact_maps_link', 'value' => 'https://goo.gl/maps/example', 'type' => 'text'],
+            ['key' => 'contact_phone', 'value' => '+62 21 765 4321', 'type' => 'text'],
+            ['key' => 'contact_whatsapp', 'value' => '6281298765432', 'type' => 'text'],
+            ['key' => 'contact_email', 'value' => 'hello@terasrumahnenek.com', 'type' => 'text'],
+            ['key' => 'contact_hours_weekdays', 'value' => 'Mon - Fri: 10:00 - 22:00', 'type' => 'text'],
+            ['key' => 'contact_hours_weekends', 'value' => 'Sat - Sun: 08:00 - 23:00', 'type' => 'text'],
+            ['key' => 'social_instagram', 'value' => 'https://instagram.com/terasrumahnenek', 'type' => 'text'],
+            ['key' => 'social_tiktok', 'value' => 'https://tiktok.com/@terasrumahnenek', 'type' => 'text'],
+            ['key' => 'social_facebook', 'value' => 'https://facebook.com/terasrumahnenek', 'type' => 'text'],
         ];
 
         foreach ($contents as $content) {

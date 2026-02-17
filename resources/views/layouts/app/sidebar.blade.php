@@ -37,6 +37,14 @@
                     <flux:sidebar.item icon="pencil-square" :href="route('admin.content')" :current="request()->routeIs('admin.content*')" wire:navigate>
                         {{ __('Page Content') }}
                     </flux:sidebar.item>
+
+                    <flux:sidebar.item icon="calendar-days" :href="route('admin.reservations')" :current="request()->routeIs('admin.reservations*')" wire:navigate>
+                        {{ __('Reservations') }}
+                    </flux:sidebar.item>
+
+                    <flux:sidebar.item icon="inbox" :href="route('admin.inquiries')" :current="request()->routeIs('admin.inquiries*')" wire:navigate>
+                        {{ __('Garden Inquiries') }}
+                    </flux:sidebar.item>
                 </flux:sidebar.group>
             </flux:sidebar.nav>
 

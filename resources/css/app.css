@@ -1,0 +1,111 @@
+@import "tailwindcss";
+@import "../../vendor/livewire/flux/dist/flux.css";
+
+@source '../views';
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../vendor/livewire/flux-pro/stubs/**/*.blade.php';
+@source '../../vendor/livewire/flux/stubs/**/*.blade.php';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --font-heading: "Be Vietnam Pro", sans-serif;
+    --font-sans:
+        "Be Vietnam Pro", "Instrument Sans", ui-sans-serif, system-ui,
+        sans-serif;
+
+    /* User's Earth Tone Palette */
+    --color-primary: #a0522d; /* Sienna / Terracotta */
+    --color-primary-dark: #8b4513;
+    --color-accent-green: #556b2f;
+    --color-accent-sage: #8fbc8f;
+    --color-background-light: #fdf5e6;
+    --color-background-dark: #2f1b15;
+    --color-wood-dark: #4a3728;
+    --color-wood-light: #a68b75;
+    --color-cream: #f0ead6;
+    --color-clay: #d2691e;
+    --color-sand: #e6dcca;
+
+    /* Legacy Garden Theme */
+    --color-legacy-primary: #607d3b;
+    --color-legacy-primary-light: #aed581;
+    --color-legacy-primary-dark: #4b622e;
+    --color-legacy-bg-light: #fcfbf7;
+    --color-legacy-bg-dark: #1c1e16;
+    --color-legacy-surface-light: #f5f3eb;
+    --color-legacy-surface-dark: #2a2c24;
+    --color-legacy-accent-brown: #8d6e63;
+    --color-legacy-accent-beige: #eaddcf;
+
+    /* Menu & General Wood Theme */
+    --color-wood-medium: #8c6b5d;
+    --color-paper: #fbf8f3;
+    --color-accent-light: #dcbfa6;
+
+    /* Menu Page Specifics (Green Theme) */
+    --color-menu-primary: #2d5a27;
+    --color-menu-primary-dark: #1e3f1a;
+    --color-menu-accent: #c07040;
+    --color-menu-accent-light: #dcbfa6;
+    --color-menu-bg-light: #f4f1ea;
+    --color-menu-bg-dark: #1a1614;
+    --color-menu-wood-light: #d8c8b8;
+
+    /* Mapping to generic names for compatibility if needed */
+    --color-secondary: var(--color-wood-dark);
+    --color-accent: var(--color-accent-green);
+    --color-wood: var(--color-wood-dark);
+
+    --color-zinc-50: #fafafa;
+    --color-zinc-100: #f5f5f5;
+    --color-zinc-200: #e5e5e5;
+    --color-zinc-300: #d4d4d4;
+    --color-zinc-400: #a3a3a3;
+    --color-zinc-500: #737373;
+    --color-zinc-600: #525252;
+    --color-zinc-700: #404040;
+    --color-zinc-800: #262626;
+    --color-zinc-900: #171717;
+    --color-zinc-950: #0a0a0a;
+
+    --color-accent: var(--color-neutral-800);
+    --color-accent-content: var(--color-neutral-800);
+    --color-accent-foreground: var(--color-white);
+}
+
+@layer theme {
+    .dark {
+        --color-accent: var(--color-white);
+        --color-accent-content: var(--color-white);
+        --color-accent-foreground: var(--color-neutral-800);
+    }
+}
+
+@layer base {
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentColor);
+    }
+}
+
+[data-flux-field]:not(ui-radio, ui-checkbox) {
+    @apply grid gap-2;
+}
+
+[data-flux-label] {
+    @apply !mb-0 !leading-tight;
+}
+
+input:focus[data-flux-control],
+textarea:focus[data-flux-control],
+select:focus[data-flux-control] {
+    @apply outline-hidden ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
+}
+
+/* \[:where(&)\]:size-4 {
+    @apply size-4;
+} */

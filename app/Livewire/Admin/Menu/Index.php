@@ -211,25 +211,45 @@ class Index extends Component
         ]);
 
         $path = $this->importFile->getRealPath();
+        
+        // Detect delimiter
+        $file = fopen($path, 'r');
+        $firstLine = fgets($file);
+        fclose($file);
+        
+        $delimiter = strpos($firstLine, ';') !== false ? ';' : ',';
+
         $file = fopen($path, 'r');
         
         // Skip header row
-        fgetcsv($file);
+        fgetcsv($file, 0, $delimiter);
 
         $count = 0;
+        $skipped = 0;
         
-        while (($row = fgetcsv($file)) !== false) {
+        while (($row = fgetcsv($file, 0, $delimiter)) !== false) {
             // Expected columns: Category, Name, Description, Price, Is Featured, Is Available
-            if (count($row) < 4) continue; // Skip invalid rows
+            if (count($row) < 4) {
+                $skipped++;
+                continue; 
+            }
 
             $categoryName = trim($row[0] ?? 'Uncategorized');
             $name = trim($row[1]);
             $description = trim($row[2] ?? '');
-            $price = (float) ($row[3] ?? 0);
+            
+            // Clean price from "Rp " or dots/commas
+            $priceRaw = $row[3] ?? 0;
+            $priceRaw = preg_replace('/[^0-9]/', '', $priceRaw);
+            $price = (float) $priceRaw;
+
             $isFeatured = isset($row[4]) ? (bool)$row[4] : false;
             $isAvailable = isset($row[5]) ? (bool)$row[5] : true;
 
-            if (empty($name)) continue;
+            if (empty($name)) {
+                $skipped++;
+                continue;
+            }
 
             // Find or Create Category
             $category = MenuCategory::firstOrCreate(
@@ -258,7 +278,16 @@ class Index extends Component
         $this->showImportModal = false;
         $this->importFile = null;
         
-        // Optional: Flash message
-        // session()->flash('message', "$count items imported successfully.");
+        // Flash message
+        $message = "$count items imported successfully.";
+        if ($skipped > 0) {
+            $message .= " $skipped rows skipped due to missing data.";
+        }
+        
+        // Dispatch browser event for toast/notification if available, or session flash
+        session()->flash('success', $message);
+        
+        // If there is a Flux toast or similar
+        // $this->dispatch('notify', message: $message);
     }
 }

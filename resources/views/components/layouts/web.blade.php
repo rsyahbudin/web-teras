@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @livewireStyles
     <style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
@@ -25,7 +26,7 @@
         <x-social-sidebar />
 
     <!-- Navigation -->
-    <header class="sticky top-0 z-50 w-full border-b border-stone-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 shadow-sm transition-all duration-300">
+    <header x-data="{ mobileMenuOpen: false }" class="sticky top-0 z-50 w-full border-b border-stone-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 shadow-sm transition-all duration-300">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex h-20 items-center justify-between">
                 <div class="flex-shrink-0 flex items-center gap-2">
@@ -42,23 +43,26 @@
                 </nav>
 
                 <div class="flex items-center space-x-4">
-                     <a href="{{ route('legacy-garden') }}#book" class="hidden md:inline-flex items-center justify-center px-6 py-2.5 border border-transparent rounded-full shadow-sm text-sm font-bold text-white bg-primary hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all hover:shadow-md">
+                     <a href="{{ route('legacy-garden') }}#inquire" class="hidden md:inline-flex items-center justify-center px-6 py-2.5 border border-transparent rounded-full shadow-sm text-sm font-bold text-white bg-primary hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all hover:shadow-md">
                         Book Event
                     </a>
                     <!-- Mobile menu button -->
-                    <button type="button" class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-wood-dark hover:text-primary focus:outline-none" aria-controls="mobile-menu" aria-expanded="false">
+                    <button @click="mobileMenuOpen = !mobileMenuOpen" type="button" class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-wood-dark hover:text-primary focus:outline-none" aria-controls="mobile-menu" :aria-expanded="mobileMenuOpen">
                         <span class="sr-only">Open main menu</span>
-                         <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                        <svg x-show="!mobileMenuOpen" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg x-show="mobileMenuOpen" x-cloak class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     </button>
                 </div>
             </div>
         </div>
         
-        <!-- Mobile Menu (Hidden by default) -->
-        <div class="md:hidden hidden" id="mobile-menu">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-wood/10">
+        <!-- Mobile Menu -->
+        <div x-show="mobileMenuOpen" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 -translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 -translate-y-2" class="md:hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-wood/10 shadow-lg">
                 <a href="{{ route('home') }}" class="block px-3 py-2 rounded-md text-base font-medium text-wood-dark hover:text-primary hover:bg-cream/50">Home</a>
                 <a href="{{ route('menu') }}" class="block px-3 py-2 rounded-md text-base font-medium text-wood-dark hover:text-primary hover:bg-cream/50">Menu</a>
                 <a href="{{ route('legacy-garden') }}" class="block px-3 py-2 rounded-md text-base font-medium text-wood-dark hover:text-primary hover:bg-cream/50">Legacy Garden</a>
@@ -167,16 +171,7 @@
     </footer>
     @endunless
 
-    <script>
-        // Simple mobile menu toggle
-        const btn = document.querySelector('button[aria-controls="mobile-menu"]');
-        const menu = document.querySelector('#mobile-menu');
-        
-        btn.addEventListener('click', () => {
-            const expanded = btn.getAttribute('aria-expanded') === 'true' || false;
-            btn.setAttribute('aria-expanded', !expanded);
-            menu.classList.toggle('hidden');
-        });
-    </script>
+
+    @livewireScripts
 </body>
 </html>

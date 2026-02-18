@@ -1,8 +1,14 @@
 <div class="flex flex-col gap-6">
+    @if (session()->has('success'))
+        <div class="bg-green-50 text-green-700 p-4 rounded-lg border border-green-200">
+            {{ session('success') }}
+        </div>
+    @endif
+
     <div class="flex justify-between items-center">
         <h1 class="text-2xl font-bold dark:text-white">Menu Management</h1>
         <div class="flex gap-2">
-            <flux:button variant="ghost" icon="arrow-down-tray" wire:click="openImportModal">Import</flux:button>
+            <flux:button icon="arrow-down-tray" wire:click="openImportModal" wire:loading.attr="disabled">Import</flux:button>
             <flux:button icon="tag" wire:click="manageCategories">Categories</flux:button>
             <flux:button variant="primary" icon="plus" wire:click="createItem">Add Item</flux:button>
         </div>

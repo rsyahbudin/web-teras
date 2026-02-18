@@ -14,6 +14,7 @@
                         <th class="py-3 px-4">Name</th>
                         <th class="py-3 px-4">Price</th>
                         <th class="py-3 px-4">Features</th>
+                        <th class="py-3 px-4">Status</th>
                         <th class="py-3 px-4 text-right">Actions</th>
                     </tr>
                 </thead>
@@ -38,6 +39,17 @@
                                     {{ count($package->features) }} features
                                 @else
                                     -
+                                @endif
+                            </td>
+                            <td class="py-3 px-4">
+                                @if($package->is_featured)
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400">
+                                        Featured
+                                    </span>
+                                @else
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-zinc-100 text-zinc-800 dark:bg-zinc-700 dark:text-zinc-400">
+                                        Hidden
+                                    </span>
                                 @endif
                             </td>
                             <td class="py-3 px-4 text-right">
@@ -101,6 +113,8 @@
                 <flux:textarea label="Description" wire:model="description" rows="2" />
 
                 <flux:textarea label="Features (One per line)" wire:model="features" rows="5" placeholder="Buffet Lunch&#10;Free Flow Water&#10;Decorations" />
+
+                <flux:switch label="Featured on Legacy Garden Page" wire:model="is_featured" />
 
                 <div class="flex justify-end gap-2 pt-4 border-t border-zinc-200 dark:border-zinc-700">
                     <flux:button wire:click="$set('showModal', false)">Cancel</flux:button>

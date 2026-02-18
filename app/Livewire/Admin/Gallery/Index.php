@@ -6,28 +6,39 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 use App\Models\Gallery;
+use App\Models\GalleryCategory;
+use Illuminate\Support\Str;
 
 class Index extends Component
 {
     use WithFileUploads, WithPagination;
 
     public $showModal = false;
+    public $showCategoryModal = false;
+
+    // Gallery Item Props
     public $galleryId;
     public $title;
-    public $category = 'General';
+    public $gallery_category_id;
     public $image;
     public $newImage;
 
+    // Category Props
+    public $categoryId;
+    public $categoryName;
+    public $categoryDescription;
+
     protected $rules = [
         'title' => 'required|string|max:255',
-        'category' => 'required|string|max:255',
+        'gallery_category_id' => 'required|exists:gallery_categories,id',
         'newImage' => 'nullable|image|max:2048', // 2MB Max
     ];
 
     public function render()
     {
-        $galleries = Gallery::latest()->paginate(12);
-        return view('livewire.admin.gallery.index', compact('galleries'));
+        $galleries = Gallery::with('category')->latest()->paginate(12);
+        $categories = GalleryCategory::orderBy('name')->get();
+        return view('livewire.admin.gallery.index', compact('galleries', 'categories'));
     }
 
     public function create()
@@ -41,7 +52,7 @@ class Index extends Component
         $gallery = Gallery::findOrFail($id);
         $this->galleryId = $gallery->id;
         $this->title = $gallery->title;
-        $this->category = $gallery->category;
+        $this->gallery_category_id = $gallery->gallery_category_id;
         $this->image = $gallery->image_path; // Model uses image_path
         
         $this->showModal = true;
@@ -53,7 +64,7 @@ class Index extends Component
 
         $data = [
             'title' => $this->title,
-            'category' => $this->category,
+            'gallery_category_id' => $this->gallery_category_id,
         ];
 
         if ($this->newImage) {
@@ -76,6 +87,61 @@ class Index extends Component
         $this->resetForm();
     }
 
+    public function manageCategories()
+    {
+        $this->resetCategoryForm();
+        $this->showCategoryModal = true;
+    }
+
+    public function saveCategory()
+    {
+        $this->validate([
+            'categoryName' => 'required|string|max:255|unique:gallery_categories,name,' . $this->categoryId,
+            'categoryDescription' => 'nullable|string',
+        ]);
+
+        $data = [
+            'name' => $this->categoryName,
+            'slug' => Str::slug($this->categoryName),
+            'description' => $this->categoryDescription,
+        ];
+
+        if ($this->categoryId) {
+            GalleryCategory::where('id', $this->categoryId)->update($data);
+        } else {
+            GalleryCategory::create($data);
+        }
+
+        $this->resetCategoryForm();
+    }
+
+    public function editCategory($id)
+    {
+        $category = GalleryCategory::findOrFail($id);
+        $this->categoryId = $category->id;
+        $this->categoryName = $category->name;
+        $this->categoryDescription = $category->description;
+    }
+
+    public function deleteCategory($id)
+    {
+        // Check if has items
+        if (Gallery::where('gallery_category_id', $id)->exists()) {
+            // You might want to handle this gracefully, e.g., showing a flash message
+            // or preventing deletion. For now, let's just return.
+             $this->addError('categoryName', 'Cannot delete category with associated images.');
+             return;
+        }
+
+        GalleryCategory::destroy($id);
+        $this->resetCategoryForm();
+    }
+
+    public function resetCategoryForm()
+    {
+        $this->reset(['categoryId', 'categoryName', 'categoryDescription']);
+    }
+
     public function delete($id)
     {
         Gallery::destroy($id);
@@ -83,7 +149,6 @@ class Index extends Component
 
     public function resetForm()
     {
-        $this->reset(['galleryId', 'title', 'category', 'image', 'newImage']);
-        $this->category = 'General';
+        $this->reset(['galleryId', 'title', 'gallery_category_id', 'image', 'newImage']);
     }
 }

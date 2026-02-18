@@ -16,7 +16,7 @@
 @endphp
 
 @if(!empty($instagram) || !empty($tiktok) || !empty($facebook) || !empty($whatsapp))
-    <div class="fixed right-0 top-1/2 z-40 hidden -translate-y-1/2 flex-col gap-2 rounded-l-xl bg-white/10 p-2 backdrop-blur-sm lg:flex border border-white/20 shadow-lg transition-all duration-300">
+    <div class="fixed right-0 top-1/2 z-80 hidden -translate-y-1/2 flex-col gap-2 rounded-l-xl bg-white/10 p-2 backdrop-blur-sm lg:flex border border-white/20 shadow-lg transition-all duration-300">
         @if(!empty($instagram))
             <a href="{{ $instagram }}" target="_blank" class="group relative flex h-10 w-10 items-center justify-center rounded-lg bg-white text-wood-dark transition-all hover:bg-wood-dark hover:text-white" title="Instagram">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-instagram"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>

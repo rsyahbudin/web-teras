@@ -1,25 +1,29 @@
 <x-layouts.web title="Teras Rumah Nenek - Nostalgic Culinary Escape">
     <!-- Hero Section -->
-    <section class="relative flex min-h-[600px] w-full items-center justify-center overflow-hidden bg-wood-dark">
+    <section x-data="{ show: false }" x-init="setTimeout(() => show = true, 100)" class="relative flex min-h-[600px] w-full items-center justify-center overflow-hidden bg-wood-dark">
         <div class="absolute inset-0 z-0">
-            <img alt="Lush outdoor restaurant garden seating" class="h-full w-full object-cover opacity-60 grayscale-20 sepia-10" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2070&auto=format&fit=crop" />
-            <div class="absolute inset-0 bg-linear-to-t from-wood-dark/95 via-wood-dark/50 to-transparent"></div>
+            <img alt="Lush outdoor restaurant garden seating" class="h-full w-full object-cover opacity-60 grayscale-20 sepia-10 transition-transform duration-[20s] ease-linear hover:scale-110" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2070&auto=format&fit=crop" />
+            <div class="absolute inset-0 bg-gradient-to-t from-wood-dark/95 via-wood-dark/50 to-transparent"></div>
         </div>
-        <div class="relative z-10 container mx-auto px-6 text-center">
-            <span class="mb-4 inline-block rounded-full bg-accent-green/30 px-4 py-1.5 text-sm font-bold text-cream backdrop-blur-sm border border-accent-green/40">
+        <div class="relative z-10 container mx-auto px-6 text-center"
+             x-show="show"
+             x-transition:enter="transition ease-out duration-1000"
+             x-transition:enter-start="opacity-0 translate-y-12"
+             x-transition:enter-end="opacity-100 translate-y-0">
+            <span class="mb-4 inline-block rounded-full bg-accent-green/30 px-4 py-1.5 text-sm font-bold text-cream backdrop-blur-sm border border-accent-green/40 shadow-lg">
                 EST. 1985
             </span>
-            <h1 class="mb-6 text-4xl font-black leading-tight tracking-tight text-cream md:text-6xl lg:text-7xl drop-shadow-lg">
+            <h1 class="mb-6 text-4xl font-black leading-tight tracking-tight text-cream md:text-6xl lg:text-7xl drop-shadow-xl">
                 {{ $hero_greeting }} <br class="hidden md:block"/> <span class="text-accent-sage">{{ $hero_brand }}</span>
             </h1>
-            <p class="mx-auto mb-10 max-w-2xl text-lg font-light leading-relaxed text-sand md:text-xl">
+            <p class="mx-auto mb-10 max-w-2xl text-lg font-light leading-relaxed text-sand md:text-xl drop-shadow-md">
                 {{ $hero_subtitle }}
             </p>
             <div class="flex flex-col items-center justify-center gap-4 sm:flex-row">
-                <a href="{{ route('menu') }}" class="inline-flex items-center justify-center h-12 min-w-[160px] rounded-lg bg-primary hover:bg-primary-dark px-8 text-base font-bold text-white transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(160,82,45,0.3)]">
+                <a href="{{ route('menu') }}" class="inline-flex items-center justify-center h-14 min-w-[180px] rounded-full bg-primary hover:bg-primary-dark px-8 text-base font-bold text-white transition-all transform hover:-translate-y-1 hover:shadow-lg shadow-md duration-300">
                     View Menu
                 </a>
-                <a href="#" class="inline-flex items-center justify-center h-12 min-w-[160px] rounded-lg border-2 border-cream/30 bg-white/5 px-8 text-base font-bold text-cream backdrop-blur-sm transition-all hover:bg-white/10 hover:border-cream">
+                <a href="#" class="inline-flex items-center justify-center h-14 min-w-[180px] rounded-full border border-cream/30 bg-white/5 px-8 text-base font-bold text-cream backdrop-blur-md transition-all hover:bg-white/10 hover:border-cream hover:-translate-y-1 shadow-md duration-300">
                     Our Story
                 </a>
             </div>
@@ -31,33 +35,33 @@
         <div class="container mx-auto">
             <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
                 <!-- Feature 1 -->
-                <div class="group flex flex-col gap-4 rounded-xl bg-white dark:bg-background-dark p-6 shadow-xl transition-all hover:-translate-y-1 hover:shadow-2xl border border-sand/50 dark:border-wood-light/20 h-full">
-                    <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-wood-light/20 text-wood-dark dark:text-cream group-hover:bg-primary group-hover:text-white transition-colors">
-                        <span class="material-symbols-outlined">soup_kitchen</span>
+                <div class="group relative flex flex-col gap-4 rounded-2xl bg-white dark:bg-background-dark p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-transparent hover:border-wood-medium/20">
+                    <div class="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-wood-light/20 to-wood-light/5 text-wood-dark dark:text-cream group-hover:from-primary group-hover:to-primary-dark group-hover:text-white transition-all duration-300 shadow-sm">
+                        <span class="material-symbols-outlined text-3xl">soup_kitchen</span>
                     </div>
                     <div>
-                        <h3 class="mb-2 text-xl font-bold text-wood-dark dark:text-cream">{{ $feature_1_title }}</h3>
-                        <p class="text-wood-light dark:text-gray-400 whitespace-pre-line">{{ $feature_1_text }}</p>
+                        <h3 class="mb-3 text-xl font-bold text-wood-dark dark:text-cream tracking-tight">{{ $feature_1_title }}</h3>
+                        <p class="text-wood-light dark:text-gray-400 whitespace-pre-line leading-relaxed">{{ $feature_1_text }}</p>
                     </div>
                 </div>
                 <!-- Feature 2 -->
-                <div class="group flex flex-col gap-4 rounded-xl bg-white dark:bg-background-dark p-6 shadow-xl transition-all hover:-translate-y-1 hover:shadow-2xl border border-sand/50 dark:border-wood-light/20 h-full">
-                    <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-wood-light/20 text-wood-dark dark:text-cream group-hover:bg-accent-green group-hover:text-white transition-colors">
-                        <span class="material-symbols-outlined">forest</span>
+                <div class="group relative flex flex-col gap-4 rounded-2xl bg-white dark:bg-background-dark p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-transparent hover:border-wood-medium/20">
+                    <div class="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-wood-light/20 to-wood-light/5 text-wood-dark dark:text-cream group-hover:from-accent-green group-hover:to-accent-green/80 group-hover:text-white transition-all duration-300 shadow-sm">
+                        <span class="material-symbols-outlined text-3xl">forest</span>
                     </div>
                     <div>
-                        <h3 class="mb-2 text-xl font-bold text-wood-dark dark:text-cream">{{ $feature_2_title }}</h3>
-                        <p class="text-wood-light dark:text-gray-400 whitespace-pre-line">{{ $feature_2_text }}</p>
+                        <h3 class="mb-3 text-xl font-bold text-wood-dark dark:text-cream tracking-tight">{{ $feature_2_title }}</h3>
+                        <p class="text-wood-light dark:text-gray-400 whitespace-pre-line leading-relaxed">{{ $feature_2_text }}</p>
                     </div>
                 </div>
                 <!-- Feature 3 -->
-                <div class="group flex flex-col gap-4 rounded-xl bg-white dark:bg-background-dark p-6 shadow-xl transition-all hover:-translate-y-1 hover:shadow-2xl border border-sand/50 dark:border-wood-light/20 h-full">
-                    <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-wood-light/20 text-wood-dark dark:text-cream group-hover:bg-primary group-hover:text-white transition-colors">
-                        <span class="material-symbols-outlined">volunteer_activism</span>
+                <div class="group relative flex flex-col gap-4 rounded-2xl bg-white dark:bg-background-dark p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-transparent hover:border-wood-medium/20">
+                    <div class="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-wood-light/20 to-wood-light/5 text-wood-dark dark:text-cream group-hover:from-primary group-hover:to-primary-dark group-hover:text-white transition-all duration-300 shadow-sm">
+                        <span class="material-symbols-outlined text-3xl">volunteer_activism</span>
                     </div>
                     <div>
-                        <h3 class="mb-2 text-xl font-bold text-wood-dark dark:text-cream">{{ $feature_3_title }}</h3>
-                        <p class="text-wood-light dark:text-gray-400 whitespace-pre-line">{{ $feature_3_text }}</p>
+                        <h3 class="mb-3 text-xl font-bold text-wood-dark dark:text-cream tracking-tight">{{ $feature_3_title }}</h3>
+                        <p class="text-wood-light dark:text-gray-400 whitespace-pre-line leading-relaxed">{{ $feature_3_text }}</p>
                     </div>
                 </div>
             </div>
@@ -110,57 +114,67 @@
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 @forelse($featured_items as $item)
-                    <div class="group cursor-pointer">
-                        <div class="relative mb-4 overflow-hidden rounded-2xl aspect-square">
-                            <img src="{{ $item->image ?? 'https://via.placeholder.com/400' }}" alt="{{ $item->name }}" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" />
-                            <div class="absolute bottom-4 right-4 rounded-lg bg-cream/90 px-3 py-1 text-sm font-bold text-wood-dark shadow-sm">
+                    <div class="group relative flex flex-col h-full bg-white dark:bg-background-dark rounded-2xl shadow-lg border border-transparent hover:border-wood-medium/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl overflow-hidden cursor-pointer">
+                        <div class="relative aspect-square overflow-hidden">
+                            <img src="{{ $item->image ?? 'https://via.placeholder.com/400' }}" alt="{{ $item->name }}" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                            <div class="absolute bottom-4 right-4 rounded-full bg-white/90 px-4 py-1.5 text-sm font-bold text-wood-dark shadow-md backdrop-blur-sm">
                                 Rp {{ number_format($item->price, 0, ',', '.') }}
                             </div>
                         </div>
-                        <h3 class="mb-1 text-lg font-bold text-wood-dark dark:text-cream group-hover:text-primary transition-colors">{{ $item->name }}</h3>
-                        <p class="text-sm text-wood-light dark:text-gray-400 line-clamp-2">{{ $item->description }}</p>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="mb-2 text-xl font-bold text-wood-dark dark:text-cream group-hover:text-primary transition-colors">{{ $item->name }}</h3>
+                            <p class="text-sm text-wood-light dark:text-gray-400 line-clamp-2 leading-relaxed">{{ $item->description }}</p>
+                        </div>
                     </div>
                 @empty
-                    <!-- Placeholder Items if DB is empty, ensuring the design is visible immediately -->
-                    <div class="group cursor-pointer">
-                        <div class="relative mb-4 overflow-hidden rounded-2xl aspect-square">
-                            <img src="https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?q=80&w=2070&auto=format&fit=crop" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" />
-                            <div class="absolute bottom-4 right-4 rounded-lg bg-cream/90 px-3 py-1 text-sm font-bold text-wood-dark shadow-sm">
+                    <!-- Placeholder Items -->
+                    <div class="group relative flex flex-col h-full bg-white dark:bg-background-dark rounded-2xl shadow-lg border border-transparent hover:border-wood-medium/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl overflow-hidden cursor-pointer">
+                        <div class="relative aspect-square overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?q=80&w=2070&auto=format&fit=crop" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                            <div class="absolute bottom-4 right-4 rounded-full bg-white/90 px-4 py-1.5 text-sm font-bold text-wood-dark shadow-md backdrop-blur-sm">
                                 Rp 35.000
                             </div>
                         </div>
-                        <h3 class="mb-1 text-lg font-bold text-wood-dark dark:text-cream group-hover:text-primary transition-colors">Nasi Goreng Nenek</h3>
-                        <p class="text-sm text-wood-light dark:text-gray-400">Our famous traditional fried rice with secret family spices.</p>
+                         <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="mb-2 text-xl font-bold text-wood-dark dark:text-cream group-hover:text-primary transition-colors">Nasi Goreng Nenek</h3>
+                            <p class="text-sm text-wood-light dark:text-gray-400 leading-relaxed">Our famous traditional fried rice with secret family spices.</p>
+                        </div>
                     </div>
-                    <div class="group cursor-pointer">
-                         <div class="relative mb-4 overflow-hidden rounded-2xl aspect-square">
-                            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=2080&auto=format&fit=crop" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" />
-                            <div class="absolute bottom-4 right-4 rounded-lg bg-cream/90 px-3 py-1 text-sm font-bold text-wood-dark shadow-sm">
+                     <div class="group relative flex flex-col h-full bg-white dark:bg-background-dark rounded-2xl shadow-lg border border-transparent hover:border-wood-medium/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl overflow-hidden cursor-pointer">
+                        <div class="relative aspect-square overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=2080&auto=format&fit=crop" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                            <div class="absolute bottom-4 right-4 rounded-full bg-white/90 px-4 py-1.5 text-sm font-bold text-wood-dark shadow-md backdrop-blur-sm">
                                 Rp 25.000
                             </div>
                         </div>
-                        <h3 class="mb-1 text-lg font-bold text-wood-dark dark:text-cream group-hover:text-primary transition-colors">Garden Salad</h3>
-                         <p class="text-sm text-wood-light dark:text-gray-400">Fresh organic vegetables for healthy living.</p>
+                         <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="mb-2 text-xl font-bold text-wood-dark dark:text-cream group-hover:text-primary transition-colors">Garden Salad</h3>
+                            <p class="text-sm text-wood-light dark:text-gray-400 leading-relaxed">Fresh organic vegetables for healthy living.</p>
+                        </div>
                     </div>
-                    <div class="group cursor-pointer">
-                         <div class="relative mb-4 overflow-hidden rounded-2xl aspect-square">
-                            <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=2047&auto=format&fit=crop" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" />
-                             <div class="absolute bottom-4 right-4 rounded-lg bg-cream/90 px-3 py-1 text-sm font-bold text-wood-dark shadow-sm">
+                     <div class="group relative flex flex-col h-full bg-white dark:bg-background-dark rounded-2xl shadow-lg border border-transparent hover:border-wood-medium/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl overflow-hidden cursor-pointer">
+                        <div class="relative aspect-square overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=2047&auto=format&fit=crop" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                              <div class="absolute bottom-4 right-4 rounded-full bg-white/90 px-4 py-1.5 text-sm font-bold text-wood-dark shadow-md backdrop-blur-sm">
                                 Rp 18.000
                             </div>
                         </div>
-                        <h3 class="mb-1 text-lg font-bold text-wood-dark dark:text-cream group-hover:text-primary transition-colors">Kopi Tubruk</h3>
-                         <p class="text-sm text-wood-light dark:text-gray-400">Traditional unfiltered black coffee.</p>
+                         <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="mb-2 text-xl font-bold text-wood-dark dark:text-cream group-hover:text-primary transition-colors">Kopi Tubruk</h3>
+                            <p class="text-sm text-wood-light dark:text-gray-400 leading-relaxed">Traditional unfiltered black coffee.</p>
+                        </div>
                     </div>
-                     <div class="group cursor-pointer">
-                         <div class="relative mb-4 overflow-hidden rounded-2xl aspect-square">
-                            <img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?q=80&w=2070&auto=format&fit=crop" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" />
-                             <div class="absolute bottom-4 right-4 rounded-lg bg-cream/90 px-3 py-1 text-sm font-bold text-wood-dark shadow-sm">
+                     <div class="group relative flex flex-col h-full bg-white dark:bg-background-dark rounded-2xl shadow-lg border border-transparent hover:border-wood-medium/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl overflow-hidden cursor-pointer">
+                        <div class="relative aspect-square overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?q=80&w=2070&auto=format&fit=crop" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                              <div class="absolute bottom-4 right-4 rounded-full bg-white/90 px-4 py-1.5 text-sm font-bold text-wood-dark shadow-md backdrop-blur-sm">
                                 Rp 20.000
                             </div>
                         </div>
-                        <h3 class="mb-1 text-lg font-bold text-wood-dark dark:text-cream group-hover:text-primary transition-colors">Pisang Goreng</h3>
-                         <p class="text-sm text-wood-light dark:text-gray-400">Sweet fried banana with cheese.</p>
+                         <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="mb-2 text-xl font-bold text-wood-dark dark:text-cream group-hover:text-primary transition-colors">Pisang Goreng</h3>
+                            <p class="text-sm text-wood-light dark:text-gray-400 leading-relaxed">Sweet fried banana with cheese.</p>
+                        </div>
                     </div>
                 @endforelse
             </div>
@@ -232,30 +246,30 @@
                         <p class="mb-8 text-sand">
                             Walk-ins are always welcome. However, if you prefer to secure a table in advance, please fill out the form below.
                         </p>
-                        <form action="{{ route('book.table') }}" method="POST" class="flex flex-col gap-4">
+                        <form action="{{ route('book.table') }}" method="POST" class="flex flex-col gap-5">
                             @csrf
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <div class="flex flex-col gap-1">
-                                    <label class="text-xs font-semibold text-wood-light uppercase">Name</label>
-                                    <input name="name" required class="w-full rounded-lg border-0 bg-white/10 p-3 text-cream placeholder-wood-light focus:ring-2 focus:ring-primary" type="text" placeholder="Your Name"/>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                <div class="flex flex-col gap-2">
+                                    <label class="text-xs font-bold text-wood-light uppercase tracking-wider">Name</label>
+                                    <input name="name" required class="w-full rounded-xl border border-white/10 bg-white/5 p-4 text-cream placeholder-wood-light/50 focus:border-primary focus:ring-2 focus:ring-primary/50 transition-all outline-none" type="text" placeholder="Your Name"/>
                                 </div>
-                                <div class="flex flex-col gap-1">
-                                    <label class="text-xs font-semibold text-wood-light uppercase">Phone</label>
-                                    <input name="phone" required class="w-full rounded-lg border-0 bg-white/10 p-3 text-cream placeholder-wood-light focus:ring-2 focus:ring-primary" type="tel" placeholder="0812..."/>
+                                <div class="flex flex-col gap-2">
+                                    <label class="text-xs font-bold text-wood-light uppercase tracking-wider">Phone</label>
+                                    <input name="phone" required class="w-full rounded-xl border border-white/10 bg-white/5 p-4 text-cream placeholder-wood-light/50 focus:border-primary focus:ring-2 focus:ring-primary/50 transition-all outline-none" type="tel" placeholder="0812..."/>
                                 </div>
                             </div>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <div class="flex flex-col gap-1">
-                                    <label class="text-xs font-semibold text-wood-light uppercase">Date</label>
-                                    <input name="date" required class="w-full rounded-lg border-0 bg-white/10 p-3 text-cream placeholder-wood-light focus:ring-2 focus:ring-primary" type="date"/>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                <div class="flex flex-col gap-2">
+                                    <label class="text-xs font-bold text-wood-light uppercase tracking-wider">Date</label>
+                                    <input name="date" required class="w-full rounded-xl border border-white/10 bg-white/5 p-4 text-cream placeholder-wood-light/50 focus:border-primary focus:ring-2 focus:ring-primary/50 transition-all outline-none" type="date"/>
                                 </div>
-                                <div class="flex flex-col gap-1">
-                                    <label class="text-xs font-semibold text-wood-light uppercase">Guests</label>
-                                    <input name="guests" required class="w-full rounded-lg border-0 bg-white/10 p-3 text-cream placeholder-wood-light focus:ring-2 focus:ring-primary" type="number" min="1" placeholder="Number of people"/>
+                                <div class="flex flex-col gap-2">
+                                    <label class="text-xs font-bold text-wood-light uppercase tracking-wider">Guests</label>
+                                    <input name="guests" required class="w-full rounded-xl border border-white/10 bg-white/5 p-4 text-cream placeholder-wood-light/50 focus:border-primary focus:ring-2 focus:ring-primary/50 transition-all outline-none" type="number" min="1" placeholder="Number of people"/>
                                 </div>
                             </div>
                             <!-- Time field removed as per request -->
-                            <button class="mt-4 rounded-lg bg-primary py-4 font-bold text-white hover:bg-white hover:text-wood-dark transition-colors" type="submit">
+                            <button class="mt-6 w-full rounded-xl bg-primary py-4 text-lg font-bold text-white shadow-lg shadow-primary/30 transition-all hover:bg-white hover:text-wood-dark hover:shadow-xl hover:-translate-y-1 active:scale-95" type="submit">
                                 Find a Table
                             </button>
                         </form>

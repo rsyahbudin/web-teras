@@ -93,8 +93,16 @@ class Index extends Component
             'label' => 'Legacy Garden: Features',
             'description' => 'Section listing venue amenities.',
             'fields' => [
-                ['key' => 'legacy_features_title', 'label' => 'Section Title', 'type' => 'text'],
-                ['key' => 'legacy_features_subtitle', 'label' => 'Subtitle', 'type' => 'text'],
+                ['key' => 'legacy_features_title', 'label' => 'Section Title', 'type' => 'text', 'default' => 'Venue Features'],
+                ['key' => 'legacy_features_subtitle', 'label' => 'Subtitle', 'type' => 'text', 'default' => 'Everything you need to host a perfect celebration.'],
+                ['key' => 'legacy_feature_1_title', 'label' => 'Feature 1 Title', 'type' => 'text', 'default' => 'Capacity'],
+                ['key' => 'legacy_feature_1_text', 'label' => 'Feature 1 Text', 'type' => 'textarea', 'default' => 'Comfortably hosts up to 300 guests standing or 150 seated guests.'],
+                ['key' => 'legacy_feature_2_title', 'label' => 'Feature 2 Title', 'type' => 'text', 'default' => 'Ample Parking'],
+                ['key' => 'legacy_feature_2_text', 'label' => 'Feature 2 Text', 'type' => 'textarea', 'default' => 'Dedicated parking area for up to 80 cars with valet service available.'],
+                ['key' => 'legacy_feature_3_title', 'label' => 'Feature 3 Title', 'type' => 'text', 'default' => 'Bridal Suite'],
+                ['key' => 'legacy_feature_3_text', 'label' => 'Feature 3 Text', 'type' => 'textarea', 'default' => 'Private, air-conditioned preparation room for the bride and family.'],
+                ['key' => 'legacy_feature_4_title', 'label' => 'Feature 4 Title', 'type' => 'text', 'default' => 'In-House Catering'],
+                ['key' => 'legacy_feature_4_text', 'label' => 'Feature 4 Text', 'type' => 'textarea', 'default' => 'Authentic Indonesian & International buffet menus from our kitchen.'],
             ]
         ],
         'legacy_garden_inquiry' => [
@@ -109,6 +117,7 @@ class Index extends Component
                 ['key' => 'legacy_social_instagram', 'label' => 'Instagram URL', 'type' => 'text'],
                 ['key' => 'legacy_social_tiktok', 'label' => 'TikTok URL', 'type' => 'text'],
                 ['key' => 'legacy_social_facebook', 'label' => 'Facebook URL', 'type' => 'text'],
+                ['key' => 'legacy_brochure_link', 'label' => 'Brochure Download Link (G-Drive)', 'type' => 'text'],
             ]
         ],
         'global_contact' => [
@@ -146,7 +155,7 @@ class Index extends Component
         // Load existing values for this section's fields
         foreach ($this->sections[$sectionKey]['fields'] as $field) {
             $content = PageContent::where('key', $field['key'])->first();
-            $this->sectionData[$field['key']] = $content ? $content->value : '';
+            $this->sectionData[$field['key']] = $content ? $content->value : ($field['default'] ?? '');
         }
     }
 

@@ -11,15 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('event_packages', function (Blueprint $table) {
+        Schema::create('gallery_categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
             $table->text('description')->nullable();
-            $table->decimal('price', 12, 2)->nullable(); // Nullable for "Contact us" pricing
-            $table->json('features')->nullable(); // Store features as JSON array
-            $table->string('image')->nullable();
-            $table->boolean('is_featured')->default(true);
             $table->timestamps();
         });
     }
@@ -29,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('event_packages');
+        Schema::dropIfExists('gallery_categories');
     }
 };

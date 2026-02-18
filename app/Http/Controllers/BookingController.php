@@ -18,6 +18,9 @@ class BookingController extends Controller
             'phone' => 'required|string|max:20',
         ]);
 
+        // Add default time since it was removed from frontend
+        $validated['time'] = '00:00:00'; // Default value or Handle appropriately
+        
         $reservation = Reservation::create($validated);
 
         // Get WhatsApp Number from Global Settings

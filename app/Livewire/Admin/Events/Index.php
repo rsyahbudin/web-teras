@@ -20,6 +20,7 @@ class Index extends Component
     public $features = ''; // String for textarea (newline separated)
     public $image;
     public $newImage;
+    public $is_featured = true;
 
     protected $rules = [
         'name' => 'required|string|max:255',
@@ -27,6 +28,7 @@ class Index extends Component
         'price' => 'required|numeric|min:0',
         'features' => 'nullable|string',
         'newImage' => 'nullable|image|max:1024',
+        'is_featured' => 'boolean',
     ];
 
     public function render()
@@ -51,6 +53,7 @@ class Index extends Component
         // Convert array to newline separated string
         $this->features = is_array($package->features) ? implode("\n", $package->features) : '';
         $this->image = $package->image;
+        $this->is_featured = $package->is_featured;
         
         $this->showModal = true;
     }
@@ -66,6 +69,7 @@ class Index extends Component
             'price' => $this->price,
             // Convert newline separated string to array, filtering empty lines
             'features' => array_values(array_filter(array_map('trim', explode("\n", $this->features)))),
+            'is_featured' => $this->is_featured,
         ];
 
         if ($this->newImage) {
@@ -90,6 +94,7 @@ class Index extends Component
 
     public function resetForm()
     {
-        $this->reset(['packageId', 'name', 'description', 'price', 'features', 'image', 'newImage']);
+        $this->reset(['packageId', 'name', 'description', 'price', 'features', 'image', 'newImage', 'is_featured']);
+        $this->is_featured = true; // Default to true
     }
 }

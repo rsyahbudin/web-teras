@@ -109,6 +109,8 @@
 
         {{ $slot }}
 
+
+
         @fluxScripts
     </body>
 </html>

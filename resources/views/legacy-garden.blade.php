@@ -16,25 +16,34 @@
     @endpush
 
     <!-- Hero Section -->
-    <section class="relative h-[85vh] w-full overflow-hidden flex items-center justify-center">
+    <section x-data="{ show: false }" x-init="setTimeout(() => show = true, 100)" class="relative h-[85vh] w-full overflow-hidden flex items-center justify-center">
         <div class="absolute inset-0 bg-black/40 z-10 mix-blend-multiply"></div>
-        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('{{ $hero_bg }}');">
+        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-[20s] ease-linear hover:scale-110" style="background-image: url('{{ $hero_bg }}');">
         </div>
-        <div class="relative z-20 text-center px-4 max-w-4xl mx-auto flex flex-col items-center gap-6 animate-fade-in-up">
-            <span class="text-white font-bold tracking-widest uppercase text-sm bg-legacy-primary/80 backdrop-blur-md px-4 py-1 rounded-full border border-white/20">The Venue</span>
-            <h1 class="text-white text-5xl md:text-7xl font-black leading-tight tracking-tight drop-shadow-sm">
+        <div x-show="show"
+             x-transition:enter="transition ease-out duration-1000"
+             x-transition:enter-start="opacity-0 translate-y-12"
+             x-transition:enter-end="opacity-100 translate-y-0"
+             class="relative z-20 text-center px-4 max-w-4xl mx-auto flex flex-col items-center gap-6">
+            <span class="text-white font-bold tracking-widest uppercase text-sm bg-legacy-primary/80 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/20 shadow-lg">The Venue</span>
+            <h1 class="text-white text-5xl md:text-7xl font-black leading-tight tracking-tight drop-shadow-xl">
                 {{ $hero_title }} <span class="text-legacy-primary-light italic font-serif text-[#aed581]">{{ $hero_subtitle }}</span>
             </h1>
             <p class="text-[#f1f3e9] text-lg md:text-xl font-medium max-w-2xl leading-relaxed drop-shadow-md">
                 {{ $hero_text }}
             </p>
             <div class="flex flex-col sm:flex-row gap-4 mt-4">
-                <a href="#inquire" class="flex items-center justify-center rounded-full h-12 px-8 bg-legacy-primary hover:bg-legacy-primary-dark text-white text-base font-bold transition-all transform hover:scale-105 shadow-lg shadow-legacy-primary/30">
+                <a href="#inquire" class="flex items-center justify-center rounded-full h-14 px-8 bg-legacy-primary hover:bg-legacy-primary-dark text-white text-base font-bold transition-all transform hover:-translate-y-1 hover:shadow-xl shadow-lg shadow-legacy-primary/30">
                     Inquire Now
                 </a>
-                <button class="flex items-center justify-center rounded-full h-12 px-8 bg-white/20 hover:bg-white/30 backdrop-blur-md text-white border border-white/50 text-base font-bold transition-all">
-                    Download Brochure
-                </button>
+                @php
+                    $brochureLink = \App\Models\PageContent::getValue('legacy_brochure_link');
+                @endphp
+                @if($brochureLink)
+                <a href="{{ $brochureLink }}" target="_blank" class="flex items-center justify-center rounded-full h-14 px-8 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 hover:border-white text-base font-bold transition-all hover:-translate-y-1 shadow-lg">
+                    View Full Package
+                </a>
+                @endif
             </div>
         </div>
     </section>
@@ -100,36 +109,36 @@
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Feature 1 -->
-                <div class="bg-legacy-surface-light dark:bg-legacy-surface-dark p-8 rounded-2xl shadow-sm hover:shadow-lg transition-shadow border border-legacy-accent-beige dark:border-legacy-surface-dark group">
-                    <div class="w-14 h-14 rounded-xl bg-legacy-primary/15 flex items-center justify-center text-legacy-primary mb-6 group-hover:bg-legacy-primary group-hover:text-white transition-colors">
+                <div class="bg-legacy-surface-light dark:bg-legacy-surface-dark p-8 rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 border border-legacy-accent-beige dark:border-legacy-surface-dark group hover:-translate-y-2">
+                    <div class="w-14 h-14 rounded-xl bg-legacy-primary/15 flex items-center justify-center text-legacy-primary mb-6 group-hover:bg-legacy-primary group-hover:text-white transition-colors duration-300 shadow-sm">
                         <span class="material-symbols-outlined text-3xl">groups</span>
                     </div>
-                    <h3 class="text-xl font-bold mb-2 text-[#2d332d] dark:text-[#e0e2db]">Capacity</h3>
-                    <p class="text-[#5d635d] dark:text-[#888b85] text-sm">Comfortably hosts up to 300 guests standing or 150 seated guests.</p>
+                    <h3 class="text-xl font-bold mb-2 text-[#2d332d] dark:text-[#e0e2db]">{{ $feature_1_title }}</h3>
+                    <p class="text-[#5d635d] dark:text-[#888b85] text-sm leading-relaxed">{{ $feature_1_text }}</p>
                 </div>
                 <!-- Feature 2 -->
-                <div class="bg-legacy-surface-light dark:bg-legacy-surface-dark p-8 rounded-2xl shadow-sm hover:shadow-lg transition-shadow border border-legacy-accent-beige dark:border-legacy-surface-dark group">
-                    <div class="w-14 h-14 rounded-xl bg-legacy-primary/15 flex items-center justify-center text-legacy-primary mb-6 group-hover:bg-legacy-primary group-hover:text-white transition-colors">
+                <div class="bg-legacy-surface-light dark:bg-legacy-surface-dark p-8 rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 border border-legacy-accent-beige dark:border-legacy-surface-dark group hover:-translate-y-2">
+                    <div class="w-14 h-14 rounded-xl bg-legacy-primary/15 flex items-center justify-center text-legacy-primary mb-6 group-hover:bg-legacy-primary group-hover:text-white transition-colors duration-300 shadow-sm">
                         <span class="material-symbols-outlined text-3xl">local_parking</span>
                     </div>
-                    <h3 class="text-xl font-bold mb-2 text-[#2d332d] dark:text-[#e0e2db]">Ample Parking</h3>
-                    <p class="text-[#5d635d] dark:text-[#888b85] text-sm">Dedicated parking area for up to 80 cars with valet service available.</p>
+                    <h3 class="text-xl font-bold mb-2 text-[#2d332d] dark:text-[#e0e2db]">{{ $feature_2_title }}</h3>
+                    <p class="text-[#5d635d] dark:text-[#888b85] text-sm leading-relaxed">{{ $feature_2_text }}</p>
                 </div>
                  <!-- Feature 3 -->
-                <div class="bg-legacy-surface-light dark:bg-legacy-surface-dark p-8 rounded-2xl shadow-sm hover:shadow-lg transition-shadow border border-legacy-accent-beige dark:border-legacy-surface-dark group">
-                    <div class="w-14 h-14 rounded-xl bg-legacy-primary/15 flex items-center justify-center text-legacy-primary mb-6 group-hover:bg-legacy-primary group-hover:text-white transition-colors">
+                <div class="bg-legacy-surface-light dark:bg-legacy-surface-dark p-8 rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 border border-legacy-accent-beige dark:border-legacy-surface-dark group hover:-translate-y-2">
+                    <div class="w-14 h-14 rounded-xl bg-legacy-primary/15 flex items-center justify-center text-legacy-primary mb-6 group-hover:bg-legacy-primary group-hover:text-white transition-colors duration-300 shadow-sm">
                         <span class="material-symbols-outlined text-3xl">checkroom</span>
                     </div>
-                    <h3 class="text-xl font-bold mb-2 text-[#2d332d] dark:text-[#e0e2db]">Bridal Suite</h3>
-                    <p class="text-[#5d635d] dark:text-[#888b85] text-sm">Private, air-conditioned preparation room for the bride and family.</p>
+                    <h3 class="text-xl font-bold mb-2 text-[#2d332d] dark:text-[#e0e2db]">{{ $feature_3_title }}</h3>
+                    <p class="text-[#5d635d] dark:text-[#888b85] text-sm leading-relaxed">{{ $feature_3_text }}</p>
                 </div>
                  <!-- Feature 4 -->
-                <div class="bg-legacy-surface-light dark:bg-legacy-surface-dark p-8 rounded-2xl shadow-sm hover:shadow-lg transition-shadow border border-legacy-accent-beige dark:border-legacy-surface-dark group">
-                    <div class="w-14 h-14 rounded-xl bg-legacy-primary/15 flex items-center justify-center text-legacy-primary mb-6 group-hover:bg-legacy-primary group-hover:text-white transition-colors">
+                <div class="bg-legacy-surface-light dark:bg-legacy-surface-dark p-8 rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 border border-legacy-accent-beige dark:border-legacy-surface-dark group hover:-translate-y-2">
+                    <div class="w-14 h-14 rounded-xl bg-legacy-primary/15 flex items-center justify-center text-legacy-primary mb-6 group-hover:bg-legacy-primary group-hover:text-white transition-colors duration-300 shadow-sm">
                         <span class="material-symbols-outlined text-3xl">restaurant_menu</span>
                     </div>
-                    <h3 class="text-xl font-bold mb-2 text-[#2d332d] dark:text-[#e0e2db]">In-House Catering</h3>
-                    <p class="text-[#5d635d] dark:text-[#888b85] text-sm">Authentic Indonesian & International buffet menus from our kitchen.</p>
+                    <h3 class="text-xl font-bold mb-2 text-[#2d332d] dark:text-[#e0e2db]">{{ $feature_4_title }}</h3>
+                    <p class="text-[#5d635d] dark:text-[#888b85] text-sm leading-relaxed">{{ $feature_4_text }}</p>
                 </div>
             </div>
         </div>
@@ -143,87 +152,49 @@
                 <p class="text-[#5d635d] dark:text-[#a0a39d]">Curated experiences for every scale of celebration.</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Package 1 -->
-                <div class="bg-legacy-surface-light dark:bg-legacy-surface-dark rounded-2xl overflow-hidden shadow-sm border border-legacy-accent-beige dark:border-legacy-surface-dark flex flex-col">
-                    <div class="h-2 bg-[#d7ccc8]"></div>
-                    <div class="p-8 flex-1">
-                        <h3 class="text-2xl font-bold text-[#2d332d] dark:text-[#e0e2db] mb-2">Intimate Gathering</h3>
-                        <p class="text-[#5d635d] text-sm mb-6">Perfect for close family & friends</p>
-                        <div class="text-3xl font-bold text-legacy-primary mb-6">Start from 15jt</div>
-                        <ul class="space-y-3 mb-8">
-                            <li class="flex items-center gap-3 text-sm text-[#5d635d] dark:text-[#a0a39d]">
-                                <span class="material-symbols-outlined text-legacy-primary text-base">check_circle</span>
-                                Up to 50 Guests
-                            </li>
-                             <li class="flex items-center gap-3 text-sm text-[#5d635d] dark:text-[#a0a39d]">
-                                <span class="material-symbols-outlined text-legacy-primary text-base">check_circle</span>
-                                4 Hours Venue Usage
-                            </li>
-                             <li class="flex items-center gap-3 text-sm text-[#5d635d] dark:text-[#a0a39d]">
-                                <span class="material-symbols-outlined text-legacy-primary text-base">check_circle</span>
-                                Standard Sound System
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="p-8 pt-0 mt-auto">
-                        <button class="w-full py-3 rounded-lg border-2 border-legacy-primary text-[#2d332d] dark:text-[#e0e2db] font-bold hover:bg-legacy-primary hover:text-white transition-colors">View Details</button>
-                    </div>
-                </div>
-                
-                 <!-- Package 2 -->
-                <div class="bg-legacy-surface-light dark:bg-legacy-surface-dark rounded-2xl overflow-hidden shadow-xl border border-legacy-primary/30 flex flex-col transform md:-translate-y-4 relative">
+                @php
+                    $packages = \App\Models\EventPackage::featured()->get();
+                @endphp
+
+                @foreach($packages as $index => $package)
+                <!-- Package Item -->
+                <div class="bg-legacy-surface-light dark:bg-legacy-surface-dark rounded-2xl overflow-hidden shadow-sm border border-legacy-accent-beige dark:border-legacy-surface-dark flex flex-col transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl {{ $index == 1 ? 'md:-translate-y-4 shadow-xl border-legacy-primary/30 relative' : '' }}">
+                    @if($index == 1)
                     <div class="absolute top-0 right-0 bg-legacy-primary text-white text-xs font-bold px-3 py-1 rounded-bl-lg">POPULAR</div>
                     <div class="h-2 bg-legacy-primary"></div>
+                    @else
+                    <div class="h-2 bg-[#d7ccc8]"></div>
+                    @endif
+
                     <div class="p-8 flex-1">
-                        <h3 class="text-2xl font-bold text-[#2d332d] dark:text-[#e0e2db] mb-2">Legacy Wedding</h3>
-                        <p class="text-[#5d635d] text-sm mb-6">The complete garden experience</p>
-                        <div class="text-3xl font-bold text-legacy-primary mb-6">Start from 45jt</div>
-                         <ul class="space-y-3 mb-8">
+                        <h3 class="text-2xl font-bold text-[#2d332d] dark:text-[#e0e2db] mb-2">{{ $package->name }}</h3>
+                        <p class="text-[#5d635d] text-sm mb-6">{{ $package->description }}</p>
+                        <div class="text-3xl font-bold text-legacy-primary mb-6">
+                            @if(is_numeric($package->price) && $package->price > 0)
+                                Rp {{ number_format($package->price, 0, ',', '.') }}
+                            @else
+                                {{ $package->price }}
+                            @endif
+                        </div>
+                        
+                        @if(is_array($package->features))
+                        <ul class="space-y-3 mb-8">
+                            @foreach($package->features as $feature)
                             <li class="flex items-center gap-3 text-sm text-[#5d635d] dark:text-[#a0a39d]">
                                 <span class="material-symbols-outlined text-legacy-primary text-base">check_circle</span>
-                                Up to 200 Guests
+                                {{ $feature }}
                             </li>
-                             <li class="flex items-center gap-3 text-sm text-[#5d635d] dark:text-[#a0a39d]">
-                                <span class="material-symbols-outlined text-legacy-primary text-base">check_circle</span>
-                                6 Hours Venue Usage
-                            </li>
-                             <li class="flex items-center gap-3 text-sm text-[#5d635d] dark:text-[#a0a39d]">
-                                <span class="material-symbols-outlined text-legacy-primary text-base">check_circle</span>
-                                Full Decoration Setup
-                            </li>
+                            @endforeach
                         </ul>
+                        @endif
                     </div>
                     <div class="p-8 pt-0 mt-auto">
-                        <button class="w-full py-3 rounded-lg bg-legacy-primary text-white font-bold hover:bg-legacy-primary-dark transition-colors shadow-lg shadow-legacy-primary/20">View Details</button>
+                        <button class="w-full py-3 rounded-lg {{ $index == 1 ? 'bg-legacy-primary text-white hover:bg-legacy-primary-dark shadow-lg shadow-legacy-primary/20' : 'border-2 border-legacy-primary text-[#2d332d] dark:text-[#e0e2db] hover:bg-legacy-primary hover:text-white' }} font-bold transition-colors">
+                            {{ $index == 2 ? 'Inquire Now' : 'View Details' }}
+                        </button>
                     </div>
                 </div>
-                
-                 <!-- Package 3 -->
-                  <div class="bg-legacy-surface-light dark:bg-legacy-surface-dark rounded-2xl overflow-hidden shadow-sm border border-legacy-accent-beige dark:border-legacy-surface-dark flex flex-col">
-                    <div class="h-2 bg-[#d7ccc8]"></div>
-                    <div class="p-8 flex-1">
-                        <h3 class="text-2xl font-bold text-[#2d332d] dark:text-[#e0e2db] mb-2">Custom Celebration</h3>
-                        <p class="text-[#5d635d] text-sm mb-6">Tailored to your specific needs</p>
-                        <div class="text-3xl font-bold text-legacy-primary mb-6">Contact Us</div>
-                        <ul class="space-y-3 mb-8">
-                             <li class="flex items-center gap-3 text-sm text-[#5d635d] dark:text-[#a0a39d]">
-                                <span class="material-symbols-outlined text-legacy-primary text-base">check_circle</span>
-                                Flexible Guest Count
-                            </li>
-                             <li class="flex items-center gap-3 text-sm text-[#5d635d] dark:text-[#a0a39d]">
-                                <span class="material-symbols-outlined text-legacy-primary text-base">check_circle</span>
-                                Custom Menu Selection
-                            </li>
-                             <li class="flex items-center gap-3 text-sm text-[#5d635d] dark:text-[#a0a39d]">
-                                <span class="material-symbols-outlined text-legacy-primary text-base">check_circle</span>
-                                Vendor Coordination
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="p-8 pt-0 mt-auto">
-                        <button class="w-full py-3 rounded-lg border-2 border-legacy-primary text-[#2d332d] dark:text-[#e0e2db] font-bold hover:bg-legacy-primary hover:text-white transition-colors">Inquire Now</button>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>

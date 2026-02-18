@@ -32,7 +32,8 @@ class AppServiceProvider extends ServiceProvider
                 $globalContent = \App\Models\PageContent::where(function($query) {
                     $query->where('key', 'like', 'contact_%')
                           ->orWhere('key', 'like', 'social_%')
-                          ->orWhere('key', 'like', 'legacy_social_%');
+                          ->orWhere('key', 'like', 'legacy_social_%')
+                          ->orWhere('key', 'site_logo');
                 })->pluck('value', 'key');
                 
                 \Illuminate\Support\Facades\View::share('global_contact', $globalContent);

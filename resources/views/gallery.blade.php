@@ -1,5 +1,5 @@
 <x-layouts.web title="Gallery - Teras Rumah Nenek">
-    <div class="bg-cream min-h-screen py-12">
+    <div class="bg-white min-h-screen py-12">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h1 class="font-serif text-5xl font-bold text-primary mb-4">Gallery</h1>

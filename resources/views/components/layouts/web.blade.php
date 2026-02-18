@@ -30,9 +30,13 @@
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex h-20 items-center justify-between">
                 <div class="flex-shrink-0 flex items-center gap-2">
-                    <a href="{{ route('home') }}" class="font-serif text-2xl font-bold text-primary tracking-tight">
+                    <a href="{{ route('home') }}" class="font-serif text-2xl font-bold text-primary tracking-tight flex items-center">
+                    @if(!empty($global_contact['site_logo']))
+                        <img src="{{ $global_contact['site_logo'] }}" alt="Teras Rumah Nenek" class="h-10 w-auto">
+                    @else
                         Teras Rumah Nenek
-                    </a>
+                    @endif
+                </a>
                 </div>
                 
                 <nav class="hidden md:flex space-x-8">
@@ -83,7 +87,11 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-12">
                 <!-- Brand & Description -->
                 <div>
-                    <h3 class="font-serif text-2xl font-bold mb-6">Teras Rumah Nenek</h3>
+                    @if(!empty($global_contact['site_logo']))
+                        <img src="{{ $global_contact['site_logo'] }}" alt="Teras Rumah Nenek" class="h-12 w-auto mb-6">
+                    @else
+                        <h3 class="font-serif text-2xl font-bold mb-6">Teras Rumah Nenek</h3>
+                    @endif
                     <p class="text-cream/80 leading-relaxed mb-6">
                         A sanctuary of nature and taste. Experienced the warmth of home in every bite.
                     </p>

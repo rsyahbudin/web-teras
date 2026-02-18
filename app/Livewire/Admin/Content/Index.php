@@ -124,6 +124,7 @@ class Index extends Component
             'label' => 'Global: Contact & Socials',
             'description' => 'Site-wide contact info, hours, and social media.',
             'fields' => [
+                ['key' => 'site_logo', 'label' => 'Site Logo (Navbar & Footer)', 'type' => 'image'],
                 ['key' => 'contact_address', 'label' => 'Address', 'type' => 'textarea'],
                 ['key' => 'contact_maps_link', 'label' => 'Google Maps Link', 'type' => 'text'],
                 ['key' => 'contact_phone', 'label' => 'Phone Number', 'type' => 'text'],

@@ -76,14 +76,13 @@
     <!-- Footer -->
     <footer class="bg-primary text-cream pt-16 pb-8 mt-auto">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-12">
                 <!-- Brand & Description -->
                 <div>
                     <h3 class="font-serif text-2xl font-bold mb-6">Teras Rumah Nenek</h3>
                     <p class="text-cream/80 leading-relaxed mb-6">
                         A sanctuary of nature and taste. Experienced the warmth of home in every bite.
                     </p>
-                    <!-- Social Media -->
                     <!-- Social Media -->
                     <div class="flex space-x-4">
                         @php
@@ -114,21 +113,10 @@
                         @endif
                     </div>
                 </div>
-                
-                <!-- Quick Links -->
-                <div>
-                    <h4 class="font-bold text-lg mb-6 text-accent">Quick Links</h4>
-                    <ul class="space-y-3">
-                        <li><a href="{{ route('home') }}" class="text-cream/80 hover:text-white transition-colors flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-accent/50"></span>Home</a></li>
-                        <li><a href="{{ route('menu') }}" class="text-cream/80 hover:text-white transition-colors flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-accent/50"></span>Menu</a></li>
-                        <li><a href="{{ route('legacy-garden') }}" class="text-cream/80 hover:text-white transition-colors flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-accent/50"></span>Legacy Garden</a></li>
-                        <li><a href="{{ route('gallery') }}" class="text-cream/80 hover:text-white transition-colors flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-accent/50"></span>Gallery</a></li>
-                    </ul>
-                </div>
 
                 <!-- Opening Hours -->
                 <div>
-                     <h4 class="font-bold text-lg mb-6 text-accent">Opening Hours</h4>
+                     <h4 class="font-bold text-lg mb-6 text-white">Opening Hours</h4>
                      <ul class="space-y-4 text-cream/80">
                         <li class="flex items-start gap-3">
                             <span class="material-symbols-outlined text-accent mt-0.5">schedule</span>
@@ -149,7 +137,7 @@
 
                 <!-- Contact -->
                 <div>
-                    <h4 class="font-bold text-lg mb-6 text-accent">Contact Us</h4>
+                    <h4 class="font-bold text-lg mb-6 text-white">Contact Us</h4>
                     <ul class="space-y-4 text-cream/80">
                         <li class="flex items-start gap-3">
                              <span class="material-symbols-outlined text-accent mt-0.5">location_on</span>
@@ -168,14 +156,6 @@
                              <span class="material-symbols-outlined text-accent">mail</span>
                             <span>{{ $global_contact['contact_email'] ?? 'info@terasrumahnenek.com' }}</span>
                         </li>
-                        @if(!empty($global_contact['contact_whatsapp']))
-                        <li class="pt-2">
-                             <a href="https://wa.me/{{ $global_contact['contact_whatsapp'] }}" target="_blank" class="inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white px-4 py-2 rounded-full font-bold transition-colors w-full">
-                                <span class="material-symbols-outlined">chat</span>
-                                Chat WhatsApp
-                            </a>
-                        </li>
-                        @endif
                     </ul>
                 </div>
             </div>

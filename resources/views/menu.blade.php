@@ -28,16 +28,23 @@
         </div>
     </section>
 
-    <!-- Main Content -->
-    <main id="menu-content" class="layout-container flex flex-col items-center w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative">
+    <!-- Main Content with Tabs -->
+    <main id="menu-content" 
+          class="layout-container flex flex-col items-center w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative min-h-screen"
+          x-data="{ activeTab: '{{ $categories->first()?->slug }}' }">
         
-        <!-- Sticky Category Nav -->
-        <div class="sticky top-[73px] z-40 w-full bg-menu-bg-light/95 dark:bg-menu-bg-dark/95 backdrop-blur-lg border-y border-wood-medium/20 py-2 mb-12 shadow-sm">
-            <div class="flex overflow-x-auto no-scrollbar gap-8 md:justify-center px-4 py-2 w-full">
+        <!-- Sticky Tab Navigation -->
+        <div class="sticky top-[73px] z-40 w-full bg-menu-bg-light/95 dark:bg-menu-bg-dark/95 backdrop-blur-lg border-y border-wood-medium/20 py-4 mb-12 shadow-sm">
+            <div class="flex overflow-x-auto no-scrollbar gap-4 md:justify-center px-4 w-full">
                 @foreach($categories as $category)
-                    <a href="#{{ $category->slug }}" class="whitespace-nowrap pb-1 border-b-2 border-transparent hover:border-wood-medium/50 text-wood-medium dark:text-menu-wood-light/70 hover:text-wood-dark dark:hover:text-menu-wood-light font-bold text-sm uppercase tracking-wide transition-colors">
+                    <button 
+                        @click="activeTab = '{{ $category->slug }}'"
+                        :class="activeTab === '{{ $category->slug }}' 
+                            ? 'bg-menu-accent text-white border-menu-accent shadow-md' 
+                            : 'bg-transparent text-wood-medium dark:text-menu-wood-light/70 border-transparent hover:bg-wood-light/20 dark:hover:bg-white/5'"
+                        class="whitespace-nowrap px-6 py-2 rounded-full font-bold text-sm uppercase tracking-wide transition-all border-2 flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-menu-accent/50">
                         {{ $category->name }}
-                    </a>
+                    </button>
                 @endforeach
             </div>
         </div>
@@ -49,7 +56,12 @@
 
         <div class="w-full flex flex-col gap-20">
             @foreach($categories as $index => $category)
-                <section class="scroll-mt-40" id="{{ $category->slug }}">
+                <div x-show="activeTab === '{{ $category->slug }}'"
+                     x-transition:enter="transition ease-out duration-300"
+                     x-transition:enter-start="opacity-0 translate-y-4"
+                     x-transition:enter-end="opacity-100 translate-y-0"
+                     class="w-full">
+                    
                     <div class="flex items-center gap-4 mb-8">
                         <h2 class="text-3xl font-black text-wood-dark dark:text-menu-wood-light tracking-tight font-serif">{{ $category->name }}</h2>
                         <div class="h-px bg-wood-medium/30 dark:bg-wood-medium flex-grow"></div>
@@ -59,7 +71,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         @foreach($category->items as $item)
                             @if($loop->parent->first && $loop->index < 2 && $item->is_featured) 
-                                <!-- Special Featured Card Style for top items if desired, essentially matching the user's "Nasi Goreng Kampung Special" large card -->
+                                <!-- Special Featured Card Style (No 'Add to Order' button) -->
                                 <div class="col-span-1 md:col-span-2 bg-white dark:bg-wood-dark/40 rounded-2xl overflow-hidden shadow-sm border border-wood-light/30 dark:border-wood-medium/20 flex flex-col md:flex-row">
                                     <div class="w-full md:w-2/5 h-64 md:h-auto overflow-hidden">
                                         <img src="{{ $item->image ?? 'https://via.placeholder.com/600x400' }}" alt="{{ $item->name }}" class="w-full h-full object-cover"/>
@@ -70,18 +82,15 @@
                                             <span class="text-xl font-bold text-menu-accent">{{ number_format($item->price, 0, ',', '.') }}</span>
                                         </div>
                                         <p class="text-wood-medium dark:text-menu-wood-light/70 mb-6">{{ $item->description }}</p>
-                                        <div class="flex gap-3 mb-6">
+                                        <div class="flex gap-3">
                                             <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium bg-red-50 text-red-800 dark:bg-red-900/40 dark:text-red-200 border border-red-100 dark:border-red-900">
                                                 <span class="material-symbols-outlined text-[14px]">local_fire_department</span> Best Seller
                                             </span>
                                         </div>
-                                        <button class="w-full md:w-auto bg-menu-primary text-white font-bold py-3 px-6 rounded-lg hover:bg-menu-primary-dark transition-colors flex items-center justify-center gap-2 shadow-sm">
-                                            Add to Order
-                                        </button>
                                     </div>
                                 </div>
                             @else
-                                <!-- Standard Card Style -->
+                                <!-- Standard Card Style (No 'Add to Order' button) -->
                                 <div class="group flex gap-4 p-4 rounded-xl bg-white/50 hover:bg-white dark:bg-white/5 dark:hover:bg-white/10 transition-colors border border-wood-light/30 hover:border-wood-medium/30 dark:border-wood-medium/10">
                                     <div class="shrink-0 w-24 h-24 rounded-lg bg-menu-wood-light/20 overflow-hidden relative">
                                         <img src="{{ $item->image ?? 'https://via.placeholder.com/150' }}" alt="{{ $item->name }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"/>
@@ -99,19 +108,25 @@
                                             </div>
                                             <p class="text-sm text-wood-medium dark:text-menu-wood-light/60 line-clamp-2">{{ $item->description }}</p>
                                         </div>
-                                        <button class="mt-2 text-xs font-bold uppercase tracking-wider text-wood-medium hover:text-menu-accent self-start flex items-center gap-1">
-                                            Add to Order <span class="material-symbols-outlined text-sm">add</span>
-                                        </button>
                                     </div>
                                 </div>
                             @endif
                         @endforeach
                     </div>
-                </section>
+                </div>
 
                 @if($index == 0)
-                    <!-- Chef's Recommendation Banner (Inserted after first category) -->
-                    <div class="w-full h-64 md:h-80 rounded-2xl overflow-hidden relative my-4 group shadow-lg">
+                    <!-- Chef's Recommendation Banner (Only shows when first tab is active because inside the x-show loop logic, but actually inside the loop logic it means it's attached to the first category. Wait, if I put it outside the x-show div it might show always. I should check logic.) -->
+                    <!-- I need to put this inside the x-show div of the first category to make it only appear when that tab is active. Or maybe the user wants it always? Usually recommendations are category specific or general. The original code had it after the first section. I'll put it INSIDE the x-show div for the first category. -->
+                @endif
+            @endforeach
+            
+            <!-- Moving the Chef's Recommendation to be part of the first category flow or separate? -->
+            <!-- In the original code, it was `@if($index == 0) ... @endif` inside the loop but outside the section? No, it was inside the loop. -->
+            <!-- Let's put it inside the first category's x-show block to keep it associated with the "Main" or first view. -->
+             @if($categories->count() > 0)
+                <div x-show="activeTab === '{{ $categories->first()->slug }}'" class="w-full mt-8">
+                    <div class="w-full h-64 md:h-80 rounded-2xl overflow-hidden relative group shadow-lg">
                         <img alt="Dark moody food photography of a feast" class="w-full h-full object-cover brightness-[0.8]" src="https://images.unsplash.com/photo-1544025162-d76690b67f61?q=80&w=2070&auto=format&fit=crop"/>
                         <div class="absolute inset-0 bg-wood-dark/50 flex items-center justify-center transition-colors group-hover:bg-wood-dark/40">
                             <div class="text-center p-8 bg-[#f4f1ea]/10 backdrop-blur-md rounded-xl border border-[#f4f1ea]/20 max-w-lg mx-4">
@@ -120,44 +135,9 @@
                             </div>
                         </div>
                     </div>
-                @endif
-            @endforeach
+                </div>
+            @endif
+
         </div>
     </main>
-
-    <!-- Scroll Spy & Sticky Nav Script -->
-    @push('scripts')
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const navLinks = document.querySelectorAll('.sticky a');
-            const sections = document.querySelectorAll('section[id]');
-
-            const observerOptions = {
-                root: null,
-                rootMargin: '-100px 0px -40% 0px', 
-                threshold: 0
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        navLinks.forEach(link => {
-                            link.classList.remove('text-menu-accent', 'border-menu-accent');
-                            link.classList.add('text-wood-medium', 'dark:text-menu-wood-light/70', 'border-transparent');
-                        });
-
-                        const activeLink = document.querySelector(`.sticky a[href="#${entry.target.id}"]`);
-                        if (activeLink) {
-                            activeLink.classList.remove('text-wood-medium', 'dark:text-menu-wood-light/70', 'border-transparent');
-                            activeLink.classList.add('text-menu-accent', 'border-menu-accent');
-                            activeLink.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-                        }
-                    }
-                });
-            }, observerOptions);
-
-            sections.forEach(section => observer.observe(section));
-        });
-    </script>
-    @endpush
 </x-layouts.web>

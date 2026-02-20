@@ -91,7 +91,21 @@ Connect via SSH and run these commands in your project root:
     ```bash
     php artisan storage:link
     ```
-4.  **Optimize**:
+4.  **Run Seeders (Optional)**:
+    If you need to populate your database with initial data:
+
+    ```bash
+    # Run the main DatabaseSeeder
+    php artisan db:seed --force
+
+    # Or run a specific seeder class
+    php artisan db:seed --class=PageContentSeeder --force
+    ```
+
+    > [!IMPORTANT]
+    > Di production (Hostinger), Anda **wajib** menambahkan flag `--force` agar perintah dijalankan tanpa konfirmasi interaktif.
+
+5.  **Optimize**:
     ```bash
     php artisan optimize
     ```

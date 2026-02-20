@@ -22,7 +22,7 @@ class GalleryController extends Controller
         $galleries = $query->paginate(12);
         
         // Get all categories for filter
-        $categories = GalleryCategory::orderBy('name')->get();
+        $categories = GalleryCategory::orderBy('position')->get();
 
         return view('gallery', compact('galleries', 'categories'));
     }

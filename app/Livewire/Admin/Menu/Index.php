@@ -45,12 +45,19 @@ class Index extends Component
     public function render()
     {
         $items = MenuItem::with('category')->latest()->paginate(10);
-        $categories = MenuCategory::all();
+        $categories = MenuCategory::orderBy('position')->get();
 
         return view('livewire.admin.menu.index', [
             'items' => $items,
             'categories' => $categories,
         ]);
+    }
+
+    public function updateCategoryOrder($ids)
+    {
+        foreach ($ids as $index => $id) {
+            MenuCategory::where('id', $id)->update(['position' => $index]);
+        }
     }
 
     // --- ITEM ACTIONS ---

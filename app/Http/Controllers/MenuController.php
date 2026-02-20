@@ -11,7 +11,7 @@ class MenuController extends Controller
     public function index()
     {
         $content = PageContent::where('key', 'like', 'menu_hero_%')->pluck('value', 'key');
-        $categories = \App\Models\MenuCategory::with('items')->get();
+        $categories = \App\Models\MenuCategory::with('items')->orderBy('position')->get();
         
         return view('menu', [
             'categories' => $categories,

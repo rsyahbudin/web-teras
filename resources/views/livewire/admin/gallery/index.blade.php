@@ -141,13 +141,31 @@
                 </div>
 
                 <!-- List -->
-                <div class="space-y-2">
+                <div class="space-y-2"
+                     x-data="{ 
+                        sortable: null,
+                        init() {
+                            this.sortable = new Sortable($el, {
+                                animation: 150,
+                                handle: '.drag-handle',
+                                onEnd: (evt) => {
+                                    let ids = Array.from($el.querySelectorAll('[data-id]')).map(el => el.dataset.id);
+                                    $wire.updateCategoryOrder(ids);
+                                }
+                            });
+                        }
+                     }">
                     <h3 class="font-medium text-sm uppercase tracking-wider text-zinc-500 mb-2">Existing Categories</h3>
                     @foreach($categories as $category)
-                        <div class="flex items-center justify-between p-3 bg-white dark:bg-zinc-800 rounded-lg border border-zinc-200 dark:border-zinc-700 hover:border-primary/50 transition-colors group">
-                            <div>
-                                <div class="font-medium">{{ $category->name }}</div>
-                                <div class="text-xs text-zinc-500">{{ $category->galleries_count ?? 0 }} items</div>
+                        <div data-id="{{ $category->id }}" class="flex items-center justify-between p-3 bg-white dark:bg-zinc-800 rounded-lg border border-zinc-200 dark:border-zinc-700 hover:border-primary/50 transition-colors group">
+                            <div class="flex items-center gap-3">
+                                <div class="drag-handle cursor-grab active:cursor-grabbing text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300">
+                                    <flux:icon.bars-3 class="w-5 h-5" />
+                                </div>
+                                <div>
+                                    <div class="font-medium">{{ $category->name }}</div>
+                                    <div class="text-xs text-zinc-500">{{ $category->galleries_count ?? 0 }} items</div>
+                                </div>
                             </div>
                             <div class="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                                 <flux:button size="xs" icon="pencil-square" wire:click="editCategory({{ $category->id }})"></flux:button>

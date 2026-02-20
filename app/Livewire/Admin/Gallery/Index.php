@@ -37,8 +37,15 @@ class Index extends Component
     public function render()
     {
         $galleries = Gallery::with('category')->latest()->paginate(12);
-        $categories = GalleryCategory::orderBy('name')->get();
+        $categories = GalleryCategory::orderBy('position')->get();
         return view('livewire.admin.gallery.index', compact('galleries', 'categories'));
+    }
+
+    public function updateCategoryOrder($ids)
+    {
+        foreach ($ids as $index => $id) {
+            GalleryCategory::where('id', $id)->update(['position' => $index]);
+        }
     }
 
     public function create()

@@ -10,7 +10,9 @@ Route::get('/menu', [MenuController::class, 'index'])->name('menu');
 Route::get('/legacy-garden', [EventController::class, 'index'])->name('legacy-garden');
 Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery');
 
-Route::view('dashboard', 'dashboard')
+use App\Livewire\Admin\Dashboard;
+
+Route::get('dashboard', Dashboard::class)
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 

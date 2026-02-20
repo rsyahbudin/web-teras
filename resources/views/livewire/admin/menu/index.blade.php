@@ -112,7 +112,7 @@
                         </div>
                         <div class="flex-1">
                             <input type="file" wire:model="newImage" class="block w-full text-sm text-zinc-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20 transition-colors">
-                            <p class="text-xs text-zinc-500 mt-1">PNG, JPG, GIF up to 1MB</p>
+                            <p class="text-xs text-zinc-500 mt-1">PNG, JPG, GIF up to 1MB. Recommended: 800x800px (Square 1:1)</p>
                         </div>
                     </div>
                 </div>

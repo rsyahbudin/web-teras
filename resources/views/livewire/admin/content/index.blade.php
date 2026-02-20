@@ -59,7 +59,7 @@
                                         </div>
                                     </div>
                                     <div class="text-xs text-zinc-500">
-                                        <p>Recommended size: 1920x1080 (Hero) or 800x600 (Cards).</p>
+                                        <p>{{ $field['hint'] ?? 'Recommended size: 1920x1080 (Hero) or 800x600 (Cards).' }}</p>
                                     </div>
                                 </div>
                             @elseif($field['type'] === 'textarea')

@@ -24,7 +24,7 @@ class Index extends Component
                 ['key' => 'home_hero_greeting', 'label' => 'Greeting Text', 'type' => 'text'],
                 ['key' => 'home_hero_brand', 'label' => 'Brand Name', 'type' => 'text'],
                 ['key' => 'home_hero_subtitle', 'label' => 'Subtitle', 'type' => 'textarea'],
-                ['key' => 'home_hero_bg', 'label' => 'Background Image', 'type' => 'image'],
+                ['key' => 'home_hero_bg', 'label' => 'Background Image', 'type' => 'image', 'hint' => 'Recommended: 1920x1080px (High Quality Landscape)'],
             ]
         ],
         'home_about' => [
@@ -33,8 +33,8 @@ class Index extends Component
             'fields' => [
                 ['key' => 'home_about_title', 'label' => 'Title', 'type' => 'text'],
                 ['key' => 'home_about_text', 'label' => 'Description', 'type' => 'textarea'],
-                ['key' => 'home_about_image_1', 'label' => 'Main Image', 'type' => 'image'],
-                ['key' => 'home_about_image_2', 'label' => 'Small Image', 'type' => 'image'],
+                ['key' => 'home_about_image_1', 'label' => 'Main Image', 'type' => 'image', 'hint' => 'Recommended: 1200x900px (Aspect Ratio 4:3)'],
+                ['key' => 'home_about_image_2', 'label' => 'Small Image', 'type' => 'image', 'hint' => 'Recommended: 800x800px (Square 1:1)'],
             ]
         ],
         'home_features' => [
@@ -56,7 +56,7 @@ class Index extends Component
                 ['key' => 'home_cta_tagline', 'label' => 'Tagline (Small)', 'type' => 'text'],
                 ['key' => 'home_cta_title', 'label' => 'Main Title', 'type' => 'text'],
                 ['key' => 'home_cta_text', 'label' => 'Description', 'type' => 'textarea'],
-                ['key' => 'home_cta_bg', 'label' => 'Background Image', 'type' => 'image'],
+                ['key' => 'home_cta_bg', 'label' => 'Background Image', 'type' => 'image', 'hint' => 'Recommended: 1920x800px (Wide Landscape)'],
             ]
         ],
         'menu_hero' => [
@@ -65,7 +65,7 @@ class Index extends Component
             'fields' => [
                 ['key' => 'menu_hero_title', 'label' => 'Title', 'type' => 'text'],
                 ['key' => 'menu_hero_subtitle', 'label' => 'Subtitle', 'type' => 'text'],
-                ['key' => 'menu_hero_bg', 'label' => 'Hero Image', 'type' => 'image'],
+                ['key' => 'menu_hero_bg', 'label' => 'Hero Image', 'type' => 'image', 'hint' => 'Recommended: 1920x600px (Wide banner)'],
             ]
         ],
         'legacy_garden_hero' => [
@@ -75,14 +75,14 @@ class Index extends Component
                 ['key' => 'legacy_hero_title', 'label' => 'Main Title', 'type' => 'text'],
                 ['key' => 'legacy_hero_subtitle', 'label' => 'Highlight Word', 'type' => 'text'],
                 ['key' => 'legacy_hero_text', 'label' => 'Description', 'type' => 'textarea'],
-                ['key' => 'legacy_hero_bg', 'label' => 'Background Image', 'type' => 'image'],
+                ['key' => 'legacy_hero_bg', 'label' => 'Background Image', 'type' => 'image', 'hint' => 'Recommended: 1920x1080px'],
             ]
         ],
         'legacy_garden_intro' => [
             'label' => 'Legacy Garden: Intro',
             'description' => 'Introduction section with the rotating image.',
             'fields' => [
-                ['key' => 'legacy_intro_image', 'label' => 'Feature Image', 'type' => 'image'],
+                ['key' => 'legacy_intro_image', 'label' => 'Feature Image', 'type' => 'image', 'hint' => 'Recommended: 1000x1200px (Portrait)'],
                 ['key' => 'legacy_intro_quote', 'label' => 'Testimonial Quote', 'type' => 'textarea'],
                 ['key' => 'legacy_intro_author', 'label' => 'Quote Author', 'type' => 'text'],
                 ['key' => 'legacy_intro_title', 'label' => 'Main Heading', 'type' => 'text'],
@@ -124,7 +124,7 @@ class Index extends Component
             'label' => 'Global: Contact & Socials',
             'description' => 'Site-wide contact info, hours, and social media.',
             'fields' => [
-                ['key' => 'site_logo', 'label' => 'Site Logo (Navbar & Footer)', 'type' => 'image'],
+                ['key' => 'site_logo', 'label' => 'Site Logo (Navbar & Footer)', 'type' => 'image', 'hint' => 'Recommended: 400x160px (Transparent PNG preferred)'],
                 ['key' => 'contact_address', 'label' => 'Address', 'type' => 'textarea'],
                 ['key' => 'contact_maps_link', 'label' => 'Google Maps Link', 'type' => 'text'],
                 ['key' => 'contact_phone', 'label' => 'Phone Number', 'type' => 'text'],

@@ -94,6 +94,7 @@
                             </div>
                         </div>
                     </div>
+                    <p class="text-xs text-zinc-500 mt-2">Recommended: 1200x800px (Landscape) or 800x1200px (Portrait).</p>
                      @error('newImage') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
                 </div>
 

@@ -20,6 +20,10 @@
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
     </style>
+
+    @if(!empty($global_contact['site_logo']))
+        <link rel="icon" href="{{ $global_contact['site_logo'] }}">
+    @endif
 </head>
 <body class="flex min-h-screen flex-col bg-stone-100 font-sans text-stone-800 antialiased selection:bg-stone-200 selection:text-stone-900">
         

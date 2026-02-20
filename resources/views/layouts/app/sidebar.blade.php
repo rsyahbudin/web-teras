@@ -11,42 +11,44 @@
             </flux:sidebar.header>
 
             <flux:sidebar.nav>
-                <flux:sidebar.group :heading="__('Platform')" class="grid">
+                <flux:sidebar.group :heading="__('General')" class="grid">
                     <flux:sidebar.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>
                         {{ __('Dashboard') }}
                     </flux:sidebar.item>
                 </flux:sidebar.group>
-            </flux:sidebar.nav>
 
-            <flux:spacer />
-
-            <flux:sidebar.nav>
-                <flux:sidebar.group :heading="__('Management')" class="grid">
+                <flux:sidebar.group :heading="__('Restaurant')" class="grid">
                     <flux:sidebar.item icon="document-text" :href="route('admin.menu')" :current="request()->routeIs('admin.menu*')" wire:navigate>
                         {{ __('Menu') }}
                     </flux:sidebar.item>
 
                     <flux:sidebar.item icon="calendar" :href="route('admin.events')" :current="request()->routeIs('admin.events*')" wire:navigate>
-                        {{ __('Events') }}
+                        {{ __('Event Packages') }}
                     </flux:sidebar.item>
 
                     <flux:sidebar.item icon="photo" :href="route('admin.gallery')" :current="request()->routeIs('admin.gallery*')" wire:navigate>
                         {{ __('Gallery') }}
                     </flux:sidebar.item>
+                </flux:sidebar.group>
 
-                    <flux:sidebar.item icon="pencil-square" :href="route('admin.content')" :current="request()->routeIs('admin.content*')" wire:navigate>
-                        {{ __('Page Content') }}
-                    </flux:sidebar.item>
-
+                <flux:sidebar.group :heading="__('Reservations')" class="grid">
                     <flux:sidebar.item icon="calendar-days" :href="route('admin.reservations')" :current="request()->routeIs('admin.reservations*')" wire:navigate>
-                        {{ __('Reservations') }}
+                        {{ __('Table Reservations') }}
                     </flux:sidebar.item>
 
                     <flux:sidebar.item icon="inbox" :href="route('admin.inquiries')" :current="request()->routeIs('admin.inquiries*')" wire:navigate>
                         {{ __('Garden Inquiries') }}
                     </flux:sidebar.item>
                 </flux:sidebar.group>
+
+                <flux:sidebar.group :heading="__('Settings')" class="grid">
+                    <flux:sidebar.item icon="pencil-square" :href="route('admin.content')" :current="request()->routeIs('admin.content*')" wire:navigate>
+                        {{ __('Page Content') }}
+                    </flux:sidebar.item>
+                </flux:sidebar.group>
             </flux:sidebar.nav>
+
+            <flux:spacer />
 
             <x-desktop-user-menu class="hidden lg:block" :name="auth()->user()->name" />
         </flux:sidebar>

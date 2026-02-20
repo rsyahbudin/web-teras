@@ -19,14 +19,14 @@
             <p class="mx-auto mb-10 max-w-2xl text-lg font-light leading-relaxed text-sand md:text-xl drop-shadow-md">
                 {{ $hero_subtitle }}
             </p>
-            <div class="flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <!-- <div class="flex flex-col items-center justify-center gap-4 sm:flex-row ">
                 <a href="{{ route('menu') }}" class="inline-flex items-center justify-center h-14 min-w-[180px] rounded-full bg-primary hover:bg-primary-dark px-8 text-base font-bold text-white transition-all transform hover:-translate-y-1 hover:shadow-lg shadow-md duration-300">
                     View Menu
                 </a>
                 <a href="#" class="inline-flex items-center justify-center h-14 min-w-[180px] rounded-full border border-cream/30 bg-white/5 px-8 text-base font-bold text-cream backdrop-blur-md transition-all hover:bg-white/10 hover:border-cream hover:-translate-y-1 shadow-md duration-300">
                     Our Story
                 </a>
-            </div>
+            </div> -->
         </div>
     </section>
 
@@ -90,10 +90,10 @@
                     {{ $story_text }}
                 </p>
                 <div class="pt-4">
-                    <button class="inline-flex items-center gap-2 font-bold text-wood-dark hover:text-primary transition-colors border-b-2 border-primary pb-1">
-                        Read our full story
+                    <a href="https://maps.app.goo.gl/8cCxYkC8nBwDc6C36" target="_blank" class="inline-flex items-center gap-2 font-bold text-wood-dark hover:text-primary transition-colors border-b-2 border-primary pb-1">
+                        See at Google
                         <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -219,7 +219,7 @@
                     <div class="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors"></div>
                     <div class="absolute bottom-4 left-4 opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <span class="text-white font-bold text-lg drop-shadow-md">{{ $photo->title }}</span>
-                        <span class="block text-cream/80 text-xs uppercase tracking-wider">{{ $photo->category }}</span>
+                        <span class="block text-cream/80 text-xs uppercase tracking-wider">{{ $photo->category->name }}</span>
                     </div>
                 </div>
             @empty

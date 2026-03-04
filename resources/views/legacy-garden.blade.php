@@ -275,6 +275,10 @@
                         <input name="email" required type="email" placeholder="jane@example.com" class="h-12 rounded-lg border border-[#d7ccc8] dark:border-[#3a3c35] bg-transparent px-4 focus:border-legacy-primary focus:ring-1 focus:ring-legacy-primary outline-none" />
                     </div>
                     <div class="flex flex-col gap-2">
+                        <label class="text-sm font-bold">Nomor WhatsApp</label>
+                        <input name="whatsapp" required type="tel" placeholder="08123456789" class="h-12 rounded-lg border border-[#d7ccc8] dark:border-[#3a3c35] bg-transparent px-4 focus:border-legacy-primary focus:ring-1 focus:ring-legacy-primary outline-none" />
+                    </div>
+                    <div class="flex flex-col gap-2">
                         <label class="text-sm font-bold">Event Type</label>
                         <select name="event_type" class="h-12 rounded-lg border border-[#d7ccc8] dark:border-[#3a3c35] bg-transparent px-4 focus:border-legacy-primary focus:ring-1 focus:ring-legacy-primary outline-none text-[#5d635d] dark:text-[#a0a39d]">
                             <option value="Wedding">Wedding</option>

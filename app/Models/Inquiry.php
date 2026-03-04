@@ -10,10 +10,11 @@ class Inquiry extends Model
         'first_name',
         'last_name',
         'email',
+        'whatsapp',
         'event_type',
         'event_date',
         'guest_count',
         'message',
-        'status' // Assuming status might be useful
+        'status',
     ];
 }

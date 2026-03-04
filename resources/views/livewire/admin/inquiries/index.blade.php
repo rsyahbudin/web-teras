@@ -10,6 +10,7 @@
                     <th scope="col" class="px-6 py-3">ID</th>
                     <th scope="col" class="px-6 py-3">Name</th>
                     <th scope="col" class="px-6 py-3">Email</th>
+                    <th scope="col" class="px-6 py-3">WhatsApp</th>
                     <th scope="col" class="px-6 py-3">Event Details</th>
                     <th scope="col" class="px-6 py-3">Message</th>
                     <th scope="col" class="px-6 py-3">Status</th>
@@ -24,6 +25,13 @@
                             {{ $inquiry->first_name }} {{ $inquiry->last_name }}
                         </td>
                         <td class="px-6 py-4">{{ $inquiry->email }}</td>
+                        <td class="px-6 py-4">
+                            @if($inquiry->whatsapp)
+                                <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $inquiry->whatsapp) }}" target="_blank" class="text-green-600 hover:text-green-800 font-medium">{{ $inquiry->whatsapp }}</a>
+                            @else
+                                <span class="text-gray-400">-</span>
+                            @endif
+                        </td>
                         <td class="px-6 py-4">
                             <div class="font-bold text-gray-900 dark:text-gray-100">{{ $inquiry->event_type }}</div>
                             <div>Date: {{ $inquiry->event_date }}</div>

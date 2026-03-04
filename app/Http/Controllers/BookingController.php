@@ -48,6 +48,7 @@ class BookingController extends Controller
             'event_type' => 'required|string',
             'event_date' => 'required|date',
             'guest_count' => 'required',
+            'whatsapp' => 'required|string|max:20',
             'message' => 'required|string',
         ]);
 
@@ -60,6 +61,7 @@ class BookingController extends Controller
         $message = "Halo Legacy Garden, saya tertarik untuk mengadakan event:\n\n" .
                    "Nama: {$validated['first_name']} {$validated['last_name']}\n" .
                    "Email: {$validated['email']}\n" .
+                   "WhatsApp: {$validated['whatsapp']}\n" .
                    "Jenis Event: {$validated['event_type']}\n" .
                    "Tanggal Event: {$validated['event_date']}\n" .
                    "Jumlah Tamu: {$validated['guest_count']}\n" .

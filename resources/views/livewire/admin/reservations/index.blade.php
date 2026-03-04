@@ -20,7 +20,9 @@
                     <tr class="border-b bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-600">
                         <td class="px-6 py-4">{{ $reservation->id }}</td>
                         <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">{{ $reservation->name }}</td>
-                        <td class="px-6 py-4">{{ $reservation->phone }}</td>
+                        <td class="px-6 py-4">
+                            <a href="https://wa.me/{{ preg_replace('/[^0-9]/', '', $reservation->phone) }}" target="_blank" class="text-green-600 hover:text-green-800 font-medium">{{ $reservation->phone }}</a>
+                        </td>
                         <td class="px-6 py-4">
                             {{ $reservation->date }}
                         </td>

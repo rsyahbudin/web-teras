@@ -68,6 +68,130 @@
         </div>
     </section>
 
+    <!-- Booking Puasa Section (Temporary) -->
+    <section x-data="{ show: false }" x-init="setTimeout(() => show = true, 300)" class="relative py-20 px-6 overflow-hidden">
+        <!-- Background gradient -->
+        <div class="absolute inset-0 bg-gradient-to-br from-emerald-900 via-emerald-800 to-teal-900"></div>
+
+        <!-- Decorative pattern overlay -->
+        <div class="absolute inset-0 opacity-10" style="background-image: url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; fill-rule=&quot;evenodd&quot;%3E%3Cg fill=&quot;%23ffffff&quot; fill-opacity=&quot;0.4&quot;%3E%3Cpath d=&quot;M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z&quot;/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+
+        <!-- Decorative crescent moon -->
+        <div class="absolute top-8 right-8 md:top-12 md:right-16 opacity-20">
+            <svg class="w-24 h-24 md:w-32 md:h-32 text-yellow-300" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c1.82 0 3.53-.5 5-1.35-2.99-1.73-5-4.95-5-8.65s2.01-6.92 5-8.65C15.53 2.5 13.82 2 12 2z"/>
+            </svg>
+        </div>
+
+        <!-- Decorative stars -->
+        <div class="absolute top-16 left-12 md:top-10 md:left-24 animate-pulse">
+            <svg class="w-4 h-4 md:w-5 md:h-5 text-yellow-300/50" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2l2.09 6.26L20.18 9l-5.09 3.74L16.18 19 12 15.27 7.82 19l1.09-6.26L3.82 9l6.09-.74z"/>
+            </svg>
+        </div>
+        <div class="absolute bottom-20 right-24 animate-pulse" style="animation-delay: 0.5s;">
+            <svg class="w-3 h-3 md:w-4 md:h-4 text-yellow-300/40" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2l2.09 6.26L20.18 9l-5.09 3.74L16.18 19 12 15.27 7.82 19l1.09-6.26L3.82 9l6.09-.74z"/>
+            </svg>
+        </div>
+        <div class="absolute top-1/3 left-1/4 animate-pulse" style="animation-delay: 1s;">
+            <svg class="w-3 h-3 text-yellow-300/30" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2l2.09 6.26L20.18 9l-5.09 3.74L16.18 19 12 15.27 7.82 19l1.09-6.26L3.82 9l6.09-.74z"/>
+            </svg>
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-10 container mx-auto"
+             x-show="show"
+             x-transition:enter="transition ease-out duration-700"
+             x-transition:enter-start="opacity-0 translate-y-8"
+             x-transition:enter-end="opacity-100 translate-y-0">
+
+            <div class="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
+                <!-- Left: Text Content -->
+                <div class="lg:w-3/5 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 mb-4 rounded-full bg-yellow-400/15 px-4 py-1.5 border border-yellow-400/25 backdrop-blur-sm">
+                        <span class="material-symbols-outlined text-yellow-300 text-sm">restaurant</span>
+                        <span class="text-xs font-bold uppercase tracking-widest text-yellow-200">Ramadan Special</span>
+                    </div>
+
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight mb-4">
+                        Booking <span class="text-yellow-300">Buka Puasa</span>
+                        <br class="hidden md:block"/>di Teras Rumah Nenek
+                    </h2>
+
+                    <p class="text-emerald-100/80 text-lg leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
+                        Nikmati momen berbuka puasa bersama keluarga & sahabat dengan suasana hangat khas rumah nenek. Pesan tempat sekarang untuk pengalaman buka puasa yang tak terlupakan.
+                    </p>
+
+                    <a href="https://www.booking.terasrumahnenek.com"
+                       target="_blank"
+                       class="group inline-flex items-center gap-3 bg-yellow-400 hover:bg-yellow-300 text-emerald-900 font-bold px-10 py-4.5 rounded-full shadow-lg shadow-yellow-400/25 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-yellow-400/30 active:scale-95 text-lg">
+                        <span class="material-symbols-outlined text-xl">calendar_month</span>
+                        <span>Booking Sekarang</span>
+                        <span class="material-symbols-outlined text-lg transition-transform duration-300 group-hover:translate-x-1">arrow_forward</span>
+                    </a>
+                    <p class="mt-4 text-emerald-200/60 text-sm flex items-center gap-1.5 justify-center lg:justify-start">
+                        <span class="material-symbols-outlined text-yellow-400/70 text-sm">info</span>
+                        Tempat terbatas — segera amankan meja Anda!
+                    </p>
+                </div>
+
+                <!-- Right: Decorative Card -->
+                <div class="lg:w-2/5 w-full max-w-sm mx-auto"
+                     x-show="show"
+                     x-transition:enter="transition ease-out duration-700 delay-300"
+                     x-transition:enter-start="opacity-0 scale-90"
+                     x-transition:enter-end="opacity-100 scale-100">
+                    <a href="https://www.booking.terasrumahnenek.com" target="_blank" class="block group">
+                        <div class="relative bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-2xl transition-all duration-500 group-hover:bg-white/15 group-hover:border-yellow-400/30 group-hover:shadow-yellow-400/10 group-hover:-translate-y-1">
+                            <!-- Glow effect -->
+                            <div class="absolute -inset-1 bg-gradient-to-r from-yellow-400/20 via-emerald-400/10 to-yellow-400/20 rounded-3xl blur-lg transition-opacity duration-500 opacity-60 group-hover:opacity-100"></div>
+
+                            <div class="relative">
+                                <!-- Crescent icon -->
+                                <div class="flex justify-center mb-6">
+                                    <div class="w-20 h-20 rounded-full bg-gradient-to-br from-yellow-300 to-yellow-500 flex items-center justify-center shadow-lg shadow-yellow-400/30 transition-transform duration-500 group-hover:scale-110">
+                                        <svg class="w-10 h-10 text-emerald-900" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c1.82 0 3.53-.5 5-1.35-2.99-1.73-5-4.95-5-8.65s2.01-6.92 5-8.65C15.53 2.5 13.82 2 12 2z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+
+                                <h3 class="text-center text-white font-bold text-xl mb-6">Paket Buka Puasa</h3>
+
+                                <ul class="space-y-3 mb-6">
+                                    <li class="flex items-center gap-3 text-emerald-100">
+                                        <span class="material-symbols-outlined text-yellow-300 text-lg">check_circle</span>
+                                        <span class="text-sm">Menu spesial Ramadan</span>
+                                    </li>
+                                    <li class="flex items-center gap-3 text-emerald-100">
+                                        <span class="material-symbols-outlined text-yellow-300 text-lg">check_circle</span>
+                                        <span class="text-sm">Takjil & minuman segar</span>
+                                    </li>
+                                    <li class="flex items-center gap-3 text-emerald-100">
+                                        <span class="material-symbols-outlined text-yellow-300 text-lg">check_circle</span>
+                                        <span class="text-sm">Suasana nyaman & asri</span>
+                                    </li>
+                                    <li class="flex items-center gap-3 text-emerald-100">
+                                        <span class="material-symbols-outlined text-yellow-300 text-lg">check_circle</span>
+                                        <span class="text-sm">Tersedia untuk rombongan</span>
+                                    </li>
+                                </ul>
+
+                                <!-- Single inline CTA indicator -->
+                                <div class="flex items-center justify-center gap-2 text-yellow-300 font-semibold text-sm pt-4 border-t border-white/10 transition-colors duration-300 group-hover:text-yellow-200">
+                                    <span>Lihat Detail & Booking</span>
+                                    <span class="material-symbols-outlined text-base transition-transform duration-300 group-hover:translate-x-1">arrow_forward</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Our Heritage / Story -->
     <section class="bg-sand/30 dark:bg-wood-dark/40 py-20 px-6">
         <div class="container mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-20">

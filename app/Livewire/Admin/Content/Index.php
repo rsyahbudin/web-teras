@@ -240,11 +240,13 @@ class Index extends Component
             PageContent::updateOrCreate(
                 ['key' => $key],
                 [
-                    'value' => $value,
+                    'value' => $field['type'] === 'text' && str_contains($key, 'google_analytics') ? trim($value) : $value,
                     'type' => $field['type']
                 ]
             );
         }
+
+        session()->flash('content_saved', $currentSection['label'] . ' saved successfully.');
         
         // Clear new images after save
         $this->newImages = [];

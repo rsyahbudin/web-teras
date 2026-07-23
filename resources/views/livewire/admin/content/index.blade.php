@@ -6,6 +6,12 @@
         </div>
     </div>
 
+    @if(session('content_saved'))
+        <div class="rounded-lg bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 px-4 py-3 text-sm text-green-800 dark:text-green-200">
+            {{ session('content_saved') }}
+        </div>
+    @endif
+
     <!-- Sections Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         @foreach($sections as $key => $section)
@@ -73,6 +79,9 @@
                                     label="{{ $field['label'] }}" 
                                     wire:model="sectionData.{{ $field['key'] }}" 
                                 />
+                                @if(!empty($field['hint']))
+                                    <p class="mt-1 text-xs text-zinc-500">{{ $field['hint'] }}</p>
+                                @endif
                             @endif
                         </div>
                     @endforeach

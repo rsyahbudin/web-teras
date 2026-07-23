@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="scroll-smooth">
 <head>
+    <x-google-analytics />
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -26,7 +28,6 @@
         <link rel="icon" href="{{ $global_contact['site_logo'] }}">
     @endif
 
-    <x-google-analytics />
 </head>
 <body class="flex min-h-screen flex-col bg-stone-100 font-sans text-stone-800 antialiased selection:bg-stone-200 selection:text-stone-900 overflow-x-hidden">
         

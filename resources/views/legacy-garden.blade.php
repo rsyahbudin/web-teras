@@ -16,31 +16,27 @@
     @endpush
 
     <!-- Hero Section -->
-    <section x-data="{ show: false }" x-init="setTimeout(() => show = true, 100)" class="relative h-[85vh] w-full overflow-hidden flex items-center justify-center">
+    <section class="relative min-h-[70vh] md:h-[85vh] w-full overflow-hidden flex items-center justify-center">
         <div class="absolute inset-0 bg-black/40 z-10 mix-blend-multiply"></div>
         <div class="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-[20s] ease-linear hover:scale-110" style="background-image: url('{{ $hero_bg }}');">
         </div>
-        <div x-show="show"
-             x-transition:enter="transition ease-out duration-1000"
-             x-transition:enter-start="opacity-0 translate-y-12"
-             x-transition:enter-end="opacity-100 translate-y-0"
-             class="relative z-20 text-center px-4 max-w-4xl mx-auto flex flex-col items-center gap-6">
+        <div class="relative z-20 text-center px-4 max-w-4xl mx-auto flex flex-col items-center gap-4 sm:gap-6 py-8">
             <span class="text-white font-bold tracking-widest uppercase text-sm bg-legacy-primary/80 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/20 shadow-lg">The Venue</span>
-            <h1 class="text-white text-5xl md:text-7xl font-black leading-tight tracking-tight drop-shadow-xl">
+            <h1 class="text-white text-3xl sm:text-5xl md:text-7xl font-black leading-tight tracking-tight drop-shadow-xl">
                 {{ $hero_title }} <span class="text-legacy-primary-light italic font-serif text-[#aed581]">{{ $hero_subtitle }}</span>
             </h1>
             <p class="text-[#f1f3e9] text-lg md:text-xl font-medium max-w-2xl leading-relaxed drop-shadow-md">
                 {{ $hero_text }}
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 mt-4">
-                <a href="#inquire" class="flex items-center justify-center rounded-full h-14 px-8 bg-legacy-primary hover:bg-legacy-primary-dark text-white text-base font-bold transition-all transform hover:-translate-y-1 hover:shadow-xl shadow-lg shadow-legacy-primary/30">
+            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-2 sm:mt-4 w-full sm:w-auto px-2">
+                <a href="#inquire" class="flex items-center justify-center rounded-full h-14 px-8 bg-legacy-primary hover:bg-legacy-primary-dark text-white text-base font-bold transition-all transform hover:-translate-y-1 hover:shadow-xl shadow-lg shadow-legacy-primary/30 w-full sm:w-auto touch-manipulation">
                     Inquire Now
                 </a>
                 @php
                     $brochureLink = \App\Models\PageContent::getValue('legacy_brochure_link');
                 @endphp
                 @if($brochureLink)
-                <a href="{{ $brochureLink }}" target="_blank" class="flex items-center justify-center rounded-full h-14 px-8 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 hover:border-white text-base font-bold transition-all hover:-translate-y-1 shadow-lg">
+                <a href="{{ $brochureLink }}" target="_blank" class="flex items-center justify-center rounded-full h-14 px-8 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 hover:border-white text-base font-bold transition-all hover:-translate-y-1 shadow-lg w-full sm:w-auto touch-manipulation">
                     View Full Package
                 </a>
                 @endif
@@ -49,14 +45,14 @@
     </section>
 
     <!-- Intro Section -->
-    <section class="py-20 px-6 lg:px-20 bg-legacy-bg-light dark:bg-legacy-bg-dark">
-        <div class="max-w-[1200px] mx-auto grid lg:grid-cols-2 gap-16 items-center">
+    <section class="py-12 sm:py-20 px-4 sm:px-6 lg:px-20 bg-legacy-bg-light dark:bg-legacy-bg-dark">
+        <div class="max-w-[1200px] mx-auto grid lg:grid-cols-2 gap-10 sm:gap-16 items-center">
             <div class="relative">
                 <div class="absolute -top-4 -left-4 w-24 h-24 bg-legacy-primary/20 rounded-full blur-2xl"></div>
                 <div class="relative rounded-2xl overflow-hidden aspect-[4/5] shadow-2xl rotate-1 border-4 border-white dark:border-legacy-surface-dark">
                     <img src="{{ $intro_image }}" alt="Legacy Garden Intro" class="object-cover w-full h-full transform hover:scale-105 transition-transform duration-700" />
                 </div>
-                <div class="absolute -bottom-6 -right-6 bg-legacy-surface-light dark:bg-legacy-surface-dark p-6 rounded-xl shadow-xl max-w-xs border border-legacy-accent-beige dark:border-legacy-surface-dark">
+                <div class="relative mt-6 sm:mt-0 md:absolute md:-bottom-6 md:-right-6 bg-legacy-surface-light dark:bg-legacy-surface-dark p-4 sm:p-6 rounded-xl shadow-xl max-w-full sm:max-w-xs border border-legacy-accent-beige dark:border-legacy-surface-dark">
                     <div class="flex items-center gap-2 mb-2">
                         <span class="material-symbols-outlined text-legacy-primary text-xl">star</span>
                         <span class="material-symbols-outlined text-legacy-primary text-xl">star</span>
@@ -75,7 +71,7 @@
                 <p class="text-[#5d635d] dark:text-[#a0a39d] text-lg leading-relaxed">
                     {{ $intro_text }}
                 </p>
-                <div class="grid grid-cols-2 gap-6 mt-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mt-4">
                     <div class="flex items-start gap-3">
                         <div class="p-2 rounded-lg bg-legacy-primary/10 text-legacy-primary">
                             <span class="material-symbols-outlined">nature_people</span>
@@ -166,14 +162,20 @@
                     <div class="h-2 bg-[#d7ccc8]"></div>
                     @endif
 
-                    <div class="p-8 flex-1">
-                        <h3 class="text-2xl font-bold text-[#2d332d] dark:text-[#e0e2db] mb-2">{{ $package->name }}</h3>
-                        <p class="text-[#5d635d] text-sm mb-6">{{ $package->description }}</p>
-                        <div class="text-3xl font-bold text-legacy-primary mb-6">
+                    @if($package->image)
+                    <div class="aspect-[4/3] overflow-hidden">
+                        <img src="{{ $package->image }}" alt="{{ $package->name }}" class="w-full h-full object-cover">
+                    </div>
+                    @endif
+
+                    <div class="p-5 sm:p-8 flex-1">
+                        <h3 class="text-xl sm:text-2xl font-bold text-[#2d332d] dark:text-[#e0e2db] mb-2">{{ $package->name }}</h3>
+                        <p class="text-[#5d635d] text-sm mb-4 sm:mb-6">{{ $package->description }}</p>
+                        <div class="text-2xl sm:text-3xl font-bold text-legacy-primary mb-4 sm:mb-6">
                             @if(is_numeric($package->price) && $package->price > 0)
                                 Rp {{ number_format($package->price, 0, ',', '.') }}
                             @else
-                                {{ $package->price }}
+                                Contact Us
                             @endif
                         </div>
                         
@@ -188,24 +190,30 @@
                         </ul>
                         @endif
                     </div>
-                    <div class="p-8 pt-0 mt-auto">
-                        <button class="w-full py-3 rounded-lg {{ $index == 1 ? 'bg-legacy-primary text-white hover:bg-legacy-primary-dark shadow-lg shadow-legacy-primary/20' : 'border-2 border-legacy-primary text-[#2d332d] dark:text-[#e0e2db] hover:bg-legacy-primary hover:text-white' }} font-bold transition-colors">
+                    <div class="p-5 sm:p-8 pt-0 mt-auto">
+                        <a href="#inquire" class="block w-full py-3.5 sm:py-3 rounded-lg text-center {{ $index == 1 ? 'bg-legacy-primary text-white hover:bg-legacy-primary-dark shadow-lg shadow-legacy-primary/20' : 'border-2 border-legacy-primary text-[#2d332d] dark:text-[#e0e2db] hover:bg-legacy-primary hover:text-white' }} font-bold transition-colors touch-manipulation">
                             {{ $index == 2 ? 'Inquire Now' : 'View Details' }}
-                        </button>
+                        </a>
                     </div>
                 </div>
                 @endforeach
+
+                @if($packages->isEmpty())
+                <div class="py-12 text-center text-[#5d635d] dark:text-[#a0a39d]">
+                    Paket event akan segera tersedia.
+                </div>
+                @endif
             </div>
         </div>
     </section>
 
     <!-- Contact / Inquiry -->
-    <section id="inquire" class="py-20 px-6 lg:px-20 bg-[#2a2c24] text-[#e0e2db] relative overflow-hidden">
+    <section id="inquire" class="py-12 sm:py-20 px-4 sm:px-6 lg:px-20 bg-[#2a2c24] text-[#e0e2db] relative overflow-hidden">
         <div class="absolute top-0 right-0 w-64 h-64 bg-legacy-primary/10 rounded-full blur-[100px] pointer-events-none"></div>
         <div class="absolute bottom-0 left-0 w-64 h-64 bg-legacy-primary/10 rounded-full blur-[100px] pointer-events-none"></div>
-        <div class="max-w-[1200px] mx-auto grid lg:grid-cols-2 gap-16">
+        <div class="max-w-[1200px] mx-auto grid lg:grid-cols-2 gap-10 sm:gap-16">
             <div class="flex flex-col justify-center">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">{{ $inquiry_title }}</h2>
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 text-white">{{ $inquiry_title }}</h2>
                 <p class="text-[#a0a39d] text-lg mb-8 leading-relaxed">
                     {{ $inquiry_text }}
                 </p>
@@ -257,30 +265,30 @@
                     </div>
                 </div>
             </div>
-            <div class="bg-legacy-surface-light dark:bg-[#1c1e16] rounded-2xl p-8 text-[#2d332d] dark:text-[#e0e2db] shadow-2xl border border-white/10">
-                <form action="{{ route('legacy.inquire') }}" method="POST" class="flex flex-col gap-5">
+            <div class="bg-legacy-surface-light dark:bg-[#1c1e16] rounded-2xl p-5 sm:p-8 text-[#2d332d] dark:text-[#e0e2db] shadow-2xl border border-white/10">
+                <form action="{{ route('legacy.inquire') }}" method="POST" class="flex flex-col gap-4 sm:gap-5">
                     @csrf
-                    <div class="grid grid-cols-2 gap-5">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                         <div class="flex flex-col gap-2">
                             <label class="text-sm font-bold">First Name</label>
-                            <input name="first_name" required type="text" placeholder="Jane" class="h-12 rounded-lg border border-[#d7ccc8] dark:border-[#3a3c35] bg-transparent px-4 focus:border-legacy-primary focus:ring-1 focus:ring-legacy-primary outline-none" />
+                            <input name="first_name" required type="text" placeholder="Jane" class="h-12 rounded-lg border border-[#d7ccc8] dark:border-[#3a3c35] bg-transparent px-4 text-base focus:border-legacy-primary focus:ring-1 focus:ring-legacy-primary outline-none" />
                         </div>
                         <div class="flex flex-col gap-2">
                             <label class="text-sm font-bold">Last Name</label>
-                            <input name="last_name" required type="text" placeholder="Doe" class="h-12 rounded-lg border border-[#d7ccc8] dark:border-[#3a3c35] bg-transparent px-4 focus:border-legacy-primary focus:ring-1 focus:ring-legacy-primary outline-none" />
+                            <input name="last_name" required type="text" placeholder="Doe" class="h-12 rounded-lg border border-[#d7ccc8] dark:border-[#3a3c35] bg-transparent px-4 text-base focus:border-legacy-primary focus:ring-1 focus:ring-legacy-primary outline-none" />
                         </div>
                     </div>
                     <div class="flex flex-col gap-2">
                         <label class="text-sm font-bold">Email Address</label>
-                        <input name="email" required type="email" placeholder="jane@example.com" class="h-12 rounded-lg border border-[#d7ccc8] dark:border-[#3a3c35] bg-transparent px-4 focus:border-legacy-primary focus:ring-1 focus:ring-legacy-primary outline-none" />
+                        <input name="email" required type="email" placeholder="jane@example.com" class="h-12 rounded-lg border border-[#d7ccc8] dark:border-[#3a3c35] bg-transparent px-4 text-base focus:border-legacy-primary focus:ring-1 focus:ring-legacy-primary outline-none" />
                     </div>
                     <div class="flex flex-col gap-2">
                         <label class="text-sm font-bold">Nomor WhatsApp</label>
-                        <input name="whatsapp" required type="tel" placeholder="08123456789" class="h-12 rounded-lg border border-[#d7ccc8] dark:border-[#3a3c35] bg-transparent px-4 focus:border-legacy-primary focus:ring-1 focus:ring-legacy-primary outline-none" />
+                        <input name="whatsapp" required type="tel" placeholder="08123456789" class="h-12 rounded-lg border border-[#d7ccc8] dark:border-[#3a3c35] bg-transparent px-4 text-base focus:border-legacy-primary focus:ring-1 focus:ring-legacy-primary outline-none" />
                     </div>
                     <div class="flex flex-col gap-2">
                         <label class="text-sm font-bold">Event Type</label>
-                        <select name="event_type" class="h-12 rounded-lg border border-[#d7ccc8] dark:border-[#3a3c35] bg-transparent px-4 focus:border-legacy-primary focus:ring-1 focus:ring-legacy-primary outline-none text-[#5d635d] dark:text-[#a0a39d]">
+                        <select name="event_type" class="h-12 rounded-lg border border-[#d7ccc8] dark:border-[#3a3c35] bg-transparent px-4 text-base focus:border-legacy-primary focus:ring-1 focus:ring-legacy-primary outline-none text-[#5d635d] dark:text-[#a0a39d]">
                             <option value="Wedding">Wedding</option>
                             <option value="Prewedding Shooting">Prewedding Shooting</option>
                             <option value="Engagement">Engagement</option>
@@ -290,14 +298,14 @@
                             <option value="Other">Other</option>
                         </select>
                     </div>
-                    <div class="grid grid-cols-2 gap-5">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
                         <div class="flex flex-col gap-2">
                              <label class="text-sm font-bold">Event Date</label>
-                            <input name="event_date" required type="date" class="h-12 rounded-lg border border-[#d7ccc8] dark:border-[#3a3c35] bg-transparent px-4 focus:border-legacy-primary focus:ring-1 focus:ring-legacy-primary outline-none text-[#5d635d]" />
+                            <input name="event_date" required type="date" class="h-12 rounded-lg border border-[#d7ccc8] dark:border-[#3a3c35] bg-transparent px-4 text-base focus:border-legacy-primary focus:ring-1 focus:ring-legacy-primary outline-none text-[#5d635d]" />
                         </div>
                         <div class="flex flex-col gap-2">
                              <label class="text-sm font-bold">Guest Count</label>
-                            <select name="guest_count" class="h-12 rounded-lg border border-[#d7ccc8] dark:border-[#3a3c35] bg-transparent px-4 focus:border-legacy-primary focus:ring-1 focus:ring-legacy-primary outline-none">
+                            <select name="guest_count" class="h-12 rounded-lg border border-[#d7ccc8] dark:border-[#3a3c35] bg-transparent px-4 text-base focus:border-legacy-primary focus:ring-1 focus:ring-legacy-primary outline-none">
                                 <option value="Under 50">Under 50</option>
                                 <option value="50-100">50-100</option>
                                 <option value="100-200">100-200</option>
@@ -310,7 +318,7 @@
                         <label class="text-sm font-bold">Message</label>
                         <textarea name="message" required placeholder="Tell us about your event details..." class="h-32 rounded-lg border border-[#d7ccc8] dark:border-[#3a3c35] bg-transparent px-4 py-3 focus:border-legacy-primary focus:ring-1 focus:ring-legacy-primary outline-none resize-none"></textarea>
                     </div>
-                    <button type="submit" class="mt-2 h-12 rounded-lg bg-legacy-primary hover:bg-legacy-primary-dark text-white font-bold text-lg transition-colors shadow-lg shadow-legacy-primary/20">Send Inquiry</button>
+                    <button type="submit" class="mt-2 h-12 rounded-lg bg-legacy-primary hover:bg-legacy-primary-dark text-white font-bold text-base sm:text-lg transition-colors shadow-lg shadow-legacy-primary/20 touch-manipulation">Send Inquiry</button>
                 </form>
             </div>
         </div>

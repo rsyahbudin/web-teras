@@ -4,11 +4,18 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Gallery;
+use App\Models\GalleryCategory;
 
 class GallerySeeder extends Seeder
 {
     public function run()
     {
+        $categories = [
+            'Ambience' => GalleryCategory::firstOrCreate(['slug' => 'ambience'], ['name' => 'Ambience']),
+            'Food' => GalleryCategory::firstOrCreate(['slug' => 'food'], ['name' => 'Food']),
+            'Events' => GalleryCategory::firstOrCreate(['slug' => 'events'], ['name' => 'Events']),
+        ];
+
         $images = [
             ['title' => 'Rustic Ambience', 'category' => 'Ambience', 'image_path' => 'https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1974&auto=format&fit=crop'],
             ['title' => 'Signatue Fried Rice', 'category' => 'Food', 'image_path' => 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2070&auto=format&fit=crop'],
@@ -25,7 +32,13 @@ class GallerySeeder extends Seeder
         ];
 
         foreach ($images as $image) {
-            Gallery::firstOrCreate(['title' => $image['title']], $image);
+            Gallery::firstOrCreate(
+                ['title' => $image['title']],
+                [
+                    'gallery_category_id' => $categories[$image['category']]->id,
+                    'image_path' => $image['image_path'],
+                ]
+            );
         }
     }
 }

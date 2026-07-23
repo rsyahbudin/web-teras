@@ -1,26 +1,26 @@
 <x-layouts.web title="Teras Rumah Nenek - Menu">
     <!-- Hero Section -->
-    <section class="relative w-full h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden">
+    <section class="relative w-full h-[50vh] min-h-[420px] md:h-[60vh] md:min-h-[500px] flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0">
             <img alt="Rustic outdoor dining table with lush greenery" class="w-full h-full object-cover sepia-[0.2] brightness-75" src="{{ $hero_bg }}"/>
             <div class="absolute inset-0 bg-gradient-to-b from-wood-dark/60 via-wood-dark/30 to-menu-bg-light dark:to-menu-bg-dark"></div>
         </div>
-        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto mt-10">
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
             <span class="inline-block py-1 px-3 rounded-full bg-menu-accent/20 text-[#e8dacd] border border-menu-accent/40 backdrop-blur-md text-xs font-bold tracking-wider mb-4 uppercase">
-                Since 1985
+                {{ $hero_badge }}
             </span>
-            <h1 class="text-4xl md:text-6xl lg:text-7xl font-black text-[#f4f1ea] leading-tight mb-6 drop-shadow-sm">
+            <h1 class="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black text-[#f4f1ea] leading-tight mb-4 sm:mb-6 drop-shadow-sm">
                 {{ $hero_title }} <br/> <span class="text-menu-accent-light italic font-serif">{{ $hero_subtitle }}</span>
             </h1>
-            <p class="text-[#e8e0d5] text-lg md:text-xl font-medium max-w-2xl mx-auto mb-8 drop-shadow-md">
-                Experience traditional recipes passed down through generations, served in our comforting botanical garden terrace.
+            <p class="text-[#e8e0d5] text-base sm:text-lg md:text-xl font-medium max-w-2xl mx-auto mb-6 sm:mb-8 drop-shadow-md px-2">
+                {{ $hero_description }}
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#menu-content" class="bg-menu-primary text-white px-8 py-3 rounded-full font-bold text-base hover:bg-[#f4f1ea] hover:text-menu-primary transition-all shadow-lg shadow-menu-primary/30 flex items-center justify-center gap-2 border border-transparent">
+            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-2">
+                <a href="#menu-content" class="w-full sm:w-auto bg-menu-primary text-white px-8 py-3.5 rounded-full font-bold text-base hover:bg-[#f4f1ea] hover:text-menu-primary transition-all shadow-lg shadow-menu-primary/30 flex items-center justify-center gap-2 border border-transparent touch-manipulation">
                     <span class="material-symbols-outlined text-xl">restaurant_menu</span>
                     View Full Menu
                 </a>
-                <a href="{{ route('legacy-garden') }}" class="bg-wood-dark/40 backdrop-blur-md border border-[#e8e0d5]/30 text-[#f4f1ea] px-8 py-3 rounded-full font-bold text-base hover:bg-[#f4f1ea] hover:text-wood-dark transition-all flex items-center justify-center gap-2">
+                <a href="{{ route('legacy-garden') }}" class="w-full sm:w-auto bg-wood-dark/40 backdrop-blur-md border border-[#e8e0d5]/30 text-[#f4f1ea] px-8 py-3.5 rounded-full font-bold text-base hover:bg-[#f4f1ea] hover:text-wood-dark transition-all flex items-center justify-center gap-2 touch-manipulation">
                     <span class="material-symbols-outlined text-xl">calendar_month</span>
                     Book an Event
                 </a>
@@ -31,10 +31,15 @@
     <!-- Main Content with Tabs -->
     <main id="menu-content" 
           class="w-full min-h-screen bg-menu-bg-light dark:bg-menu-bg-dark"
-          x-data="{ activeTab: '{{ $categories->first()?->slug }}' }">
+          x-data="{ activeTab: '{{ $categories->first()?->slug ?? '' }}' }">
         
+        @if($categories->isEmpty())
+        <div class="container mx-auto px-4 py-20 text-center text-wood-medium">
+            <p class="text-lg font-medium">Menu sedang disiapkan. Silakan kembali lagi nanti.</p>
+        </div>
+        @else
         <!-- Sticky Tab Navigation -->
-        <div class="sticky top-[70px] z-40 w-full mb-12">
+        <div class="sticky top-20 z-40 w-full mb-8 sm:mb-12">
             <div class="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-wood-medium/20 to-transparent"></div>
             <div class="bg-menu-bg-light/90 dark:bg-menu-bg-dark/90 backdrop-blur-md py-4 shadow-sm">
                 <div class="w-full mx-auto px-4 relative group">
@@ -71,31 +76,31 @@
                      x-transition:enter-end="opacity-100 translate-y-0"
                      class="w-full">
                     
-                    <div class="flex items-center gap-4 mb-8">
-                        <h2 class="text-3xl font-black text-wood-dark dark:text-menu-wood-light tracking-tight font-serif">{{ $category->name }}</h2>
-                        <div class="h-px bg-wood-medium/30 dark:bg-wood-medium flex-grow"></div>
-                        <span class="material-symbols-outlined text-menu-accent dark:text-menu-wood-light/50">restaurant</span>
+                    <div class="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
+                        <h2 class="text-xl sm:text-2xl md:text-3xl font-black text-wood-dark dark:text-menu-wood-light tracking-tight font-serif shrink-0">{{ $category->name }}</h2>
+                        <div class="h-px bg-wood-medium/30 dark:bg-wood-medium flex-grow min-w-0"></div>
+                        <span class="material-symbols-outlined text-menu-accent dark:text-menu-wood-light/50 shrink-0">restaurant</span>
                     </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
-                        @foreach($category->items as $item)
+                    <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6 md:gap-8">
+                        @forelse($category->items as $item)
                             @if($loop->parent->first && $loop->index < 2 && $item->is_featured && $category->items->count() > 4) 
                                 <!-- Special Featured Card Style (Spans 2 cols on tablet, but adapts on larger) -->
-                                <div class="col-span-1 md:col-span-2 lg:col-span-2 group relative bg-white dark:bg-wood-dark/40 rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl border border-wood-light/10 transition-all duration-500 hover:-translate-y-1 flex flex-col lg:flex-row h-full">
-                                    <div class="w-full lg:w-2/5 h-64 lg:h-auto overflow-hidden relative">
+                                <div class="col-span-2 group relative bg-white dark:bg-wood-dark/40 rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl border border-wood-light/10 transition-all duration-500 hover:-translate-y-1 flex flex-col lg:flex-row h-full">
+                                    <div class="w-full lg:w-2/5 h-48 sm:h-64 lg:h-auto overflow-hidden relative shrink-0">
                                         <img src="{{ $item->image ?? 'https://via.placeholder.com/600x400' }}" alt="{{ $item->name }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"/>
                                         <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors"></div>
                                     </div>
-                                    <div class="p-6 lg:p-8 flex flex-col justify-center flex-1 relative overflow-hidden">
+                                    <div class="p-4 sm:p-6 lg:p-8 flex flex-col justify-center flex-1 relative overflow-hidden min-w-0">
                                         <div class="absolute top-0 right-0 p-8 opacity-5">
                                             <span class="material-symbols-outlined text-9xl">restaurant</span>
                                         </div>
                                         <div class="relative z-10">
-                                             <div class="flex justify-between items-start mb-3 gap-4">
-                                                <h3 class="text-2xl font-black text-wood-dark dark:text-[#f4f1ea] font-serif group-hover:text-menu-accent transition-colors leading-tight">{{ $item->name }}</h3>
-                                                <span class="text-lg font-bold text-menu-accent bg-menu-accent/10 px-3 py-1 rounded-lg whitespace-nowrap">{{ number_format($item->price, 0, ',', '.') }}</span>
+                                             <div class="flex justify-between items-start mb-2 sm:mb-3 gap-2 sm:gap-4">
+                                                <h3 class="text-lg sm:text-2xl font-black text-wood-dark dark:text-[#f4f1ea] font-serif group-hover:text-menu-accent transition-colors leading-tight line-clamp-2">{{ $item->name }}</h3>
+                                                <span class="text-sm sm:text-lg font-bold text-menu-accent bg-menu-accent/10 px-2 sm:px-3 py-1 rounded-lg whitespace-nowrap shrink-0">{{ number_format($item->price, 0, ',', '.') }}</span>
                                             </div>
-                                            <p class="text-wood-medium dark:text-menu-wood-light/70 mb-6 leading-relaxed text-sm lg:text-base">{{ $item->description }}</p>
+                                            <p class="text-wood-medium dark:text-menu-wood-light/70 mb-4 sm:mb-6 leading-relaxed text-xs sm:text-sm lg:text-base line-clamp-3">{{ $item->description }}</p>
                                             <div class="flex gap-3">
                                                 <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-orange-50 text-orange-700 dark:bg-orange-900/30 dark:text-orange-200 border border-orange-100 dark:border-orange-800">
                                                     <span class="material-symbols-outlined text-[16px]">local_fire_department</span> Best Seller
@@ -106,8 +111,8 @@
                                 </div>
                             @else
                                 <!-- Standard Card Style -->
-                                <div class="group relative flex flex-col p-5 rounded-2xl bg-white dark:bg-white/5 hover:bg-white dark:hover:bg-white/10 transition-all duration-300 shadow-sm hover:shadow-xl border border-wood-light/20 hover:border-menu-accent/30 hover:-translate-y-1 h-full">
-                                    <div class="w-full aspect-square rounded-xl overflow-hidden relative mb-4 shadow-inner">
+                                <div class="group relative flex flex-col p-3 sm:p-5 rounded-xl sm:rounded-2xl bg-white dark:bg-white/5 hover:bg-white dark:hover:bg-white/10 transition-all duration-300 shadow-sm hover:shadow-xl border border-wood-light/20 hover:border-menu-accent/30 hover:-translate-y-1 h-full">
+                                    <div class="w-full aspect-square rounded-lg sm:rounded-xl overflow-hidden relative mb-3 sm:mb-4 shadow-inner">
                                         <img src="{{ $item->image ?? 'https://via.placeholder.com/300' }}" alt="{{ $item->name }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"/>
                                         @if($item->is_featured && !($loop->parent->first && $loop->index < 2 && $category->items->count() > 4))
                                         <div class="absolute top-2 left-2 bg-white/90 dark:bg-black/80 px-2 py-1 rounded-lg shadow-sm backdrop-blur-sm">
@@ -119,16 +124,20 @@
                                     </div>
                                     <div class="flex flex-col flex-grow justify-between">
                                         <div>
-                                            <div class="flex justify-between items-start mb-2 gap-2">
-                                                <h3 class="font-bold text-lg text-wood-dark dark:text-[#f4f1ea] group-hover:text-menu-accent transition-colors leading-tight">{{ $item->name }}</h3>
-                                                <span class="font-bold text-menu-accent whitespace-nowrap">{{ number_format($item->price, 0, ',', '.') }}</span>
+                                            <div class="flex justify-between items-start mb-1 sm:mb-2 gap-1 sm:gap-2">
+                                                <h3 class="font-bold text-sm sm:text-lg text-wood-dark dark:text-[#f4f1ea] group-hover:text-menu-accent transition-colors leading-tight line-clamp-2">{{ $item->name }}</h3>
+                                                <span class="font-bold text-xs sm:text-base text-menu-accent whitespace-nowrap shrink-0">{{ number_format($item->price, 0, ',', '.') }}</span>
                                             </div>
-                                            <p class="text-sm text-wood-medium dark:text-menu-wood-light/60 line-clamp-2 leading-relaxed">{{ $item->description }}</p>
+                                            <p class="text-xs sm:text-sm text-wood-medium dark:text-menu-wood-light/60 line-clamp-2 leading-relaxed">{{ $item->description }}</p>
                                         </div>
                                     </div>
                                 </div>
                             @endif
-                        @endforeach
+                        @empty
+                            <div class="col-span-2 py-10 text-center text-wood-medium text-sm sm:text-base">
+                                Belum ada item di kategori ini.
+                            </div>
+                        @endforelse
                     </div>
                 </div>
 
@@ -148,9 +157,7 @@
                     @endif -->
                 @endif
             @endforeach
-        </div>    
-            
-
         </div>
+        @endif
     </main>
 </x-layouts.web>

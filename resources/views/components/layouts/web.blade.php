@@ -19,13 +19,16 @@
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
+        [x-cloak] { display: none !important; }
     </style>
 
     @if(!empty($global_contact['site_logo']))
         <link rel="icon" href="{{ $global_contact['site_logo'] }}">
     @endif
+
+    <x-google-analytics />
 </head>
-<body class="flex min-h-screen flex-col bg-stone-100 font-sans text-stone-800 antialiased selection:bg-stone-200 selection:text-stone-900">
+<body class="flex min-h-screen flex-col bg-stone-100 font-sans text-stone-800 antialiased selection:bg-stone-200 selection:text-stone-900 overflow-x-hidden">
         
         <x-social-sidebar />
 
@@ -69,12 +72,13 @@
         </div>
         
         <!-- Mobile Menu -->
-        <div x-show="mobileMenuOpen" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 -translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 -translate-y-2" class="md:hidden" id="mobile-menu">
+        <div x-show="mobileMenuOpen" x-cloak x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 -translate-y-2" x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 -translate-y-2" class="md:hidden" id="mobile-menu">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t border-wood/10 shadow-lg">
-                <a href="{{ route('home') }}" class="block px-3 py-2 rounded-md text-base font-medium text-wood-dark hover:text-primary hover:bg-cream/50">Home</a>
-                <a href="{{ route('menu') }}" class="block px-3 py-2 rounded-md text-base font-medium text-wood-dark hover:text-primary hover:bg-cream/50">Menu</a>
-                <a href="{{ route('legacy-garden') }}" class="block px-3 py-2 rounded-md text-base font-medium text-wood-dark hover:text-primary hover:bg-cream/50">Legacy Garden</a>
-                <a href="{{ route('gallery') }}" class="block px-3 py-2 rounded-md text-base font-medium text-wood-dark hover:text-primary hover:bg-cream/50">Gallery</a>
+                <a href="{{ route('home') }}" @click="mobileMenuOpen = false" class="block px-3 py-3 rounded-md text-base font-medium text-wood-dark hover:text-primary hover:bg-cream/50 touch-manipulation">Home</a>
+                <a href="{{ route('menu') }}" @click="mobileMenuOpen = false" class="block px-3 py-3 rounded-md text-base font-medium text-wood-dark hover:text-primary hover:bg-cream/50 touch-manipulation">Menu</a>
+                <a href="{{ route('legacy-garden') }}" @click="mobileMenuOpen = false" class="block px-3 py-3 rounded-md text-base font-medium text-wood-dark hover:text-primary hover:bg-cream/50 touch-manipulation">Legacy Garden</a>
+                <a href="{{ route('gallery') }}" @click="mobileMenuOpen = false" class="block px-3 py-3 rounded-md text-base font-medium text-wood-dark hover:text-primary hover:bg-cream/50 touch-manipulation">Gallery</a>
+                <a href="{{ route('legacy-garden') }}#inquire" @click="mobileMenuOpen = false" class="block mx-3 mt-2 px-3 py-3.5 rounded-full text-center text-base font-bold text-white bg-primary hover:bg-primary-dark touch-manipulation">Book Event</a>
             </div>
         </div>
     </header>
@@ -86,7 +90,7 @@
 
     @unless(request()->routeIs('legacy-garden'))
     <!-- Footer -->
-    <footer class="bg-primary text-cream pt-16 pb-8 mt-auto">
+    <footer class="bg-primary text-cream pt-12 sm:pt-16 pb-8 mt-auto pb-[max(2rem,env(safe-area-inset-bottom))]">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-12">
                 <!-- Brand & Description -->
@@ -97,7 +101,7 @@
                         <h3 class="font-serif text-2xl font-bold mb-6">Teras Rumah Nenek</h3>
                     @endif
                     <p class="text-cream/80 leading-relaxed mb-6">
-                        A sanctuary of nature and taste. Experienced the warmth of home in every bite.
+                        {{ $global_contact['site_footer_tagline'] ?? 'A sanctuary of nature and taste. Experienced the warmth of home in every bite.' }}
                     </p>
                     <!-- Social Media -->
                     <div class="flex space-x-4">
@@ -158,7 +162,7 @@
                         <li class="flex items-start gap-3">
                              <span class="material-symbols-outlined text-accent mt-0.5">location_on</span>
                              <div class="flex flex-col">
-                                 <span>{!! $global_contact['contact_address'] ?? 'Jalan Mawar No. 123' !!}</span>
+                                 <span class="break-words">{!! $global_contact['contact_address'] ?? 'Jalan Mawar No. 123' !!}</span>
                                  @if(!empty($global_contact['contact_maps_link']))
                                  <a href="{{ $global_contact['contact_maps_link'] }}" target="_blank" class="text-accent text-sm hover:underline mt-1">View on Maps</a>
                                  @endif
@@ -166,11 +170,11 @@
                         </li>
                         <li class="flex items-center gap-3">
                            <span class="material-symbols-outlined text-accent">call</span>
-                            <span>{{ $global_contact['contact_phone'] ?? '+62 812 3456 7890' }}</span>
+                            <span class="break-all">{{ $global_contact['contact_phone'] ?? '+62 812 3456 7890' }}</span>
                         </li>
                         <li class="flex items-center gap-3">
                              <span class="material-symbols-outlined text-accent">mail</span>
-                            <span>{{ $global_contact['contact_email'] ?? 'info@terasrumahnenek.com' }}</span>
+                            <span class="break-all">{{ $global_contact['contact_email'] ?? 'info@terasrumahnenek.com' }}</span>
                         </li>
                     </ul>
                 </div>

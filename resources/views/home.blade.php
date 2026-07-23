@@ -1,22 +1,18 @@
 <x-layouts.web title="Teras Rumah Nenek - Nostalgic Culinary Escape">
     <!-- Hero Section -->
-    <section x-data="{ show: false }" x-init="setTimeout(() => show = true, 100)" class="relative flex min-h-[600px] w-full items-center justify-center overflow-hidden bg-wood-dark">
+    <section class="relative flex min-h-[70vh] sm:min-h-[600px] w-full items-center justify-center overflow-hidden bg-wood-dark">
         <div class="absolute inset-0 z-0">
-            <img alt="Lush outdoor restaurant garden seating" class="h-full w-full object-cover opacity-60 grayscale-20 sepia-10 transition-transform duration-[20s] ease-linear hover:scale-110" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2070&auto=format&fit=crop" />
+            <img alt="Lush outdoor restaurant garden seating" class="h-full w-full object-cover opacity-60 grayscale-20 sepia-10 transition-transform duration-[20s] ease-linear hover:scale-110" src="{{ $hero_bg }}" />
             <div class="absolute inset-0 bg-gradient-to-t from-wood-dark/95 via-wood-dark/50 to-transparent"></div>
         </div>
-        <div class="relative z-10 container mx-auto px-6 text-center"
-             x-show="show"
-             x-transition:enter="transition ease-out duration-1000"
-             x-transition:enter-start="opacity-0 translate-y-12"
-             x-transition:enter-end="opacity-100 translate-y-0">
+        <div class="relative z-10 container mx-auto px-4 sm:px-6 text-center">
             <span class="mb-4 inline-block rounded-full bg-accent-green/30 px-4 py-1.5 text-sm font-bold text-cream backdrop-blur-sm border border-accent-green/40 shadow-lg">
-                EST. 1985
+                {{ $hero_badge }}
             </span>
-            <h1 class="mb-6 text-4xl font-black leading-tight tracking-tight text-cream md:text-6xl lg:text-7xl drop-shadow-xl">
+            <h1 class="mb-4 sm:mb-6 text-3xl sm:text-4xl font-black leading-tight tracking-tight text-cream md:text-6xl lg:text-7xl drop-shadow-xl">
                 {{ $hero_greeting }} <br class="hidden md:block"/> <span class="text-accent-sage">{{ $hero_brand }}</span>
             </h1>
-            <p class="mx-auto mb-10 max-w-2xl text-lg font-light leading-relaxed text-sand md:text-xl drop-shadow-md">
+            <p class="mx-auto mb-10 max-w-2xl text-base sm:text-lg font-light leading-relaxed text-sand md:text-xl drop-shadow-md">
                 {{ $hero_subtitle }}
             </p>
             <!-- <div class="flex flex-col items-center justify-center gap-4 sm:flex-row ">
@@ -31,11 +27,11 @@
     </section>
 
     <!-- Features -->
-    <section class="relative z-20 -mt-16 px-6 pb-20">
+    <section class="relative z-20 -mt-8 sm:-mt-16 px-4 sm:px-6 pb-12 sm:pb-20">
         <div class="container mx-auto">
-            <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+            <div class="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-3">
                 <!-- Feature 1 -->
-                <div class="group relative flex flex-col gap-4 rounded-2xl bg-white dark:bg-background-dark p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-transparent hover:border-wood-medium/20">
+                <div class="group relative flex flex-col gap-4 rounded-2xl bg-white dark:bg-background-dark p-5 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-transparent hover:border-wood-medium/20">
                     <div class="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-wood-light/20 to-wood-light/5 text-wood-dark dark:text-cream group-hover:from-primary group-hover:to-primary-dark group-hover:text-white transition-all duration-300 shadow-sm">
                         <span class="material-symbols-outlined text-3xl">soup_kitchen</span>
                     </div>
@@ -45,7 +41,7 @@
                     </div>
                 </div>
                 <!-- Feature 2 -->
-                <div class="group relative flex flex-col gap-4 rounded-2xl bg-white dark:bg-background-dark p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-transparent hover:border-wood-medium/20">
+                <div class="group relative flex flex-col gap-4 rounded-2xl bg-white dark:bg-background-dark p-5 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-transparent hover:border-wood-medium/20">
                     <div class="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-wood-light/20 to-wood-light/5 text-wood-dark dark:text-cream group-hover:from-accent-green group-hover:to-accent-green/80 group-hover:text-white transition-all duration-300 shadow-sm">
                         <span class="material-symbols-outlined text-3xl">forest</span>
                     </div>
@@ -55,7 +51,7 @@
                     </div>
                 </div>
                 <!-- Feature 3 -->
-                <div class="group relative flex flex-col gap-4 rounded-2xl bg-white dark:bg-background-dark p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-transparent hover:border-wood-medium/20">
+                <div class="group relative flex flex-col gap-4 rounded-2xl bg-white dark:bg-background-dark p-5 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-transparent hover:border-wood-medium/20">
                     <div class="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-wood-light/20 to-wood-light/5 text-wood-dark dark:text-cream group-hover:from-primary group-hover:to-primary-dark group-hover:text-white transition-all duration-300 shadow-sm">
                         <span class="material-symbols-outlined text-3xl">volunteer_activism</span>
                     </div>
@@ -68,7 +64,8 @@
         </div>
     </section>
 
-    <!-- Booking Puasa Section (Temporary) -->
+    @if($ramadan_enabled)
+    <!-- Booking Puasa Section -->
     <section x-data="{ show: false }" x-init="setTimeout(() => show = true, 300)" class="relative py-20 px-6 overflow-hidden">
         <!-- Background gradient -->
         <div class="absolute inset-0 bg-gradient-to-br from-emerald-900 via-emerald-800 to-teal-900"></div>
@@ -112,19 +109,18 @@
                 <div class="lg:w-3/5 text-center lg:text-left">
                     <div class="inline-flex items-center gap-2 mb-4 rounded-full bg-yellow-400/15 px-4 py-1.5 border border-yellow-400/25 backdrop-blur-sm">
                         <span class="material-symbols-outlined text-yellow-300 text-sm">restaurant</span>
-                        <span class="text-xs font-bold uppercase tracking-widest text-yellow-200">Ramadan Special</span>
+                        <span class="text-xs font-bold uppercase tracking-widest text-yellow-200">{{ $ramadan_badge }}</span>
                     </div>
 
                     <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight mb-4">
-                        Booking <span class="text-yellow-300">Buka Puasa</span>
-                        <br class="hidden md:block"/>di Teras Rumah Nenek
+                        {!! nl2br(e($ramadan_title)) !!}
                     </h2>
 
                     <p class="text-emerald-100/80 text-lg leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
-                        Nikmati momen berbuka puasa bersama keluarga & sahabat dengan suasana hangat khas rumah nenek. Pesan tempat sekarang untuk pengalaman buka puasa yang tak terlupakan.
+                        {{ $ramadan_text }}
                     </p>
 
-                    <a href="https://www.booking.terasrumahnenek.com"
+                    <a href="{{ $ramadan_url }}"
                        target="_blank"
                        class="group inline-flex items-center gap-3 bg-yellow-400 hover:bg-yellow-300 text-emerald-900 font-bold px-10 py-4.5 rounded-full shadow-lg shadow-yellow-400/25 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-yellow-400/30 active:scale-95 text-lg">
                         <span class="material-symbols-outlined text-xl">calendar_month</span>
@@ -133,7 +129,7 @@
                     </a>
                     <p class="mt-4 text-emerald-200/60 text-sm flex items-center gap-1.5 justify-center lg:justify-start">
                         <span class="material-symbols-outlined text-yellow-400/70 text-sm">info</span>
-                        Tempat terbatas — segera amankan meja Anda!
+                        {{ $ramadan_note }}
                     </p>
                 </div>
 
@@ -143,7 +139,7 @@
                      x-transition:enter="transition ease-out duration-700 delay-300"
                      x-transition:enter-start="opacity-0 scale-90"
                      x-transition:enter-end="opacity-100 scale-100">
-                    <a href="https://www.booking.terasrumahnenek.com" target="_blank" class="block group">
+                    <a href="{{ $ramadan_url }}" target="_blank" class="block group">
                         <div class="relative bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 shadow-2xl transition-all duration-500 group-hover:bg-white/15 group-hover:border-yellow-400/30 group-hover:shadow-yellow-400/10 group-hover:-translate-y-1">
                             <!-- Glow effect -->
                             <div class="absolute -inset-1 bg-gradient-to-r from-yellow-400/20 via-emerald-400/10 to-yellow-400/20 rounded-3xl blur-lg transition-opacity duration-500 opacity-60 group-hover:opacity-100"></div>
@@ -158,25 +154,15 @@
                                     </div>
                                 </div>
 
-                                <h3 class="text-center text-white font-bold text-xl mb-6">Paket Buka Puasa</h3>
+                                <h3 class="text-center text-white font-bold text-xl mb-6">{{ $ramadan_card_title }}</h3>
 
                                 <ul class="space-y-3 mb-6">
+                                    @foreach($ramadan_features as $feature)
                                     <li class="flex items-center gap-3 text-emerald-100">
                                         <span class="material-symbols-outlined text-yellow-300 text-lg">check_circle</span>
-                                        <span class="text-sm">Menu spesial Ramadan</span>
+                                        <span class="text-sm">{{ $feature }}</span>
                                     </li>
-                                    <li class="flex items-center gap-3 text-emerald-100">
-                                        <span class="material-symbols-outlined text-yellow-300 text-lg">check_circle</span>
-                                        <span class="text-sm">Takjil & minuman segar</span>
-                                    </li>
-                                    <li class="flex items-center gap-3 text-emerald-100">
-                                        <span class="material-symbols-outlined text-yellow-300 text-lg">check_circle</span>
-                                        <span class="text-sm">Suasana nyaman & asri</span>
-                                    </li>
-                                    <li class="flex items-center gap-3 text-emerald-100">
-                                        <span class="material-symbols-outlined text-yellow-300 text-lg">check_circle</span>
-                                        <span class="text-sm">Tersedia untuk rombongan</span>
-                                    </li>
+                                    @endforeach
                                 </ul>
 
                                 <!-- Single inline CTA indicator -->
@@ -191,12 +177,13 @@
             </div>
         </div>
     </section>
+    @endif
 
     <!-- Our Heritage / Story -->
-    <section class="bg-sand/30 dark:bg-wood-dark/40 py-20 px-6">
-        <div class="container mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-            <div class="lg:w-1/2 relative">
-                <div class="absolute -top-4 -left-4 w-full h-full border-2 border-primary rounded-2xl z-0"></div>
+    <section class="bg-sand/30 dark:bg-wood-dark/40 py-12 sm:py-20 px-4 sm:px-6 overflow-hidden">
+        <div class="container mx-auto flex flex-col lg:flex-row items-center gap-10 sm:gap-12 lg:gap-20">
+            <div class="lg:w-1/2 relative w-full">
+                <div class="absolute -top-2 -left-2 sm:-top-4 sm:-left-4 w-full h-full border-2 border-primary rounded-2xl z-0"></div>
                 <img alt="Cozy wooden interior" class="relative z-10 w-full rounded-2xl shadow-2xl aspect-[4/3] object-cover sepia-[0.15]" src="{{ $story_image_1 }}" />
                 <div class="absolute -bottom-6 -right-6 z-20 hidden md:block">
                     <img alt="Traditional food detail" class="w-48 h-48 rounded-xl object-cover border-4 border-cream shadow-lg" src="{{ $story_image_2 }}" />
@@ -205,19 +192,21 @@
             <div class="lg:w-1/2 flex flex-col gap-6">
                 <div class="flex items-center gap-2 text-primary font-bold uppercase tracking-wider text-sm">
                     <span class="h-px w-8 bg-primary"></span>
-                    Our Heritage
+                    {{ $story_label }}
                 </div>
-                <h2 class="text-4xl md:text-5xl font-black text-wood-dark dark:text-cream leading-tight">
+                <h2 class="text-2xl sm:text-3xl md:text-5xl font-black text-wood-dark dark:text-cream leading-tight">
                     {!! nl2br(e($story_title)) !!}
                 </h2>
                 <p class="text-lg text-wood-light dark:text-gray-300 leading-relaxed">
                     {{ $story_text }}
                 </p>
                 <div class="pt-4">
-                    <a href="https://maps.app.goo.gl/8cCxYkC8nBwDc6C36" target="_blank" class="inline-flex items-center gap-2 font-bold text-wood-dark hover:text-primary transition-colors border-b-2 border-primary pb-1">
+                    @if(!empty($global_contact['contact_maps_link']))
+                    <a href="{{ $global_contact['contact_maps_link'] }}" target="_blank" class="inline-flex items-center gap-2 font-bold text-wood-dark hover:text-primary transition-colors border-b-2 border-primary pb-1">
                         See at Google
                         <span class="material-symbols-outlined text-sm">arrow_forward</span>
                     </a>
+                    @endif
                 </div>
             </div>
         </div>
@@ -228,26 +217,26 @@
         <div class="container mx-auto">
             <div class="mb-12 flex items-end justify-between">
                 <div>
-                    <span class="text-accent-green font-bold tracking-wider uppercase text-sm">From the Kitchen</span>
-                    <h2 class="mt-2 text-3xl md:text-4xl font-black text-wood-dark dark:text-cream">Signature Dishes</h2>
+                    <span class="text-accent-green font-bold tracking-wider uppercase text-sm">{{ $menu_label }}</span>
+                    <h2 class="mt-2 text-3xl md:text-4xl font-black text-wood-dark dark:text-cream">{{ $menu_title }}</h2>
                 </div>
                 <a href="{{ route('menu') }}" class="hidden sm:flex items-center gap-1 font-semibold text-wood-light hover:text-primary transition-colors">
                     View Full Menu <span class="material-symbols-outlined text-sm">arrow_forward</span>
                 </a>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
                 @forelse($featured_items as $item)
                     <div class="group relative flex flex-col h-full bg-white dark:bg-background-dark rounded-2xl shadow-lg border border-transparent hover:border-wood-medium/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl overflow-hidden cursor-pointer">
                         <div class="relative aspect-square overflow-hidden">
                             <img src="{{ $item->image ?? 'https://via.placeholder.com/400' }}" alt="{{ $item->name }}" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                            <div class="absolute bottom-4 right-4 rounded-full bg-white/90 px-4 py-1.5 text-sm font-bold text-wood-dark shadow-md backdrop-blur-sm">
+                            <div class="absolute bottom-2 right-2 sm:bottom-4 sm:right-4 rounded-full bg-white/90 px-2 py-1 sm:px-4 sm:py-1.5 text-[10px] sm:text-sm font-bold text-wood-dark shadow-md backdrop-blur-sm">
                                 Rp {{ number_format($item->price, 0, ',', '.') }}
                             </div>
                         </div>
-                        <div class="p-6 flex flex-col flex-grow">
-                            <h3 class="mb-2 text-xl font-bold text-wood-dark dark:text-cream group-hover:text-primary transition-colors">{{ $item->name }}</h3>
-                            <p class="text-sm text-wood-light dark:text-gray-400 line-clamp-2 leading-relaxed">{{ $item->description }}</p>
+                        <div class="p-3 sm:p-6 flex flex-col flex-grow">
+                            <h3 class="mb-1 sm:mb-2 text-sm sm:text-xl font-bold text-wood-dark dark:text-cream group-hover:text-primary transition-colors line-clamp-2">{{ $item->name }}</h3>
+                            <p class="text-xs sm:text-sm text-wood-light dark:text-gray-400 line-clamp-2 leading-relaxed">{{ $item->description }}</p>
                         </div>
                     </div>
                 @empty
@@ -310,20 +299,20 @@
     </section>
 
     <!-- Legacy Garden CTA -->
-    <section class="relative py-24">
+    <section class="relative py-16 sm:py-24">
         <div class="absolute inset-0 z-0">
             <img alt="Outdoor venue" class="h-full w-full object-cover" src="{{ $cta_bg }}" />
             <div class="absolute inset-0 bg-wood-dark/80 mix-blend-multiply"></div>
         </div>
-        <div class="relative z-10 container mx-auto px-6 text-center">
+        <div class="relative z-10 container mx-auto px-4 sm:px-6 text-center">
             <span class="mb-4 inline-block rounded-full bg-white/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-accent-sage backdrop-blur-md border border-white/20">
                 {{ $cta_tagline }}
             </span>
-            <h2 class="mb-6 text-4xl font-black text-cream md:text-5xl">{{ $cta_title }}</h2>
-            <p class="mx-auto mb-10 max-w-xl text-lg text-sand">
+            <h2 class="mb-4 sm:mb-6 text-3xl sm:text-4xl font-black text-cream md:text-5xl">{{ $cta_title }}</h2>
+            <p class="mx-auto mb-8 sm:mb-10 max-w-xl text-base sm:text-lg text-sand px-2">
                 {{ $cta_text }}
             </p>
-            <a href="{{ route('legacy-garden') }}" class="inline-block rounded-lg bg-cream px-8 py-4 text-base font-bold text-wood-dark transition-all hover:bg-primary hover:text-white hover:scale-105 shadow-xl">
+            <a href="{{ route('legacy-garden') }}" class="inline-block w-full sm:w-auto rounded-lg bg-cream px-8 py-4 text-base font-bold text-wood-dark transition-all hover:bg-primary hover:text-white hover:scale-105 shadow-xl touch-manipulation">
                 Explore Venue Packages
             </a>
         </div>
@@ -332,20 +321,35 @@
     <!-- Gallery Preview -->
     <section class="py-20 bg-cream dark:bg-wood-dark/20 overflow-hidden">
         <div class="container mx-auto px-6 mb-12 text-center">
-            <span class="text-accent-green font-bold tracking-wider uppercase text-sm">Follow Our Journey</span>
-            <h2 class="mt-2 text-3xl md:text-4xl font-black text-wood-dark dark:text-cream">Captured Moments</h2>
+            <span class="text-accent-green font-bold tracking-wider uppercase text-sm">{{ $gallery_label }}</span>
+            <h2 class="mt-2 text-3xl md:text-4xl font-black text-wood-dark dark:text-cream">{{ $gallery_title }}</h2>
         </div>
         
-        <div class="flex flex-col md:flex-row gap-4 px-4 overflow-hidden h-[800px] md:h-80">
-            @forelse($gallery_preview as $photo)
-                <div class="relative group rounded-xl overflow-hidden flex-1 hover:grow-[2] transition-all duration-500 ease-in-out cursor-pointer min-h-[200px] md:min-h-auto {{ $loop->iteration > 3 ? 'hidden md:block' : '' }}">
-                    <img src="{{ $photo->image_path }}" alt="{{ $photo->title }}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors"></div>
-                    <div class="absolute bottom-4 left-4 opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <span class="text-white font-bold text-lg drop-shadow-md">{{ $photo->title }}</span>
-                        <span class="block text-cream/80 text-xs uppercase tracking-wider">{{ $photo->category->name }}</span>
+        <div class="grid grid-cols-2 gap-3 px-4 sm:gap-4 md:hidden">
+            @forelse($gallery_preview->take(4) as $photo)
+                <a href="{{ route('gallery') }}" class="relative group rounded-xl overflow-hidden aspect-[4/5] shadow-md">
+                    <img src="{{ $photo->image_path }}" alt="{{ $photo->title }}" loading="lazy" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-3 left-3 right-3">
+                        <span class="text-white font-bold text-sm leading-tight line-clamp-2 drop-shadow-md">{{ $photo->title }}</span>
+                        <span class="block text-cream/80 text-[10px] uppercase tracking-wider mt-0.5">{{ $photo->category?->name ?? 'Uncategorized' }}</span>
                     </div>
-                </div>
+                </a>
+            @empty
+                <div class="col-span-2 text-center py-10 text-wood-light text-sm">No photos yet.</div>
+            @endforelse
+        </div>
+
+        <div class="hidden md:flex flex-row gap-4 px-4 overflow-hidden h-80">
+            @forelse($gallery_preview as $photo)
+                <a href="{{ route('gallery') }}" class="relative group rounded-xl overflow-hidden flex-1 hover:grow-[2] transition-all duration-500 ease-in-out min-h-0 {{ $loop->iteration > 3 ? 'hidden lg:block' : '' }}">
+                    <img src="{{ $photo->image_path }}" alt="{{ $photo->title }}" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors"></div>
+                    <div class="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <span class="text-white font-bold text-lg drop-shadow-md">{{ $photo->title }}</span>
+                        <span class="block text-cream/80 text-xs uppercase tracking-wider">{{ $photo->category?->name ?? 'Uncategorized' }}</span>
+                    </div>
+                </a>
             @empty
                 <div class="text-center w-full py-10 text-wood-light">
                     No photos yet.
@@ -365,31 +369,31 @@
         <div class="container mx-auto">
             <div class="overflow-hidden rounded-3xl bg-wood-dark shadow-2xl border border-wood-light/10">
                 <div class="flex flex-col md:flex-row">
-                    <div class="flex flex-1 flex-col justify-center p-10 md:p-16">
-                        <h2 class="mb-6 text-3xl font-bold text-cream">Book a Table</h2>
+                    <div class="flex flex-1 flex-col justify-center p-6 sm:p-10 md:p-16">
+                        <h2 class="mb-6 text-3xl font-bold text-cream">{{ $booking_title }}</h2>
                         <p class="mb-8 text-sand">
-                            Walk-ins are always welcome. However, if you prefer to secure a table in advance, please fill out the form below.
+                            {{ $booking_text }}
                         </p>
                         <form action="{{ route('book.table') }}" method="POST" class="flex flex-col gap-5">
                             @csrf
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                                 <div class="flex flex-col gap-2">
                                     <label class="text-xs font-bold text-wood-light uppercase tracking-wider">Name</label>
-                                    <input name="name" required class="w-full rounded-xl border border-white/10 bg-white/5 p-4 text-cream placeholder-wood-light/50 focus:border-primary focus:ring-2 focus:ring-primary/50 transition-all outline-none" type="text" placeholder="Your Name"/>
+                                    <input name="name" required class="w-full rounded-xl border border-white/10 bg-white/5 p-3.5 sm:p-4 text-base text-cream placeholder-wood-light/50 focus:border-primary focus:ring-2 focus:ring-primary/50 transition-all outline-none" type="text" placeholder="Your Name"/>
                                 </div>
                                 <div class="flex flex-col gap-2">
                                     <label class="text-xs font-bold text-wood-light uppercase tracking-wider">Phone</label>
-                                    <input name="phone" required class="w-full rounded-xl border border-white/10 bg-white/5 p-4 text-cream placeholder-wood-light/50 focus:border-primary focus:ring-2 focus:ring-primary/50 transition-all outline-none" type="tel" placeholder="0812..."/>
+                                    <input name="phone" required class="w-full rounded-xl border border-white/10 bg-white/5 p-3.5 sm:p-4 text-base text-cream placeholder-wood-light/50 focus:border-primary focus:ring-2 focus:ring-primary/50 transition-all outline-none" type="tel" placeholder="0812..."/>
                                 </div>
                             </div>
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                                 <div class="flex flex-col gap-2">
                                     <label class="text-xs font-bold text-wood-light uppercase tracking-wider">Date</label>
-                                    <input name="date" required class="w-full rounded-xl border border-white/10 bg-white/5 p-4 text-cream placeholder-wood-light/50 focus:border-primary focus:ring-2 focus:ring-primary/50 transition-all outline-none" type="date"/>
+                                    <input name="date" required class="w-full rounded-xl border border-white/10 bg-white/5 p-3.5 sm:p-4 text-base text-cream placeholder-wood-light/50 focus:border-primary focus:ring-2 focus:ring-primary/50 transition-all outline-none" type="date"/>
                                 </div>
                                 <div class="flex flex-col gap-2">
                                     <label class="text-xs font-bold text-wood-light uppercase tracking-wider">Guests</label>
-                                    <input name="guests" required class="w-full rounded-xl border border-white/10 bg-white/5 p-4 text-cream placeholder-wood-light/50 focus:border-primary focus:ring-2 focus:ring-primary/50 transition-all outline-none" type="number" min="1" placeholder="Number of people"/>
+                                    <input name="guests" required class="w-full rounded-xl border border-white/10 bg-white/5 p-3.5 sm:p-4 text-base text-cream placeholder-wood-light/50 focus:border-primary focus:ring-2 focus:ring-primary/50 transition-all outline-none" type="number" min="1" placeholder="Number of people"/>
                                 </div>
                             </div>
                             <!-- Time field removed as per request -->
@@ -399,7 +403,7 @@
                         </form>
                     </div>
                     <div class="relative min-h-[300px] md:min-h-full w-full md:w-1/2">
-                        <img alt="Waitstaff serving food" class="absolute h-full w-full object-cover sepia-[0.2]" src="https://images.unsplash.com/photo-1542534759-05f6c34a9e63?q=80&w=2070&auto=format&fit=crop" />
+                        <img alt="Waitstaff serving food" class="absolute h-full w-full object-cover sepia-[0.2]" src="{{ $booking_image }}" />
                     </div>
                 </div>
             </div>

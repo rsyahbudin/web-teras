@@ -24,6 +24,13 @@ class GalleryController extends Controller
         // Get all categories for filter
         $categories = GalleryCategory::orderBy('position')->get();
 
-        return view('gallery', compact('galleries', 'categories'));
+        $content = \App\Models\PageContent::whereIn('key', ['gallery_title', 'gallery_subtitle'])->pluck('value', 'key');
+
+        return view('gallery', [
+            'galleries' => $galleries,
+            'categories' => $categories,
+            'page_title' => $content['gallery_title'] ?? 'Gallery',
+            'page_subtitle' => $content['gallery_subtitle'] ?? 'Glimpses of our little paradise. From the lush gardens to the savory dishes.',
+        ]);
     }
 }

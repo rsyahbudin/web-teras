@@ -24,6 +24,7 @@ class Index extends Component
                 ['key' => 'home_hero_greeting', 'label' => 'Greeting Text', 'type' => 'text'],
                 ['key' => 'home_hero_brand', 'label' => 'Brand Name', 'type' => 'text'],
                 ['key' => 'home_hero_subtitle', 'label' => 'Subtitle', 'type' => 'textarea'],
+                ['key' => 'home_hero_badge', 'label' => 'Badge Text', 'type' => 'text', 'default' => 'EST. 1985'],
                 ['key' => 'home_hero_bg', 'label' => 'Background Image', 'type' => 'image', 'hint' => 'Recommended: 1920x1080px (High Quality Landscape)'],
             ]
         ],
@@ -32,6 +33,7 @@ class Index extends Component
             'description' => 'The heritage/story section on the home page.',
             'fields' => [
                 ['key' => 'home_about_title', 'label' => 'Title', 'type' => 'text'],
+                ['key' => 'home_about_label', 'label' => 'Section Label', 'type' => 'text', 'default' => 'Our Heritage'],
                 ['key' => 'home_about_text', 'label' => 'Description', 'type' => 'textarea'],
                 ['key' => 'home_about_image_1', 'label' => 'Main Image', 'type' => 'image', 'hint' => 'Recommended: 1200x900px (Aspect Ratio 4:3)'],
                 ['key' => 'home_about_image_2', 'label' => 'Small Image', 'type' => 'image', 'hint' => 'Recommended: 800x800px (Square 1:1)'],
@@ -47,6 +49,45 @@ class Index extends Component
                 ['key' => 'home_feature_2_text', 'label' => 'Feature 2 Text', 'type' => 'textarea'],
                 ['key' => 'home_feature_3_title', 'label' => 'Feature 3 Title', 'type' => 'text'],
                 ['key' => 'home_feature_3_text', 'label' => 'Feature 3 Text', 'type' => 'textarea'],
+            ]
+        ],
+        'home_menu' => [
+            'label' => 'Home: Signature Dishes',
+            'description' => 'Section heading for featured menu items on the home page.',
+            'fields' => [
+                ['key' => 'home_menu_label', 'label' => 'Section Label', 'type' => 'text', 'default' => 'From the Kitchen'],
+                ['key' => 'home_menu_title', 'label' => 'Section Title', 'type' => 'text', 'default' => 'Signature Dishes'],
+            ]
+        ],
+        'home_gallery' => [
+            'label' => 'Home: Gallery Preview',
+            'description' => 'Section heading for the gallery preview on the home page.',
+            'fields' => [
+                ['key' => 'home_gallery_label', 'label' => 'Section Label', 'type' => 'text', 'default' => 'Follow Our Journey'],
+                ['key' => 'home_gallery_title', 'label' => 'Section Title', 'type' => 'text', 'default' => 'Captured Moments'],
+            ]
+        ],
+        'home_booking' => [
+            'label' => 'Home: Book a Table',
+            'description' => 'Reservation form section on the home page.',
+            'fields' => [
+                ['key' => 'home_booking_title', 'label' => 'Title', 'type' => 'text', 'default' => 'Book a Table'],
+                ['key' => 'home_booking_text', 'label' => 'Description', 'type' => 'textarea'],
+                ['key' => 'home_booking_image', 'label' => 'Side Image', 'type' => 'image', 'hint' => 'Recommended: 800x1000px (Portrait)'],
+            ]
+        ],
+        'home_ramadan' => [
+            'label' => 'Home: Ramadan Promo',
+            'description' => 'Promotional section for Ramadan booking. Set visibility to "yes" or "no".',
+            'fields' => [
+                ['key' => 'home_ramadan_enabled', 'label' => 'Show Section (yes/no)', 'type' => 'text', 'default' => 'no', 'hint' => 'Set to "yes" to show, "no" to hide'],
+                ['key' => 'home_ramadan_badge', 'label' => 'Badge Text', 'type' => 'text', 'default' => 'Ramadan Special'],
+                ['key' => 'home_ramadan_title', 'label' => 'Title', 'type' => 'textarea'],
+                ['key' => 'home_ramadan_text', 'label' => 'Description', 'type' => 'textarea'],
+                ['key' => 'home_ramadan_url', 'label' => 'Booking URL', 'type' => 'text'],
+                ['key' => 'home_ramadan_note', 'label' => 'Note Text', 'type' => 'text'],
+                ['key' => 'home_ramadan_card_title', 'label' => 'Card Title', 'type' => 'text', 'default' => 'Paket Buka Puasa'],
+                ['key' => 'home_ramadan_features', 'label' => 'Card Features (one per line)', 'type' => 'textarea'],
             ]
         ],
         'home_cta' => [
@@ -65,6 +106,8 @@ class Index extends Component
             'fields' => [
                 ['key' => 'menu_hero_title', 'label' => 'Title', 'type' => 'text'],
                 ['key' => 'menu_hero_subtitle', 'label' => 'Subtitle', 'type' => 'text'],
+                ['key' => 'menu_hero_badge', 'label' => 'Badge Text', 'type' => 'text', 'default' => 'Since 1985'],
+                ['key' => 'menu_hero_description', 'label' => 'Description', 'type' => 'textarea'],
                 ['key' => 'menu_hero_bg', 'label' => 'Hero Image', 'type' => 'image', 'hint' => 'Recommended: 1920x600px (Wide banner)'],
             ]
         ],
@@ -120,11 +163,27 @@ class Index extends Component
                 ['key' => 'legacy_brochure_link', 'label' => 'Brochure Download Link (G-Drive)', 'type' => 'text'],
             ]
         ],
+        'gallery_page' => [
+            'label' => 'Gallery Page',
+            'description' => 'Heading text on the gallery page.',
+            'fields' => [
+                ['key' => 'gallery_title', 'label' => 'Page Title', 'type' => 'text', 'default' => 'Gallery'],
+                ['key' => 'gallery_subtitle', 'label' => 'Subtitle', 'type' => 'textarea'],
+            ]
+        ],
+        'global_analytics' => [
+            'label' => 'Global: Google Analytics',
+            'description' => 'Connect your website to Google Analytics 4 (GA4).',
+            'fields' => [
+                ['key' => 'google_analytics_id', 'label' => 'GA4 Measurement ID', 'type' => 'text', 'hint' => 'Format: G-XXXXXXXXXX. Find it in Google Analytics → Admin → Data Streams → your stream. Leave empty to disable.'],
+            ]
+        ],
         'global_contact' => [
             'label' => 'Global: Contact & Socials',
             'description' => 'Site-wide contact info, hours, and social media.',
             'fields' => [
                 ['key' => 'site_logo', 'label' => 'Site Logo (Navbar & Footer)', 'type' => 'image', 'hint' => 'Recommended: 400x160px (Transparent PNG preferred)'],
+                ['key' => 'site_footer_tagline', 'label' => 'Footer Tagline', 'type' => 'textarea'],
                 ['key' => 'contact_address', 'label' => 'Address', 'type' => 'textarea'],
                 ['key' => 'contact_maps_link', 'label' => 'Google Maps Link', 'type' => 'text'],
                 ['key' => 'contact_phone', 'label' => 'Phone Number', 'type' => 'text'],

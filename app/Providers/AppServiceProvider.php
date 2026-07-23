@@ -33,7 +33,9 @@ class AppServiceProvider extends ServiceProvider
                     $query->where('key', 'like', 'contact_%')
                           ->orWhere('key', 'like', 'social_%')
                           ->orWhere('key', 'like', 'legacy_social_%')
-                          ->orWhere('key', 'site_logo');
+                          ->orWhere('key', 'site_logo')
+                          ->orWhere('key', 'site_footer_tagline')
+                          ->orWhere('key', 'google_analytics_id');
                 })->pluck('value', 'key');
                 
                 \Illuminate\Support\Facades\View::share('global_contact', $globalContent);

@@ -28,6 +28,8 @@ class ThemeSeeder extends Seeder
                 'value' => 'A nostalgic culinary escape in the heart of nature. Experience the warmth of Grandma\'s terrace where rustic charm meets unforgettable flavors.',
                 'type' => 'text'
             ],
+            ['key' => 'home_hero_badge', 'value' => 'EST. 1985', 'type' => 'text'],
+            ['key' => 'home_hero_bg', 'value' => 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2070&auto=format&fit=crop', 'type' => 'image'],
             // Home Features
             ['key' => 'home_feature_1_title', 'value' => 'Nostalgic Flavors', 'type' => 'text'],
             ['key' => 'home_feature_1_text', 'value' => 'Authentic recipes passed down through generations, bringing back memories of home.', 'type' => 'textarea'],
@@ -37,6 +39,7 @@ class ThemeSeeder extends Seeder
             ['key' => 'home_feature_3_text', 'value' => 'Service that feels like family. We treat every guest like they are coming home.', 'type' => 'textarea'],
 
             // Home Story
+            ['key' => 'home_about_label', 'value' => 'Our Heritage', 'type' => 'text'],
             ['key' => 'home_about_title', 'value' => 'More than a restaurant, it\'s a return to simplicity.', 'type' => 'text'],
             ['key' => 'home_about_text', 'value' => 'Inspired by the afternoons spent on Grandma\'s terrace, we created a sanctuary where time slows down. Teras Rumah Nenek serves comfort food crafted with love, using ingredients harvested from our own legacy garden.', 'type' => 'textarea'],
             ['key' => 'home_about_image_1', 'value' => 'https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=1974&auto=format&fit=crop', 'type' => 'image'],
@@ -47,6 +50,39 @@ class ThemeSeeder extends Seeder
             ['key' => 'home_cta_title', 'value' => 'The Legacy Garden', 'type' => 'text'],
             ['key' => 'home_cta_text', 'value' => 'Create timeless memories in our enchanting botanical venue. Perfect for intimate weddings, family gatherings, and celebrations.', 'type' => 'textarea'],
             ['key' => 'home_cta_bg', 'value' => 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop', 'type' => 'image'],
+
+            // Home Menu & Gallery sections
+            ['key' => 'home_menu_label', 'value' => 'From the Kitchen', 'type' => 'text'],
+            ['key' => 'home_menu_title', 'value' => 'Signature Dishes', 'type' => 'text'],
+            ['key' => 'home_gallery_label', 'value' => 'Follow Our Journey', 'type' => 'text'],
+            ['key' => 'home_gallery_title', 'value' => 'Captured Moments', 'type' => 'text'],
+
+            // Home Booking
+            ['key' => 'home_booking_title', 'value' => 'Book a Table', 'type' => 'text'],
+            ['key' => 'home_booking_text', 'value' => 'Walk-ins are always welcome. However, if you prefer to secure a table in advance, please fill out the form below.', 'type' => 'textarea'],
+            ['key' => 'home_booking_image', 'value' => 'https://images.unsplash.com/photo-1542534759-05f6c34a9e63?q=80&w=2070&auto=format&fit=crop', 'type' => 'image'],
+
+            // Home Ramadan Promo
+            ['key' => 'home_ramadan_enabled', 'value' => 'no', 'type' => 'text'],
+            ['key' => 'home_ramadan_badge', 'value' => 'Ramadan Special', 'type' => 'text'],
+            ['key' => 'home_ramadan_title', 'value' => "Booking Buka Puasa\ndi Teras Rumah Nenek", 'type' => 'textarea'],
+            ['key' => 'home_ramadan_text', 'value' => 'Nikmati momen berbuka puasa bersama keluarga & sahabat dengan suasana hangat khas rumah nenek. Pesan tempat sekarang untuk pengalaman buka puasa yang tak terlupakan.', 'type' => 'textarea'],
+            ['key' => 'home_ramadan_url', 'value' => 'https://www.booking.terasrumahnenek.com', 'type' => 'text'],
+            ['key' => 'home_ramadan_note', 'value' => 'Tempat terbatas — segera amankan meja Anda!', 'type' => 'text'],
+            ['key' => 'home_ramadan_card_title', 'value' => 'Paket Buka Puasa', 'type' => 'text'],
+            ['key' => 'home_ramadan_features', 'value' => "Menu spesial Ramadan\nTakjil & minuman segar\nSuasana nyaman & asri\nTersedia untuk rombongan", 'type' => 'textarea'],
+
+            // Menu Page Hero
+            ['key' => 'menu_hero_title', 'value' => 'Authentic Flavors', 'type' => 'text'],
+            ['key' => 'menu_hero_subtitle', 'value' => 'of Home', 'type' => 'text'],
+            ['key' => 'menu_hero_badge', 'value' => 'Since 1985', 'type' => 'text'],
+            ['key' => 'menu_hero_description', 'value' => 'Experience traditional recipes passed down through generations, served in our comforting botanical garden terrace.', 'type' => 'textarea'],
+            ['key' => 'menu_hero_bg', 'value' => 'https://images.unsplash.com/photo-1678199342080-b2cb380fa49c?q=80&w=2070&auto=format&fit=crop', 'type' => 'image'],
+
+            // Gallery Page
+            ['key' => 'gallery_title', 'value' => 'Gallery', 'type' => 'text'],
+            ['key' => 'gallery_subtitle', 'value' => 'Glimpses of our little paradise. From the lush gardens to the savory dishes.', 'type' => 'textarea'],
+
             // Legacy Garden Defaults
             [
                 'key' => 'legacy_hero_title', 
@@ -103,6 +139,14 @@ class ThemeSeeder extends Seeder
                 'value' => 'Everything you need to make your event seamless and unforgettable.', 
                 'type' => 'text'
             ],
+            ['key' => 'legacy_feature_1_title', 'value' => 'Capacity', 'type' => 'text'],
+            ['key' => 'legacy_feature_1_text', 'value' => 'Comfortably hosts up to 300 guests standing or 150 seated guests.', 'type' => 'textarea'],
+            ['key' => 'legacy_feature_2_title', 'value' => 'Ample Parking', 'type' => 'text'],
+            ['key' => 'legacy_feature_2_text', 'value' => 'Dedicated parking area for up to 80 cars with valet service available.', 'type' => 'textarea'],
+            ['key' => 'legacy_feature_3_title', 'value' => 'Bridal Suite', 'type' => 'text'],
+            ['key' => 'legacy_feature_3_text', 'value' => 'Private, air-conditioned preparation room for the bride and family.', 'type' => 'textarea'],
+            ['key' => 'legacy_feature_4_title', 'value' => 'In-House Catering', 'type' => 'text'],
+            ['key' => 'legacy_feature_4_text', 'value' => 'Authentic Indonesian & International buffet menus from our kitchen.', 'type' => 'textarea'],
             [
                 'key' => 'legacy_inquiry_title', 
                 'value' => 'Start Planning Your Dream Day', 
@@ -143,9 +187,16 @@ class ThemeSeeder extends Seeder
                 'value' => 'https://facebook.com/legacygarden', 
                 'type' => 'text'
             ],
+            [
+                'key' => 'legacy_brochure_link',
+                'value' => '',
+                'type' => 'text'
+            ],
             // Global Contact & Socials
+            ['key' => 'google_analytics_id', 'value' => '', 'type' => 'text'],
+            ['key' => 'site_footer_tagline', 'value' => 'A sanctuary of nature and taste. Experienced the warmth of home in every bite.', 'type' => 'textarea'],
             ['key' => 'contact_address', 'value' => 'Jl. Pangeran Antasari No. 88, Cipete Selatan, Jakarta Selatan 12410', 'type' => 'textarea'],
-            ['key' => 'contact_maps_link', 'value' => 'https://goo.gl/maps/example', 'type' => 'text'],
+            ['key' => 'contact_maps_link', 'value' => 'https://maps.app.goo.gl/8cCxYkC8nBwDc6C36', 'type' => 'text'],
             ['key' => 'contact_phone', 'value' => '+62 21 765 4321', 'type' => 'text'],
             ['key' => 'contact_whatsapp', 'value' => '6281298765432', 'type' => 'text'],
             ['key' => 'contact_email', 'value' => 'hello@terasrumahnenek.com', 'type' => 'text'],
